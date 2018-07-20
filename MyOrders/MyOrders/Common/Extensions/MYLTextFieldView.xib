@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MYLTextFieldView" customModule="MyOrders" customModuleProvider="target">
+            <connections>
+                <outlet property="bottomLine" destination="2hQ-gi-lQP" id="oba-Sf-3er"/>
+                <outlet property="contentView" destination="i5M-Pr-FkT" id="k2d-4i-dYy"/>
+                <outlet property="errorImage" destination="OOr-6H-jjl" id="HkV-ad-sRi"/>
+                <outlet property="errorMessage" destination="dhj-Tx-cc2" id="lFD-Zu-srg"/>
+                <outlet property="fieldImage" destination="VwV-Ls-Djf" id="Cv3-fN-eDi"/>
+                <outlet property="fieldText" destination="7t2-Dg-VOs" id="Vhz-ZV-zO0"/>
+                <outlet property="fieldTextLeading" destination="Vbi-fJ-57T" id="fZM-DJ-DiL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="235" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hQ-gi-lQP" userLabel="Bottom line">
+                    <rect key="frame" x="0.0" y="34" width="235" height="1"/>
+                    <color key="backgroundColor" red="0.76862745099999996" green="0.7843137255" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="vtK-Ng-xCn"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VwV-Ls-Djf" userLabel="Field image">
+                    <rect key="frame" x="5" y="10" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="FNw-GU-1we"/>
+                        <constraint firstAttribute="height" constant="16" id="GOE-h6-ViV"/>
+                    </constraints>
+                </imageView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please enter" textAlignment="natural" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="7t2-Dg-VOs" userLabel="Field Placeholder">
+                    <rect key="frame" x="26" y="6" width="209" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="68O-LK-szV"/>
+                    </constraints>
+                    <color key="textColor" red="0.41960784309999999" green="0.46666666670000001" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error" translatesAutoresizingMaskIntoConstraints="NO" id="OOr-6H-jjl" userLabel="Error image">
+                    <rect key="frame" x="5" y="39" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="Dha-RG-Ybn"/>
+                        <constraint firstAttribute="height" constant="16" id="oo7-Bx-t5C"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhj-Tx-cc2" userLabel="Error message">
+                    <rect key="frame" x="26" y="38" width="87.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.72549019609999998" green="0.1019607843" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="dhj-Tx-cc2" firstAttribute="leading" secondItem="OOr-6H-jjl" secondAttribute="trailing" constant="5" id="22A-Kg-9z8"/>
+                <constraint firstItem="dhj-Tx-cc2" firstAttribute="centerY" secondItem="OOr-6H-jjl" secondAttribute="centerY" id="35b-y4-CZA"/>
+                <constraint firstItem="dhj-Tx-cc2" firstAttribute="top" secondItem="2hQ-gi-lQP" secondAttribute="bottom" constant="3" id="3d5-6r-BRq"/>
+                <constraint firstItem="7t2-Dg-VOs" firstAttribute="trailing" secondItem="2hQ-gi-lQP" secondAttribute="trailing" id="8lR-G2-DW4"/>
+                <constraint firstItem="VwV-Ls-Djf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="8tD-rb-czZ"/>
+                <constraint firstItem="OOr-6H-jjl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="Kr6-8c-z1P"/>
+                <constraint firstItem="OOr-6H-jjl" firstAttribute="top" secondItem="2hQ-gi-lQP" secondAttribute="top" constant="5" id="MV5-GK-XPl"/>
+                <constraint firstItem="2hQ-gi-lQP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PL5-mR-GmD"/>
+                <constraint firstItem="7t2-Dg-VOs" firstAttribute="leading" secondItem="VwV-Ls-Djf" secondAttribute="trailing" constant="5" id="Vbi-fJ-57T"/>
+                <constraint firstItem="VwV-Ls-Djf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="dq4-uD-FGi"/>
+                <constraint firstAttribute="trailing" secondItem="2hQ-gi-lQP" secondAttribute="trailing" id="ggB-Mw-54v"/>
+                <constraint firstItem="2hQ-gi-lQP" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="4" id="sDp-D6-v9C"/>
+                <constraint firstItem="7t2-Dg-VOs" firstAttribute="centerY" secondItem="VwV-Ls-Djf" secondAttribute="centerY" id="uLV-Ct-xYt"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="-197.5" y="-331"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="error" width="16" height="16"/>
+    </resources>
+</document>

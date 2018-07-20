@@ -1,0 +1,38 @@
+PODS:
+  - Alamofire (4.4.0)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+  - SwiftLint (0.23.1)
+  - SwiftyJSON (3.1.4)
+  - SWXMLHash (4.2.1)
+  - TTGSnackbar (1.7.3)
+
+DEPENDENCIES:
+  - Alamofire (= 4.4.0)
+  - SDWebImage (~> 3.8.1)
+  - SwiftLint (= 0.23.1)
+  - SwiftyJSON (= 3.1.4)
+  - SWXMLHash (= 4.2.1)
+  - TTGSnackbar (= 1.7.3)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - SDWebImage
+    - SwiftLint
+    - SwiftyJSON
+    - SWXMLHash
+    - TTGSnackbar
+
+SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SwiftLint: 1b670ce79284c76520f84060e87d645078fd32fa
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  SWXMLHash: a4e70d15b73f825ce7b2f4ecb3dc1a3a4ff1cfb9
+  TTGSnackbar: a66e929fd17d662152ec0964990a86e966310edb
+
+PODFILE CHECKSUM: ef751fea832f5e45fe30d89742f375db5a68c784
+
+COCOAPODS: 1.5.3
