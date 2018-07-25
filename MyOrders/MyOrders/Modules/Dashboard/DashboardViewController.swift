@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashboardViewController: BaseViewController, UITextFieldDelegate {
+class DashboardViewController: BaseViewController {
 
   @IBOutlet weak var ScrollView: UIScrollView!
   @IBOutlet weak var ButtonContainer: UIView!
@@ -17,39 +17,69 @@ class DashboardViewController: BaseViewController, UITextFieldDelegate {
   @IBOutlet weak var DeliveryButton: UIButton!
   @IBOutlet weak var TableNumberInputView: UIView!
   @IBOutlet weak var TableNumber: MYLTextFieldView!
-  @IBOutlet weak var testField: UITextField!
+  
+  private var gestureRecognizer:UITapGestureRecognizer!
   
   override func viewDidLoad() {
-        super.viewDidLoad()
+    super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        //ScrollView.contentOffset = CGPoint(x: 0.0, y: -200.0)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    gestureRecognizer = UITapGestureRecognizer(target: self,action: #selector(tappedAnywhere(_:)))
+    gestureRecognizer.cancelsTouchesInView = false
+    gestureRecognizer.delegate = self
     
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    switch segue.identifier {
+    case SegueIdentifier.toEatIn.rawValue?:
+      let bill = Bill()
+      
+      guard let destVC = segue.destination as? EatInViewController, TableNumber.isValid else {
+          break
+      }
+      bill.tableNumber = TableNumber.fieldText.text
+      destVC.thisBill = bill
+      
+    default:
+      break
+    }
+  }
+  
+  // MARK: UITextFieldDelegate
+  override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    TableNumber.validate()
+    
+    if TableNumber.isValid  {
+      activeField?.resignFirstResponder()
+      TableNumberInputView.isHidden = true
+      activeField = nil
+      self.performSegue(withIdentifier: SegueIdentifier.toEatIn.rawValue, sender: nil)
+      return true
+    } else {
+      return false
+    }
+  }
 
+  
   // MARK: - Actions
   @IBAction func btnEatInTapped(_ sender: Any) {
     let eps: CGFloat = 1e-5
-    let frm = EatInButton.frame
-
+    
+    view.addGestureRecognizer(gestureRecognizer)
     TableNumberInputView.isHidden = false
-    TableNumberInputView.frame = CGRect(x: frm.origin.x + frm.width/2, y: frm.origin.y - 80, width: DeliveryButton.frame.minX - frm.origin.x, height: TableNumberInputView.frame.height)
     TableNumberInputView.layer.anchorPoint = CGPoint(x: 0, y: 0.5)
     TableNumberInputView.transform = CGAffineTransform(scaleX: eps, y: eps)
-
+    TableNumberInputView.updateConstraints()
+    
     TableNumberInputView.layer.shadowOffset =  CGSize(width: 5, height: 5)
     TableNumberInputView.layer.shadowColor = UIColor.black.cgColor
     TableNumberInputView.layer.shadowRadius = 10
     TableNumberInputView.layer.shadowOpacity = 0.65
 
-    TableNumber.configure(placeholder: nil, validationType: ValidationType.IsRequired.rawValue, maxLength: 2, alignment: .center, keyboardType: .numberPad)
+    let validations = ValidationType.IsRequired.rawValue + ValidationType.IsNumeric.rawValue
+    TableNumber.configure(placeholder: nil, validationType: validations, maxLength: 2, alignment: .center, keyboardType: .numberPad)
     TableNumber.delegate = self
-    //testField.delegate = self
+    
     
     UIView.animate(withDuration: 1.0,
                    delay: 0.0,
@@ -57,11 +87,9 @@ class DashboardViewController: BaseViewController, UITextFieldDelegate {
                    initialSpringVelocity: 0.5,
                    options: UIViewAnimationOptions(),
                    animations: {
-
       self.TableNumberInputView.transform = CGAffineTransform(translationX: -self.TableNumberInputView.bounds.width/2, y: 0)
-
     }) { _ in
-
+      self.TableNumber.fieldText.becomeFirstResponder()
     }
 
   }
@@ -72,56 +100,21 @@ class DashboardViewController: BaseViewController, UITextFieldDelegate {
   @IBAction func btnDeliveryTapped(_ sender: Any) {
   }
   
-  /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+// MARK: UIGestureRecognizerDelegate
+extension DashboardViewController: UIGestureRecognizerDelegate {
   
-  func textFieldDidBeginEditing(_ textField: UITextField) {
-    animateViewMoving(up: true, moveValue: 200)
+  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                         shouldReceive touch: UITouch) -> Bool {
+    return (touch.view === self.ButtonContainer)
   }
   
-  func textFieldDidEndEditing(_ textField: UITextField) {
-    animateViewMoving(up: false, moveValue: 200)
-  }
-  
-  func animateViewMoving (up:Bool, moveValue :CGFloat){
-    let movementDuration:TimeInterval = 0.3
-    let movement:CGFloat = ( up ? -moveValue : moveValue)
-    UIView.beginAnimations( "animateView", context: nil)
-    UIView.setAnimationBeginsFromCurrentState(true)
-    UIView.setAnimationDuration(movementDuration )
-    self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
-    UIView.commitAnimations()
-  }
-  
-  func keyboardWillShow(notification: NSNotification) {
-    if keyboardHeight != nil {
-      return
-    }
-    if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-      keyboardHeight = keyboardSize.height
-      // so increase contentView's height by keyboard height
-      UIView.animate(withDuration: 0.3, animations: {
-        self.constraintContentHeight.constant += self.keyboardHeight
-      })
-      // move if keyboard hide input field
-      let distanceToBottom = self.scrollView.frame.size.height - (activeField?.frame.origin.y)! - (activeField?.frame.size.height)!
-      let collapseSpace = keyboardHeight - distanceToBottom
-      if collapseSpace < 0 {
-        // no collapse
-        return
-      }
-      // set new offset for scroll view
-      UIView.animate(withDuration: 0.3, animations: {
-        // scroll to the position above keyboard 10 points
-        self.scrollView.contentOffset = CGPoint(x: self.lastOffset.x, y: collapseSpace + 10)
-      })
+  @objc private func tappedAnywhere(_ tap: UITapGestureRecognizer) {
+    if tap.state == .ended {
+      view.removeGestureRecognizer(gestureRecognizer)
+      activeField?.resignFirstResponder()
+      TableNumberInputView.isHidden = true
     }
   }
 }

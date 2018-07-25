@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24150AF321061995000E938D /* MYLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24150AF221061994000E938D /* MYLTextField.swift */; };
+		24150AF421061995000E938D /* MYLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24150AF221061994000E938D /* MYLTextField.swift */; };
+		24150AF721064F48000E938D /* EatInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24150AF621064F48000E938D /* EatInViewController.swift */; };
+		24150AF821064F48000E938D /* EatInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24150AF621064F48000E938D /* EatInViewController.swift */; };
 		242175962100D7FE0015A10C /* MYLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242175952100D7FE0015A10C /* MYLString.swift */; };
 		2421877020F4FF2B00D85D5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421876F20F4FF2B00D85D5A /* AppDelegate.swift */; };
 		2421877220F4FF2B00D85D5A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421877120F4FF2B00D85D5A /* SignInViewController.swift */; };
@@ -74,6 +78,8 @@
 
 /* Begin PBXFileReference section */
 		2406A61918F5EE63656E01D5 /* Pods-MyOrders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.debug.xcconfig"; sourceTree = "<group>"; };
+		24150AF221061994000E938D /* MYLTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYLTextField.swift; sourceTree = "<group>"; };
+		24150AF621064F48000E938D /* EatInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EatInViewController.swift; sourceTree = "<group>"; };
 		242175952100D7FE0015A10C /* MYLString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYLString.swift; sourceTree = "<group>"; };
 		2421876C20F4FF2B00D85D5A /* MyOrders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyOrders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2421876F20F4FF2B00D85D5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +153,14 @@
 				B99FBB45EC16B4E1E726139C /* Pods_MyOrders.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		24150AF521064F02000E938D /* EatIn */ = {
+			isa = PBXGroup;
+			children = (
+				24150AF621064F48000E938D /* EatInViewController.swift */,
+			);
+			path = EatIn;
 			sourceTree = "<group>";
 		};
 		2421876320F4FF2B00D85D5A = {
@@ -261,6 +275,7 @@
 			children = (
 				2465063120FD8BFB00F4F168 /* MYLTextFieldView.swift */,
 				2465062C20FD8BC500F4F168 /* MYLTextFieldView.xib */,
+				24150AF221061994000E938D /* MYLTextField.swift */,
 				2465063420FE44C700F4F168 /* MYLColor.swift */,
 				2465063620FE47C600F4F168 /* MYLImageView.swift */,
 				242175952100D7FE0015A10C /* MYLString.swift */,
@@ -273,6 +288,7 @@
 			children = (
 				24C110C020F81A2500D6B031 /* Base */,
 				2465061F20FCFF5200F4F168 /* Dashboard */,
+				24150AF521064F02000E938D /* EatIn */,
 				24C110BD20F8177800D6B031 /* SignIn */,
 				24C110BC20F8176D00D6B031 /* Setup */,
 				24C110BF20F817B000D6B031 /* Bill */,
@@ -529,9 +545,11 @@
 				2465063720FE47C600F4F168 /* MYLImageView.swift in Sources */,
 				242F49BA20F52F0100B8013E /* MenuServices.swift in Sources */,
 				242F49C320F67E9600B8013E /* Credit.swift in Sources */,
+				24150AF321061995000E938D /* MYLTextField.swift in Sources */,
 				242F49B420F52EBE00B8013E /* NetworkManager.swift in Sources */,
 				242F49B820F52F0100B8013E /* BaseServices.swift in Sources */,
 				242187A420F52BE700D85D5A /* Menu.swift in Sources */,
+				24150AF721064F48000E938D /* EatInViewController.swift in Sources */,
 				2465063520FE44C700F4F168 /* MYLColor.swift in Sources */,
 				2465062620FD009100F4F168 /* DashboardInteractor.swift in Sources */,
 				2421877020F4FF2B00D85D5A /* AppDelegate.swift in Sources */,
@@ -560,7 +578,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24150AF421061995000E938D /* MYLTextField.swift in Sources */,
 				24C110CA20F81AAC00D6B031 /* SignInViewController.swift in Sources */,
+				24150AF821064F48000E938D /* EatInViewController.swift in Sources */,
 				2465062220FD004E00F4F168 /* DashboardViewController.swift in Sources */,
 				2421879320F4FF3400D85D5A /* MyOrdersUITests.swift in Sources */,
 				2465063320FD8BFB00F4F168 /* MYLTextFieldView.swift in Sources */,
@@ -656,7 +676,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -710,7 +730,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -727,6 +747,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DDVTVFRM85;
 				INFOPLIST_FILE = MyOrders/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -734,7 +755,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.myorders.test.MyOrders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -746,6 +767,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DDVTVFRM85;
 				INFOPLIST_FILE = MyOrders/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -753,7 +775,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.myorders.test.MyOrders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

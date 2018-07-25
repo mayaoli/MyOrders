@@ -16,6 +16,10 @@ struct Constants {
   static let STORAGE_PATH: String = "CachedObject"
 }
 
+enum SegueIdentifier: String {
+  case toEatIn
+}
+
 // For a single view application, there is really no need to define so many enums.
 // However, here is to show how the project should be structured
 
@@ -97,7 +101,7 @@ enum TableViewCellReuseIdentifier: String {
 enum FieldState {
   case normal
   case focus
-  case error
+  case error(message: String)
 }
 
 enum ValidationType: UInt {

@@ -12,25 +12,21 @@ import SwiftyJSON
 class Order: NSObject, NSCoding, JSONModel {
     
     // order id - generated, useful for delivery
-    let orderId: String
-    
-    // table#
-    let tableNumber: String?
+    var orderId: String
     
     // food
-    let food: [Menu:FoodStatus]
+    var food: [Menu:FoodStatus]
     
     // orderType
-    let orderType: OrderType // delivery|pick-up/take-out|eat-in
+    var orderType: OrderType // delivery|pick-up/take-out|eat-in
     
     // split pay - split the payment for each customer
-    let splitPay: Bool
+    var splitPay: Bool
     
     
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(self.orderId, forKey: "orderId")
-        aCoder.encode(self.tableNumber, forKey: "tableNumber")
         aCoder.encode(self.food, forKey: "food")
         aCoder.encode(self.orderType, forKey: "orderType")
         aCoder.encode(self.splitPay, forKey: "splitPay")
@@ -41,11 +37,6 @@ class Order: NSObject, NSCoding, JSONModel {
             orderId = dorderId
         } else {
             orderId = ""
-        }
-        if let dtableNumber = aDecoder.decodeObject(forKey: "tableNumber") as? String{
-            tableNumber = dtableNumber
-        } else {
-            tableNumber = ""
         }
         if let dfood = aDecoder.decodeObject(forKey: "food") as? [Menu:FoodStatus]{
             food = dfood
@@ -66,7 +57,6 @@ class Order: NSObject, NSCoding, JSONModel {
     
     required init(json: JSON) throws {
         orderId = json["orderId"].stringValue
-        tableNumber = json["tableNumber"].stringValue
         food = [:]  //UtilityManager.getArray(json["food"], type: nil)
         orderType = OrderType.init(rawValue: json["orderType"].stringValue) ?? OrderType.eatin
         splitPay = json["splitPay"].boolValue
@@ -74,7 +64,6 @@ class Order: NSObject, NSCoding, JSONModel {
     
     override init() {
         orderId = ""
-        tableNumber = ""
         food = [:]
         orderType = OrderType.eatin
         splitPay = false

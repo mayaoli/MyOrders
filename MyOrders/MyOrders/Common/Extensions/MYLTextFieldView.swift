@@ -12,14 +12,14 @@ class MYLTextFieldView: UIView {
 
   @IBOutlet var contentView: UIView!
   @IBOutlet weak var fieldImage: UIImageView!
-  @IBOutlet weak var fieldText: UITextField!
+  @IBOutlet weak var fieldText: MYLTextField!
   @IBOutlet weak var bottomLine: UIView!
   @IBOutlet weak var errorMessage: UILabel!
   @IBOutlet weak var errorImage: UIImageView!
   @IBOutlet weak var fieldTextLeading: NSLayoutConstraint!
   
+  var isValid: Bool = true
   var maximumValueLength: Int = 0
-  var fieldValidationType: UInt = 0
   var delegate: UITextFieldDelegate? = nil {
     didSet {
       fieldText.delegate = delegate
@@ -31,18 +31,23 @@ class MYLTextFieldView: UIView {
       switch fieldState {
       case .normal:
         isValid = true
+        errorMessage.text = ""
+        errorMessage.isHidden = true
+        errorImage.isHidden = true
         bottomLine.backgroundColor = UIColor.textFieldBorderColor()
       case .focus:
         bottomLine.backgroundColor = UIColor.textFieldFocusedBorderColor()
-      case .error:
+      case .error(let message):
         isValid = false
         bottomLine.backgroundColor = UIColor.textFieldErrorColor()
+        errorMessage.text = message
+        errorMessage.isHidden = false
+        errorImage.isHidden = false
       }
       self.setNeedsDisplay()
     }
   }
   
-  private var isValid: Bool = true
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -70,16 +75,12 @@ class MYLTextFieldView: UIView {
     
     fieldText.placeholder = placeholder ?? "Please enter"
     fieldText.text = value ?? ""
-    fieldValidationType = validationType ?? ValidationType.None.rawValue
+    fieldText.fieldValidationType = validationType ?? ValidationType.None.rawValue
     
     if error != nil, !value!.isEmpty {
       fieldText.text = value!
-      fieldState = .error
+      fieldState = .error(message: error!)
     } else {
-      errorMessage.text = ""
-      errorMessage.isHidden = true
-      errorImage.isHidden = true
-      
       fieldState = .normal
     }
     
@@ -94,54 +95,13 @@ class MYLTextFieldView: UIView {
   }
   
   func validate() {
-    guard fieldText.text != nil, fieldValidationType > 0 else {
-      return
+    if let err = fieldText.validate() {
+      fieldState = .error(message: err)
+    } else {
+      fieldState = .normal
     }
-    
-    let trimedVal: String = fieldText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-    var curValidation: ValidationType = .IsRequired
-    
-    isValid = true
-    
-    while curValidation.rawValue <= fieldValidationType, curValidation.rawValue <= ValidationType.IsPostcode.rawValue {
-      if (fieldValidationType & curValidation.rawValue) == curValidation.rawValue {
-        
-        if curValidation == .IsRequired {
-          if trimedVal.isEmpty {
-            isValid = false
-            errorMessage.text = curValidation.error
-            bottomLine.backgroundColor = UIColor.textFieldErrorColor()
-            return
-          }
-        } else if trimedVal.isEmpty {
-          return
-        }
-        
-        do {
-          let regex = try NSRegularExpression(pattern: curValidation.regex)
-          let results = regex.matches(in: trimedVal, range: NSRange(trimedVal.startIndex..., in: trimedVal))
-          
-          if results.count == 0 {
-            isValid = false
-            errorMessage.text = curValidation.error
-            bottomLine.backgroundColor = UIColor.textFieldErrorColor()
-            return
-          }
-          
-        } catch {
-          print("invalid regex: \(error.localizedDescription)")
-        }
-      }
-      
-      curValidation = ValidationType.init(rawValue: curValidation.rawValue * 2)!
-    }
-    
-    errorMessage.text = ""
-    errorMessage.isHidden = true
-    errorImage.isHidden = true
-    bottomLine.backgroundColor = UIColor.textFieldBorderColor()
   }
-
+  
   private func loadViewFromNib() {
     guard self.viewWithTag(99) == nil else {
       return
