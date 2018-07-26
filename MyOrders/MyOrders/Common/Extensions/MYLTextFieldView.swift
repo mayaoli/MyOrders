@@ -112,31 +112,27 @@ class MYLTextFieldView: UIView {
     contentView.frame = self.bounds
     contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     contentView.translatesAutoresizingMaskIntoConstraints = true
-    fieldText.delegate = self
+    fieldText.parentView = self
     
     self.isAccessibilityElement = true
   }
   
-}
-
-extension MYLTextFieldView: UITextFieldDelegate {
-  
-  func textFieldDidBeginEditing(_ textField: UITextField) {
+  func beginEditing() {
     self.fieldState = .focus
   }
   
-  func textFieldDidEndEditing(_ textField: UITextField) {
+  func endEditing() {
     self.fieldState = .normal
   }
   
-  func textFieldValueChanged(_ textField: UITextField) {
+  func valueChanged() {
     if maximumValueLength == 0 {
       return
     }
     
-    if let text = textField.text {
+    if let text = fieldText.text {
       if text.count > maximumValueLength {
-        textField.text = text.getSubstring(fromIndex: text.startIndex, to: maximumValueLength)
+        fieldText.text = text.getSubstring(fromIndex: text.startIndex, to: maximumValueLength)
       }
     }
   }

@@ -10,21 +10,37 @@ import UIKit
 import TTGSnackbar
 
 protocol BaseViewInterface: class {
-
   var snackbar: TTGSnackbar? { get set }
   
+  func animateViewMoving(_ movement:CGFloat)
   func renderError(_ error: NetworkingError)
   func renderMessage(title: String, message: String)
 }
 
 class BaseViewController: UIViewController, BaseViewInterface {
   
+  private var presenter : BasePresenter!
+  weak var eventHandler: BaseEventsInterface? {
+    return presenter
+  }
+  
   var snackbar: TTGSnackbar?
-  var activeField: UITextField!
-  var lastOffsetY: CGFloat! = 0
-  var keyboardHeight: CGFloat! = 0
-  var containerOffset: CGPoint!
+  var activeField: UITextField?
 
+  // MARK: - following 2 functions could be defined a parent class (ex. baseViewControl)
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    
+    (self.eventHandler as? BasePresenter)?.view = self
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder);
+    
+    presenter = BasePresenter()
+    presenter.view = self
+  }
+  
   override func viewDidLoad() {
       super.viewDidLoad()
 
@@ -49,10 +65,9 @@ class BaseViewController: UIViewController, BaseViewInterface {
       // Dispose of any resources that can be recreated.
   }
   
-  func animateViewMoving (up:Bool, moveValue :CGFloat){
+  func animateViewMoving(_ movement :CGFloat) {
     let movementDuration:TimeInterval = 0.3
-    let movement:CGFloat = ( up ? -moveValue : moveValue)
-    UIView.beginAnimations( "animateView", context: nil)
+    UIView.beginAnimations("animateView", context: nil)
     UIView.setAnimationBeginsFromCurrentState(true)
     UIView.setAnimationDuration(movementDuration )
     self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
@@ -109,77 +124,46 @@ class BaseViewController: UIViewController, BaseViewInterface {
 extension BaseViewController: UITextFieldDelegate {
   
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    print("@@@textFieldShouldBeginEditing")
     activeField = textField
     
-    var x: CGFloat = activeField.frame.origin.x
-    var y: CGFloat = activeField.frame.origin.y - self.lastOffsetY
-    var superVW = activeField.superview
-    
-    while superVW != nil, superVW != self.view {
-      x += superVW!.frame.origin.x
-      y += superVW!.frame.origin.y
-      
-      superVW = superVW!.superview
+    self.eventHandler?.calculateOffset(textField)
+    textField.addTarget(self, action: #selector(textFieldValueChanged(_:)), for: UIControlEvents.editingChanged)
+    if let pvw = (textField as? MYLTextField)?.parentView as? MYLTextFieldView {
+      pvw.beginEditing()
     }
-    
-    self.containerOffset = CGPoint(x: x, y: y)
-    print("### containerOffset = (\(x), \(y))")
     return true
   }
   
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    print("@@@textFieldDidEndEditing")
+    textField.removeTarget(self, action: nil, for: UIControlEvents.editingChanged)
+    if let pvw = (textField as? MYLTextField)?.parentView as? MYLTextFieldView {
+      pvw.endEditing()
+    }
+  }
+  
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    activeField?.resignFirstResponder()
+    textField.resignFirstResponder()
     activeField = nil
     return true
   }
   
-  @objc func keyboardWillShow(notification: NSNotification) {
-    guard activeField != nil else {  // keyboardHeight == nil,
-      return
-    }
-    
-    if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-      keyboardHeight = keyboardSize.height
-      
-      print("### keyboardHeight = \(keyboardHeight)")
-      
-      // so increase contentView's height by keyboard height
-      //self.ContentHeightConstraint.constant += self.keyboardHeight
-      
-      // move if keyboard hide input field
-      let distanceToBottom = self.view.frame.size.height - (containerOffset.y + activeField!.frame.origin.y + activeField!.frame.size.height)
-      let collapseSpace = keyboardHeight - distanceToBottom
-      
-      print("### collapseSpace = \(collapseSpace)")
-      if collapseSpace < 0 {
-        // no collapse
-        if self.lastOffsetY > 0 {
-          animateViewMoving(up: false, moveValue: self.lastOffsetY)
-          self.lastOffsetY = 0
-        }
-        return
-      }
-      
-      // set new offset for scroll view
-      if self.lastOffsetY != collapseSpace + 45 {
-        self.lastOffsetY = collapseSpace + 45
-        animateViewMoving(up: true, moveValue: self.lastOffsetY)
-      }
-      
+  @objc func textFieldValueChanged(_ textField: UITextField) {
+    if let pvw = (activeField as? MYLTextField)?.parentView as? MYLTextFieldView {
+      pvw.valueChanged()
     }
   }
   
+  @objc func keyboardWillShow(notification: NSNotification) {
+    guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue, activeField != nil else {
+      return
+    }
+    
+    self.eventHandler?.shouldScroll(keyboardSize.height, self.view.frame.size.height)
+  }
+  
   @objc func keyboardWillHide(notification: NSNotification) {
-    
-    animateViewMoving(up: false, moveValue: self.lastOffsetY)
-    self.lastOffsetY = 0
-    
-    //    UIView.animate(withDuration: 0.3) {
-    //      self.ContentHeightConstraint.constant -= self.keyboardHeight
-    //
-    //      self.ScrollView.contentOffset = self.lastOffset
-    //    }
-    
-    keyboardHeight = nil
+    self.eventHandler?.shouldScroll(0, self.view.frame.size.height)
   }
 }

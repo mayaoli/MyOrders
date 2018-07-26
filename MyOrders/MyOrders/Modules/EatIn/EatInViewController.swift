@@ -9,7 +9,7 @@
 import UIKit
 
 class EatInViewController: BaseViewController {
-  @IBOutlet weak var staffNumber: MYLTextFieldView!
+  @IBOutlet weak var staffPIN: MYLTextFieldView!
   @IBOutlet weak var customerNumber: MYLTextFieldView!
   @IBOutlet weak var centerView: UIView!
   
@@ -24,11 +24,12 @@ class EatInViewController: BaseViewController {
     centerView.layer.shadowRadius = 10
     centerView.layer.shadowOpacity = 0.65
     
-    staffNumber.configure(placeholder: nil, validationType: ValidationType.IsRequired.rawValue, maxLength: 4, alignment: .left, keyboardType: .numberPad)
-    staffNumber.delegate = self
-    staffNumber.fieldText.returnKeyType = .next
+    let validations = ValidationType.IsRequired.rawValue + ValidationType.IsNumeric.rawValue
+    staffPIN.configure(placeholder: nil, validationType: validations, maxLength: 4, alignment: .left, keyboardType: .numberPad)
+    staffPIN.delegate = self
+    staffPIN.fieldText.returnKeyType = .next
     
-    customerNumber.configure(placeholder: nil, validationType: ValidationType.IsRequired.rawValue, maxLength: 2, alignment: .left, keyboardType: .numberPad)
+    customerNumber.configure(placeholder: nil, validationType: validations, maxLength: 2, alignment: .left, keyboardType: .numberPad)
     customerNumber.delegate = self
     customerNumber.fieldText.returnKeyType = .done
   }
@@ -46,16 +47,16 @@ class EatInViewController: BaseViewController {
   // MARK: UITextFieldDelegate
   override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     
-    if activeField.returnKeyType == .next {
+    if activeField?.returnKeyType == .next {
       customerNumber.fieldText.becomeFirstResponder()
       return false
-    } else if activeField.returnKeyType == .done {
-      staffNumber.validate()
+    } else if activeField?.returnKeyType == .done {
+      staffPIN.validate()
       customerNumber.validate()
-      if staffNumber.isValid && customerNumber.isValid {
-        activeField?.resignFirstResponder()
-        activeField = nil
-        return true
+      if staffPIN.isValid && customerNumber.isValid {
+        
+        
+        return super.textFieldShouldBeginEditing(textField)
       }
       
       return false

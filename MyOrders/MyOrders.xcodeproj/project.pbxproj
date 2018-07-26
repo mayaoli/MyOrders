@@ -331,9 +331,9 @@
 		24C110C020F81A2500D6B031 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				24C110C120F81A9400D6B031 /* BaseInteractor.swift */,
-				24C110C220F81A9400D6B031 /* BasePresenter.swift */,
 				24C110C320F81A9400D6B031 /* BaseViewController.swift */,
+				24C110C220F81A9400D6B031 /* BasePresenter.swift */,
+				24C110C120F81A9400D6B031 /* BaseInteractor.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";

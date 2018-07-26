@@ -11,6 +11,7 @@ import UIKit
 class MYLTextField: UITextField {
   
   var fieldValidationType: UInt = 0
+  var parentView: UIView? = nil
   
   func validate() -> String? {
     guard self.text != nil, fieldValidationType > 0 else {

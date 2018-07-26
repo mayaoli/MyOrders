@@ -46,6 +46,11 @@ class DashboardViewController: BaseViewController {
   }
   
   // MARK: UITextFieldDelegate
+  override func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    
+    return super.textFieldShouldBeginEditing(textField)
+  }
+  
   override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     TableNumber.validate()
     

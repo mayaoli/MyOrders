@@ -165,28 +165,28 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RzV-BZ-tM7" userLabel="Center View">
                                 <rect key="frame" x="272" y="293" width="568" height="248"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Staff #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwZ-gf-E2X">
-                                        <rect key="frame" x="139" y="32" width="115" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Staff PIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwZ-gf-E2X">
+                                        <rect key="frame" x="127" y="42" width="133" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                         <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="In8-wu-Tij" userLabel="StaffTFView" customClass="MYLTextFieldView" customModule="MyOrders" customModuleProvider="target">
-                                        <rect key="frame" x="284" y="32" width="250" height="64"/>
+                                        <rect key="frame" x="284" y="42" width="250" height="64"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="Uqg-lK-QEn"/>
                                             <constraint firstAttribute="width" secondItem="In8-wu-Tij" secondAttribute="height" multiplier="47:12" id="tz7-lA-swz"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mE-as-BQn">
-                                        <rect key="frame" x="53" y="152" width="201" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of Customers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mE-as-BQn">
+                                        <rect key="frame" x="29.5" y="142" width="230.5" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                         <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SkI-Uw-4AZ" userLabel="CustomerTFView" customClass="MYLTextFieldView" customModule="MyOrders" customModuleProvider="target">
-                                        <rect key="frame" x="284" y="152" width="250" height="64"/>
+                                        <rect key="frame" x="284" y="142" width="250" height="64"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="19j-ms-4xM"/>
@@ -199,11 +199,11 @@
                                     <constraint firstItem="In8-wu-Tij" firstAttribute="centerX" secondItem="RzV-BZ-tM7" secondAttribute="centerX" constant="125" id="2gA-Tt-XGg"/>
                                     <constraint firstItem="fwZ-gf-E2X" firstAttribute="top" secondItem="In8-wu-Tij" secondAttribute="top" id="9k2-O4-N4a"/>
                                     <constraint firstAttribute="width" constant="568" id="CsL-Co-Ocg"/>
-                                    <constraint firstItem="In8-wu-Tij" firstAttribute="top" secondItem="RzV-BZ-tM7" secondAttribute="top" constant="32" id="EyC-IC-NZo"/>
+                                    <constraint firstItem="In8-wu-Tij" firstAttribute="top" secondItem="RzV-BZ-tM7" secondAttribute="top" constant="42" id="EyC-IC-NZo"/>
                                     <constraint firstItem="fwZ-gf-E2X" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RzV-BZ-tM7" secondAttribute="leading" constant="20" symbolic="YES" id="FIL-KY-TvY"/>
                                     <constraint firstItem="4mE-as-BQn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RzV-BZ-tM7" secondAttribute="leading" constant="20" symbolic="YES" id="HFT-ja-l94"/>
-                                    <constraint firstItem="fwZ-gf-E2X" firstAttribute="trailing" secondItem="In8-wu-Tij" secondAttribute="leading" constant="-30" id="Ibh-Am-Wlh"/>
-                                    <constraint firstAttribute="bottom" secondItem="SkI-Uw-4AZ" secondAttribute="bottom" constant="32" id="Stg-QV-jGC"/>
+                                    <constraint firstItem="fwZ-gf-E2X" firstAttribute="trailing" secondItem="In8-wu-Tij" secondAttribute="leading" constant="-24" id="Ibh-Am-Wlh"/>
+                                    <constraint firstAttribute="bottom" secondItem="SkI-Uw-4AZ" secondAttribute="bottom" constant="42" id="Stg-QV-jGC"/>
                                     <constraint firstItem="4mE-as-BQn" firstAttribute="trailing" secondItem="fwZ-gf-E2X" secondAttribute="trailing" id="aJk-ic-nWe"/>
                                     <constraint firstItem="4mE-as-BQn" firstAttribute="top" secondItem="SkI-Uw-4AZ" secondAttribute="top" id="jfO-ea-zLb"/>
                                     <constraint firstItem="SkI-Uw-4AZ" firstAttribute="leading" secondItem="In8-wu-Tij" secondAttribute="leading" id="pcx-m2-awZ"/>
@@ -225,7 +225,7 @@
                     <connections>
                         <outlet property="centerView" destination="RzV-BZ-tM7" id="r0F-mJ-6UZ"/>
                         <outlet property="customerNumber" destination="SkI-Uw-4AZ" id="ZM1-QP-gW9"/>
-                        <outlet property="staffNumber" destination="In8-wu-Tij" id="OGn-iA-iOH"/>
+                        <outlet property="staffPIN" destination="In8-wu-Tij" id="OGn-iA-iOH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DaY-hs-I2J" userLabel="First Responder" sceneMemberID="firstResponder"/>
