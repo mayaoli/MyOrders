@@ -16,6 +16,8 @@ class Bill: NSObject, NSCoding, JSONModel {
   // table#
   var tableNumber: String?
   
+  var staffPIN: String!
+  
   var customers: [Customer]?
   
   // phone number
@@ -49,6 +51,7 @@ class Bill: NSObject, NSCoding, JSONModel {
   
   func encode(with aCoder: NSCoder) {
     aCoder.encode(self.tableNumber, forKey: "tableNumber")
+    aCoder.encode(self.staffPIN, forKey: "staffPIN")
     aCoder.encode(self.customers, forKey: "customers")
     aCoder.encode(self.phoneNumber, forKey: "phoneNumber")
     aCoder.encode(self.address, forKey: "address")
@@ -66,6 +69,11 @@ class Bill: NSObject, NSCoding, JSONModel {
       tableNumber = dtableNumber
     } else {
       tableNumber = ""
+    }
+    if let dstaffPIN = aDecoder.decodeObject(forKey: "staffPIN") as? String{
+      staffPIN = dstaffPIN
+    } else {
+      staffPIN = ""
     }
     if let dcustomers = aDecoder.decodeObject(forKey: "customers") as? [Customer]{
         customers = dcustomers
@@ -121,6 +129,7 @@ class Bill: NSObject, NSCoding, JSONModel {
   
   required init(json: JSON) throws {
     tableNumber = json["tableNumber"].stringValue
+    staffPIN = json["staffPIN"].stringValue
     customers = try UtilityManager.getArray(json["customers"], type: Customer.self)
     phoneNumber = json["phoneNumber"].stringValue
     address = json["address"].stringValue
@@ -134,10 +143,11 @@ class Bill: NSObject, NSCoding, JSONModel {
   }
   
   override init() {
-    tableNumber = ""
+    tableNumber = "0"
+    staffPIN = "****"
     customers = []
-    phoneNumber = ""
-    address = ""
+    phoneNumber = "-"
+    address = "-"
     orders = []
     rawAmount = 0
     discount = 0

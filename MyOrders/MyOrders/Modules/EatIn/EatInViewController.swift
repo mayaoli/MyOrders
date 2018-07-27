@@ -45,17 +45,17 @@ class EatInViewController: BaseViewController {
   */
 
   // MARK: UITextFieldDelegate
-  override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     
-    if activeField?.returnKeyType == .next {
+    if textField.returnKeyType == .next {
       customerNumber.fieldText.becomeFirstResponder()
       return false
-    } else if activeField?.returnKeyType == .done {
+    } else if textField.returnKeyType == .done {
       staffPIN.validate()
       customerNumber.validate()
       if staffPIN.isValid && customerNumber.isValid {
         
-        
+        thisBill.staffPIN = staffPIN.fieldText.text
         return super.textFieldShouldBeginEditing(textField)
       }
       

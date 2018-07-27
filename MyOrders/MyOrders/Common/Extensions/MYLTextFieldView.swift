@@ -20,9 +20,9 @@ class MYLTextFieldView: UIView {
   
   var isValid: Bool = true
   var maximumValueLength: Int = 0
-  var delegate: UITextFieldDelegate? = nil {
+  var delegate: UIViewController? = nil {
     didSet {
-      fieldText.delegate = delegate
+      fieldText.delegate = delegate as? UITextFieldDelegate
     }
   }
   
@@ -84,6 +84,8 @@ class MYLTextFieldView: UIView {
       fieldState = .normal
     }
     
+    fieldText.addTarget(self, action: #selector(valueChanged), for: UIControlEvents.editingChanged)
+    
     self.layoutSubviews()
   }
   
@@ -125,7 +127,7 @@ class MYLTextFieldView: UIView {
     self.fieldState = .normal
   }
   
-  func valueChanged() {
+  @objc func valueChanged() {
     if maximumValueLength == 0 {
       return
     }

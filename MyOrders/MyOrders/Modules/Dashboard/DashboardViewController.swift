@@ -22,7 +22,7 @@ class DashboardViewController: BaseViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     gestureRecognizer = UITapGestureRecognizer(target: self,action: #selector(tappedAnywhere(_:)))
     gestureRecognizer.cancelsTouchesInView = false
     gestureRecognizer.delegate = self
@@ -51,13 +51,12 @@ class DashboardViewController: BaseViewController {
     return super.textFieldShouldBeginEditing(textField)
   }
   
-  override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     TableNumber.validate()
     
     if TableNumber.isValid  {
-      activeField?.resignFirstResponder()
+      textField.resignFirstResponder()
       TableNumberInputView.isHidden = true
-      activeField = nil
       self.performSegue(withIdentifier: SegueIdentifier.toEatIn.rawValue, sender: nil)
       return true
     } else {
@@ -117,9 +116,9 @@ extension DashboardViewController: UIGestureRecognizerDelegate {
   
   @objc private func tappedAnywhere(_ tap: UITapGestureRecognizer) {
     if tap.state == .ended {
-      view.removeGestureRecognizer(gestureRecognizer)
-      activeField?.resignFirstResponder()
+      view.endEditing(true)
       TableNumberInputView.isHidden = true
+      view.removeGestureRecognizer(gestureRecognizer)
     }
   }
 }

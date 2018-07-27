@@ -25,7 +25,7 @@ class BaseViewController: UIViewController, BaseViewInterface {
   }
   
   var snackbar: TTGSnackbar?
-  var activeField: UITextField?
+  var hasTextField: Bool = true
 
   // MARK: - following 2 functions could be defined a parent class (ex. baseViewControl)
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -50,13 +50,17 @@ class BaseViewController: UIViewController, BaseViewInterface {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    if hasTextField {
+      NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+      NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
   }
   
   override func viewWillDisappear(_ animated: Bool) {
-    NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-    NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    if hasTextField {
+      NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+      NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
     super.viewWillDisappear(animated)
   }
   
@@ -124,11 +128,7 @@ class BaseViewController: UIViewController, BaseViewInterface {
 extension BaseViewController: UITextFieldDelegate {
   
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-    print("@@@textFieldShouldBeginEditing")
-    activeField = textField
-    
     self.eventHandler?.calculateOffset(textField)
-    textField.addTarget(self, action: #selector(textFieldValueChanged(_:)), for: UIControlEvents.editingChanged)
     if let pvw = (textField as? MYLTextField)?.parentView as? MYLTextFieldView {
       pvw.beginEditing()
     }
@@ -136,27 +136,13 @@ extension BaseViewController: UITextFieldDelegate {
   }
   
   func textFieldDidEndEditing(_ textField: UITextField) {
-    print("@@@textFieldDidEndEditing")
-    textField.removeTarget(self, action: nil, for: UIControlEvents.editingChanged)
     if let pvw = (textField as? MYLTextField)?.parentView as? MYLTextFieldView {
       pvw.endEditing()
     }
   }
   
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    textField.resignFirstResponder()
-    activeField = nil
-    return true
-  }
-  
-  @objc func textFieldValueChanged(_ textField: UITextField) {
-    if let pvw = (activeField as? MYLTextField)?.parentView as? MYLTextFieldView {
-      pvw.valueChanged()
-    }
-  }
-  
   @objc func keyboardWillShow(notification: NSNotification) {
-    guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue, activeField != nil else {
+    guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
       return
     }
     
