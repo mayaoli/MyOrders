@@ -35,6 +35,7 @@
 		242F49C120F5A9E000B8013E /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F49BF20F5A9E000B8013E /* Bill.swift */; };
 		242F49C320F67E9600B8013E /* Credit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F49C220F67E9600B8013E /* Credit.swift */; };
 		242F49C420F67E9600B8013E /* Credit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F49C220F67E9600B8013E /* Credit.swift */; };
+		244B5C5E210B7F4F008ABD43 /* BaseTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244B5C5D210B7F4F008ABD43 /* BaseTextFieldViewController.swift */; };
 		2465062120FD004E00F4F168 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465062020FD004E00F4F168 /* DashboardViewController.swift */; };
 		2465062220FD004E00F4F168 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465062020FD004E00F4F168 /* DashboardViewController.swift */; };
 		2465062420FD007C00F4F168 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465062320FD007C00F4F168 /* DashboardPresenter.swift */; };
@@ -45,6 +46,8 @@
 		2465063320FD8BFB00F4F168 /* MYLTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465063120FD8BFB00F4F168 /* MYLTextFieldView.swift */; };
 		2465063520FE44C700F4F168 /* MYLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465063420FE44C700F4F168 /* MYLColor.swift */; };
 		2465063720FE47C600F4F168 /* MYLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465063620FE47C600F4F168 /* MYLImageView.swift */; };
+		24897650210B7AA500EC53AF /* Pods_MyOrders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2489764F210B7AA500EC53AF /* Pods_MyOrders.framework */; };
+		24897652210B7AC600EC53AF /* TTGSnackbar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24897651210B7AC600EC53AF /* TTGSnackbar.framework */; };
 		24C110C420F81A9500D6B031 /* BaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C110C120F81A9400D6B031 /* BaseInteractor.swift */; };
 		24C110C520F81A9500D6B031 /* BaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C110C120F81A9400D6B031 /* BaseInteractor.swift */; };
 		24C110C620F81A9500D6B031 /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C110C220F81A9400D6B031 /* BasePresenter.swift */; };
@@ -56,7 +59,6 @@
 		24C110CE20F81B2100D6B031 /* SingInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C110CD20F81B2100D6B031 /* SingInInteractor.swift */; };
 		24C110D020F81BB200D6B031 /* UtilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C110CF20F81BB200D6B031 /* UtilityManager.swift */; };
 		24C110D120F81BB200D6B031 /* UtilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C110CF20F81BB200D6B031 /* UtilityManager.swift */; };
-		656B75ADCD11877067E814A5 /* Pods_MyOrders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99FBB45EC16B4E1E726139C /* Pods_MyOrders.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +79,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2406A61918F5EE63656E01D5 /* Pods-MyOrders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.debug.xcconfig"; sourceTree = "<group>"; };
 		24150AF221061994000E938D /* MYLTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYLTextField.swift; sourceTree = "<group>"; };
 		24150AF621064F48000E938D /* EatInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EatInViewController.swift; sourceTree = "<group>"; };
 		242175952100D7FE0015A10C /* MYLString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYLString.swift; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 		242F49BC20F54D4C00B8013E /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		242F49BF20F5A9E000B8013E /* Bill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bill.swift; sourceTree = "<group>"; };
 		242F49C220F67E9600B8013E /* Credit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credit.swift; sourceTree = "<group>"; };
+		244B5C5D210B7F4F008ABD43 /* BaseTextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextFieldViewController.swift; sourceTree = "<group>"; };
 		2465062020FD004E00F4F168 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		2465062320FD007C00F4F168 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 		2465062520FD009100F4F168 /* DashboardInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInteractor.swift; sourceTree = "<group>"; };
@@ -111,14 +113,16 @@
 		2465063120FD8BFB00F4F168 /* MYLTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYLTextFieldView.swift; sourceTree = "<group>"; };
 		2465063420FE44C700F4F168 /* MYLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYLColor.swift; sourceTree = "<group>"; };
 		2465063620FE47C600F4F168 /* MYLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYLImageView.swift; sourceTree = "<group>"; };
+		2489764F210B7AA500EC53AF /* Pods_MyOrders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_MyOrders.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/MyOrders-bbozbnerpagpaccdevfymlgatvqg/Build/Products/Debug-iphonesimulator/Pods_MyOrders.framework"; sourceTree = "<group>"; };
+		24897651210B7AC600EC53AF /* TTGSnackbar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTGSnackbar.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/MyOrders-bbozbnerpagpaccdevfymlgatvqg/Build/Products/Debug-iphonesimulator/TTGSnackbar/TTGSnackbar.framework"; sourceTree = "<group>"; };
 		24C110C120F81A9400D6B031 /* BaseInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInteractor.swift; sourceTree = "<group>"; };
 		24C110C220F81A9400D6B031 /* BasePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
 		24C110C320F81A9400D6B031 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		24C110CB20F81B0300D6B031 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
 		24C110CD20F81B2100D6B031 /* SingInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInInteractor.swift; sourceTree = "<group>"; };
 		24C110CF20F81BB200D6B031 /* UtilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityManager.swift; sourceTree = "<group>"; };
-		B99FBB45EC16B4E1E726139C /* Pods_MyOrders.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyOrders.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BAB6750A3E8FC12045DFF351 /* Pods-MyOrders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.release.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.release.xcconfig"; sourceTree = "<group>"; };
+		29018EB76E014D1A8239FF00 /* Pods-MyOrders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.debug.xcconfig"; sourceTree = "<group>"; };
+		E3D454D5E6985462066B2105 /* Pods-MyOrders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.release.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +130,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				656B75ADCD11877067E814A5 /* Pods_MyOrders.framework in Frameworks */,
+				24897652210B7AC600EC53AF /* TTGSnackbar.framework in Frameworks */,
+				24897650210B7AA500EC53AF /* Pods_MyOrders.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +152,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1580C0AEC9CFC89BCBEACF28 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B99FBB45EC16B4E1E726139C /* Pods_MyOrders.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		24150AF521064F02000E938D /* EatIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,8 +167,8 @@
 				2421878620F4FF3300D85D5A /* MyOrdersTests */,
 				2421879120F4FF3400D85D5A /* MyOrdersUITests */,
 				2421876D20F4FF2B00D85D5A /* Products */,
-				AE2658FD90B03F6287FD314C /* Pods */,
-				1580C0AEC9CFC89BCBEACF28 /* Frameworks */,
+				DAAD4135D595B504F6BB2CFE /* Pods */,
+				984B35DD6AC844484AE1F07A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -332,17 +329,27 @@
 			isa = PBXGroup;
 			children = (
 				24C110C320F81A9400D6B031 /* BaseViewController.swift */,
+				244B5C5D210B7F4F008ABD43 /* BaseTextFieldViewController.swift */,
 				24C110C220F81A9400D6B031 /* BasePresenter.swift */,
 				24C110C120F81A9400D6B031 /* BaseInteractor.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
 		};
-		AE2658FD90B03F6287FD314C /* Pods */ = {
+		984B35DD6AC844484AE1F07A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2406A61918F5EE63656E01D5 /* Pods-MyOrders.debug.xcconfig */,
-				BAB6750A3E8FC12045DFF351 /* Pods-MyOrders.release.xcconfig */,
+				24897651210B7AC600EC53AF /* TTGSnackbar.framework */,
+				2489764F210B7AA500EC53AF /* Pods_MyOrders.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DAAD4135D595B504F6BB2CFE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				29018EB76E014D1A8239FF00 /* Pods-MyOrders.debug.xcconfig */,
+				E3D454D5E6985462066B2105 /* Pods-MyOrders.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -354,11 +361,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2421879720F4FF3400D85D5A /* Build configuration list for PBXNativeTarget "MyOrders" */;
 			buildPhases = (
-				AF2061CFA0C8FEC4E6F87936 /* [CP] Check Pods Manifest.lock */,
+				F5C1614D5E792997E76F50BB /* [CP] Check Pods Manifest.lock */,
 				2421876820F4FF2B00D85D5A /* Sources */,
 				2421876920F4FF2B00D85D5A /* Frameworks */,
 				2421876A20F4FF2B00D85D5A /* Resources */,
-				52940A87619F77DC10F5DC59 /* [CP] Embed Pods Frameworks */,
+				B911B1776BE6404B9B9734D1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -478,7 +485,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		52940A87619F77DC10F5DC59 /* [CP] Embed Pods Frameworks */ = {
+		B911B1776BE6404B9B9734D1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -504,7 +511,7 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AF2061CFA0C8FEC4E6F87936 /* [CP] Check Pods Manifest.lock */ = {
+		F5C1614D5E792997E76F50BB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -538,6 +545,7 @@
 				242F49C020F5A9E000B8013E /* Bill.swift in Sources */,
 				2421877820F4FF2B00D85D5A /* MyOrders.xcdatamodeld in Sources */,
 				242F49BD20F54D4C00B8013E /* Order.swift in Sources */,
+				244B5C5E210B7F4F008ABD43 /* BaseTextFieldViewController.swift in Sources */,
 				24C110C820F81A9500D6B031 /* BaseViewController.swift in Sources */,
 				24C110C420F81A9500D6B031 /* BaseInteractor.swift in Sources */,
 				242F49B220F52EBE00B8013E /* StorageManager.swift in Sources */,
@@ -662,6 +670,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -722,6 +731,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -741,11 +751,21 @@
 		};
 		2421879820F4FF3400D85D5A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2406A61918F5EE63656E01D5 /* Pods-MyOrders.debug.xcconfig */;
+			baseConfigurationReference = 29018EB76E014D1A8239FF00 /* Pods-MyOrders.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DDVTVFRM85;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/**",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SWXMLHash\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyJSON\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TTGSnackbar\"",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = MyOrders/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -761,11 +781,21 @@
 		};
 		2421879920F4FF3400D85D5A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BAB6750A3E8FC12045DFF351 /* Pods-MyOrders.release.xcconfig */;
+			baseConfigurationReference = E3D454D5E6985462066B2105 /* Pods-MyOrders.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DDVTVFRM85;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/**",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SWXMLHash\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyJSON\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/TTGSnackbar\"",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = MyOrders/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -871,7 +901,7 @@
 				2421879620F4FF3400D85D5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2421879720F4FF3400D85D5A /* Build configuration list for PBXNativeTarget "MyOrders" */ = {
 			isa = XCConfigurationList;
@@ -880,7 +910,7 @@
 				2421879920F4FF3400D85D5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2421879A20F4FF3400D85D5A /* Build configuration list for PBXNativeTarget "MyOrdersTests" */ = {
 			isa = XCConfigurationList;
@@ -889,7 +919,7 @@
 				2421879C20F4FF3400D85D5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2421879D20F4FF3400D85D5A /* Build configuration list for PBXNativeTarget "MyOrdersUITests" */ = {
 			isa = XCConfigurationList;
@@ -898,7 +928,7 @@
 				2421879F20F4FF3400D85D5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 

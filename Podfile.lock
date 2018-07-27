@@ -14,7 +14,7 @@ DEPENDENCIES:
   - SwiftLint (= 0.23.1)
   - SwiftyJSON (= 3.1.4)
   - SWXMLHash (= 4.2.1)
-  - TTGSnackbar (= 1.7.3)
+  - TTGSnackbar (~> 1.7.3)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -33,6 +33,6 @@ SPEC CHECKSUMS:
   SWXMLHash: a4e70d15b73f825ce7b2f4ecb3dc1a3a4ff1cfb9
   TTGSnackbar: a66e929fd17d662152ec0964990a86e966310edb
 
-PODFILE CHECKSUM: ef751fea832f5e45fe30d89742f375db5a68c784
+PODFILE CHECKSUM: f051eec7d75bee5d8058d6c095ec41eb4f822c1a
 
 COCOAPODS: 1.5.3

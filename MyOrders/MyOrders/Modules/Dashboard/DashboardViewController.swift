@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashboardViewController: BaseViewController {
+class DashboardViewController: BaseTextFieldViewController {
 
   @IBOutlet weak var ScrollView: UIScrollView!
   @IBOutlet weak var ButtonContainer: UIView!

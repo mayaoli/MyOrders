@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EatInViewController: BaseViewController {
+class EatInViewController: BaseTextFieldViewController {
   @IBOutlet weak var staffPIN: MYLTextFieldView!
   @IBOutlet weak var customerNumber: MYLTextFieldView!
   @IBOutlet weak var centerView: UIView!
@@ -53,9 +53,13 @@ class EatInViewController: BaseViewController {
     } else if textField.returnKeyType == .done {
       staffPIN.validate()
       customerNumber.validate()
+      
       if staffPIN.isValid && customerNumber.isValid {
-        
         thisBill.staffPIN = staffPIN.fieldText.text
+        if let num: Int = Int(customerNumber.fieldText.text!) {
+          thisBill.customers = [Customer](repeating: Customer(), count: num)
+        }
+        self.performSegue(withIdentifier: SegueIdentifier.toMenu.rawValue, sender: nil)
         return super.textFieldShouldBeginEditing(textField)
       }
       

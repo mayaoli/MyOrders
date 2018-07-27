@@ -18,6 +18,7 @@ struct Constants {
 
 enum SegueIdentifier: String {
   case toEatIn
+  case toMenu
 }
 
 // For a single view application, there is really no need to define so many enums.

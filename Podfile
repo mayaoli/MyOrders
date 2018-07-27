@@ -9,7 +9,7 @@ target 'MyOrders' do
   pod 'Alamofire', '4.4.0'
   pod 'SWXMLHash', '4.2.1'
   pod 'SDWebImage', '~> 3.8.1'
-  pod 'TTGSnackbar', '1.7.3'
+  pod 'TTGSnackbar', '~> 1.7.3'
   
   pod 'SwiftLint', '0.23.1'
 end
