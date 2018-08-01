@@ -8,18 +8,35 @@
 
 import UIKit
 
+// access to presenter from view controller
 protocol BaseEventsInterface: class {
-  var view: BaseViewInterface? { get }
-  
   func calculateOffset(_ control: UIControl?)
   func shouldScroll(_ keyboardHeight: CGFloat, _ viewHeight: CGFloat) -> Void
 }
 
-class BasePresenter: NSObject, BaseEventsInterface {
+// access to presenter from interactor
+protocol BaseOutputInterface: class {
+  
+}
 
-  weak var view: BaseViewInterface?
+class BasePresenter: NSObject, BaseEventsInterface, BaseOutputInterface {
+  
+  var baseInteractor: BaseInteractor!
+  weak var baseView: BaseViewInterface?
+  
   private var containerOffset: CGPoint!
   private var lastOffsetY: CGFloat! = 0
+  private let additionalOffset:CGFloat = 60.0
+  
+  override init() {
+    super.init()
+    baseInteractor = self.createInteractor()
+    baseInteractor.baseOutput = self
+  }
+  
+  func createInteractor() -> BaseInteractor {
+    return BaseInteractor()
+  }
   
   func calculateOffset(_ control: UIControl?) {
     guard control != nil else {
@@ -43,25 +60,29 @@ class BasePresenter: NSObject, BaseEventsInterface {
   
   func shouldScroll(_ keyboardHeight: CGFloat, _ viewHeight: CGFloat) {
     
+    guard containerOffset != nil else {
+      return
+    }
+    
     print("### lastOffsetY = \(lastOffsetY)")
     
     // move if keyboard hide input field
-    let collapseSpace = keyboardHeight - viewHeight + containerOffset.y
+    let collapseSpace = keyboardHeight - viewHeight + containerOffset.y + additionalOffset
     
     print("### collapseSpace = \(collapseSpace)")
     if collapseSpace < 0 {
       // no collapse
       if lastOffsetY > 0 {
-        self.view!.animateViewMoving(lastOffsetY)
+        self.baseView!.animateViewMoving(lastOffsetY)
         lastOffsetY = 0
       }
       return
     }
     
     // set new offset for scroll view
-    if lastOffsetY != collapseSpace + 45 {
-      lastOffsetY = collapseSpace + 45
-      self.view!.animateViewMoving(-lastOffsetY)
+    if lastOffsetY != collapseSpace {
+      lastOffsetY = lastOffsetY + collapseSpace
+      self.baseView!.animateViewMoving(-lastOffsetY)
     }
   }
   

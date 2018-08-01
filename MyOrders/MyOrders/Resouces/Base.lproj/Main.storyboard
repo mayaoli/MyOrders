@@ -166,13 +166,13 @@
                                 <rect key="frame" x="272" y="293" width="568" height="248"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Staff PIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwZ-gf-E2X">
-                                        <rect key="frame" x="127" y="42" width="133" height="42"/>
+                                        <rect key="frame" x="127" y="50" width="133" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                         <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="In8-wu-Tij" userLabel="StaffTFView" customClass="MYLTextFieldView" customModule="MyOrders" customModuleProvider="target">
-                                        <rect key="frame" x="284" y="42" width="250" height="64"/>
+                                        <rect key="frame" x="284" y="50" width="250" height="64"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="Uqg-lK-QEn"/>
@@ -199,7 +199,7 @@
                                     <constraint firstItem="In8-wu-Tij" firstAttribute="centerX" secondItem="RzV-BZ-tM7" secondAttribute="centerX" constant="125" id="2gA-Tt-XGg"/>
                                     <constraint firstItem="fwZ-gf-E2X" firstAttribute="top" secondItem="In8-wu-Tij" secondAttribute="top" id="9k2-O4-N4a"/>
                                     <constraint firstAttribute="width" constant="568" id="CsL-Co-Ocg"/>
-                                    <constraint firstItem="In8-wu-Tij" firstAttribute="top" secondItem="RzV-BZ-tM7" secondAttribute="top" constant="42" id="EyC-IC-NZo"/>
+                                    <constraint firstItem="In8-wu-Tij" firstAttribute="top" secondItem="RzV-BZ-tM7" secondAttribute="top" constant="50" id="EyC-IC-NZo"/>
                                     <constraint firstItem="fwZ-gf-E2X" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RzV-BZ-tM7" secondAttribute="leading" constant="20" symbolic="YES" id="FIL-KY-TvY"/>
                                     <constraint firstItem="4mE-as-BQn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RzV-BZ-tM7" secondAttribute="leading" constant="20" symbolic="YES" id="HFT-ja-l94"/>
                                     <constraint firstItem="fwZ-gf-E2X" firstAttribute="trailing" secondItem="In8-wu-Tij" secondAttribute="leading" constant="-24" id="Ibh-Am-Wlh"/>
@@ -226,11 +226,66 @@
                         <outlet property="centerView" destination="RzV-BZ-tM7" id="r0F-mJ-6UZ"/>
                         <outlet property="customerNumber" destination="SkI-Uw-4AZ" id="ZM1-QP-gW9"/>
                         <outlet property="staffPIN" destination="In8-wu-Tij" id="OGn-iA-iOH"/>
+                        <segue destination="bVe-df-UJh" kind="show" identifier="toMenu" id="4fI-Ul-fMh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DaY-hs-I2J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="873.56115107913672" y="224.46043165467628"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="V8Z-Bz-dNo">
+            <objects>
+                <viewController id="bVe-df-UJh" customClass="MenuViewController" customModule="MyOrders" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GHc-zG-gDn"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZAr-9Z-iAj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="X5Q-nl-6Km">
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5yq-cP-Hcu">
+                                <rect key="frame" x="20" y="84" width="1072" height="730"/>
+                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="28" minimumInteritemSpacing="10" id="3iN-Xc-bwS">
+                                    <size key="itemSize" width="236" height="210"/>
+                                    <size key="headerReferenceSize" width="0.0" height="48"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="8" maxX="0.0" maxY="24"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="menuCollectionCell" id="LN8-IG-eim" customClass="MenuCollectionCell" customModule="MyOrders" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="56" width="236" height="210"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="236" height="210"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="sectionHeader" id="q5w-nr-MNa" customClass="SectionHeader" customModule="MyOrders" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="1072" height="48"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="5yq-cP-Hcu" firstAttribute="top" secondItem="GHc-zG-gDn" secondAttribute="bottom" constant="20" id="GwO-nC-Sqe"/>
+                            <constraint firstItem="5yq-cP-Hcu" firstAttribute="leading" secondItem="X5Q-nl-6Km" secondAttribute="leading" constant="20" id="HBX-Zs-tIS"/>
+                            <constraint firstItem="5yq-cP-Hcu" firstAttribute="trailing" secondItem="X5Q-nl-6Km" secondAttribute="trailing" constant="-20" id="T25-pA-amZ"/>
+                            <constraint firstItem="5yq-cP-Hcu" firstAttribute="bottom" secondItem="ZAr-9Z-iAj" secondAttribute="top" constant="-20" id="dhq-o0-ISU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="5yq-cP-Hcu" id="fqY-aN-fbx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tbW-jj-023" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="873.56115107913672" y="1032.3741007194246"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ewt-wa-yyS">
@@ -248,7 +303,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WaZ-Td-srT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="-564.46776611694156"/>
+            <point key="canvasLocation" x="873" y="-1566"/>
         </scene>
     </scenes>
     <resources>

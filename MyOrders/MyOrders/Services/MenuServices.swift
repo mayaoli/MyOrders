@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 class MenuServices: BaseServices {
   
-  func getMenuList(completion: @escaping (_ menu: [Menu], _ error: NetworkingError?) -> Void) -> URLSessionTask? {
+  func getMenuList(completion: @escaping (_ menu: [Menu]?, _ error: NetworkingError?) -> Void) -> URLSessionTask? {
     
     let urlString = "\(Constants.BASE_URL)/menu"
     
@@ -30,11 +31,19 @@ class MenuServices: BaseServices {
         return
       }
       
-      var menu: [Menu] = []
+      let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
+      var menu: [Menu]?
+      
       do {
         menu = try UtilityManager.getArray(json, type: Menu.self)
-      } catch _ {
-        completion([], .unknown)
+      } catch {}
+     
+      if appDelegate != nil {
+        if menu != nil, menu!.count > 0 {
+          appDelegate!.persistentContainer.setValue(menu, forKeyPath: "MENU")
+        } else {
+          menu = appDelegate!.persistentContainer.value(forKeyPath: "MENU") as? [Menu]
+        }
       }
       
       completion(menu, nil)
@@ -51,8 +60,10 @@ class MenuServices: BaseServices {
     
     var parameters : [String : Any] = [:]
     
-    for item in menu {
-      parameters["\(item.mid)"] = item.payload
+    for cat in menu {
+      for item in cat.menuItems {
+        parameters["\(item.mid)"] = item.payload
+      }
     }
     
     return post(url: url, bodyParameters: parameters) { (response, data, error) in

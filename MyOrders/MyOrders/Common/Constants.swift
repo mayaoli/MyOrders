@@ -12,13 +12,27 @@ import SWXMLHash
 
 struct Constants {
   static let BUNDLE_NUMBER = 10
-  static let BASE_URL = "https://www.google.ca" //"https://fancycars.ca"
-  static let STORAGE_PATH: String = "CachedObject"
+  static let BASE_URL = "https://www.google.ca"
+  static let STORAGE_PATH: String = Bundle.main.bundleIdentifier!
 }
 
-enum SegueIdentifier: String {
+enum ReuseIdentifier: String {
   case toEatIn
   case toMenu
+  case menuCollectionCell
+  case sectionHeader
+  
+  var nib:UINib? {
+    switch self {
+    case .menuCollectionCell:
+      return UINib(nibName: "MenuCollectionCell", bundle: nil)
+    case .sectionHeader:
+      return UINib(nibName: "SectionHeader", bundle: nil)
+    default:
+      return nil
+    }
+    
+  }
 }
 
 // For a single view application, there is really no need to define so many enums.
@@ -83,6 +97,7 @@ enum FoodStatus: String {
 }
 
 enum OrderType: String {
+    case all = "All"
     case delivery = "Delivery"
     case pickupOrTakeout = "Pick Up / Take out"
     case eatin = "Eat In"
@@ -93,10 +108,6 @@ enum PaymentMethod: String {
     case debit = "Debit Card"
     case credit = "Credit Card"
     case other = "Other" // like paypal
-}
-
-enum TableViewCellReuseIdentifier: String {
-  case CarListCell
 }
 
 enum FieldState {

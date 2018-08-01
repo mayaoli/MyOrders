@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2421876B20F4FF2B00D85D5A"
+               BlueprintIdentifier = "24419C05210F60E300517B5D"
                BuildableName = "MyOrders.app"
                BlueprintName = "MyOrders"
                ReferencedContainer = "container:MyOrders.xcodeproj">
@@ -28,31 +28,11 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2421878220F4FF3300D85D5A"
-               BuildableName = "MyOrdersTests.xctest"
-               BlueprintName = "MyOrdersTests"
-               ReferencedContainer = "container:MyOrders.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2421878D20F4FF3300D85D5A"
-               BuildableName = "MyOrdersUITests.xctest"
-               BlueprintName = "MyOrdersUITests"
-               ReferencedContainer = "container:MyOrders.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2421876B20F4FF2B00D85D5A"
+            BlueprintIdentifier = "24419C05210F60E300517B5D"
             BuildableName = "MyOrders.app"
             BlueprintName = "MyOrders"
             ReferencedContainer = "container:MyOrders.xcodeproj">
@@ -75,12 +55,19 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2421876B20F4FF2B00D85D5A"
+            BlueprintIdentifier = "24419C05210F60E300517B5D"
             BuildableName = "MyOrders.app"
             BlueprintName = "MyOrders"
             ReferencedContainer = "container:MyOrders.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "OS_ACTIVITY_MODE"
+            value = "disabled"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -94,7 +81,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2421876B20F4FF2B00D85D5A"
+            BlueprintIdentifier = "24419C05210F60E300517B5D"
             BuildableName = "MyOrders.app"
             BlueprintName = "MyOrders"
             ReferencedContainer = "container:MyOrders.xcodeproj">

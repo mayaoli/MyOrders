@@ -22,7 +22,6 @@ class BaseServices {
   typealias NetworkCompletionBlock = (_ response: HTTPURLResponse?, _ data: ResponseData?, _ error: NetworkingError?) -> Void
   //typealias NetworkInternetStatusListner = (_ status: NetworkStatus) -> Void
   
-  
   // MARK: - Private Variables
   private var sessionManager: SessionManager
   

@@ -2,8 +2,8 @@
 //  SingInInteractor.swift
 //  MyOrders
 //
-//  Created by RBC on 2018-07-12.
-//  Copyright © 2018 RBC. All rights reserved.
+//  Created by Yaoli.Ma on 2018-07-12.
+//  Copyright © 2018 Yaoli.Ma. All rights reserved.
 //
 
 import Foundation

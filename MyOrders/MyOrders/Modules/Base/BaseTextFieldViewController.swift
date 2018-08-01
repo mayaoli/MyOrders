@@ -30,7 +30,7 @@ class BaseTextFieldViewController: BaseViewController, UITextFieldDelegate {
   // MARK: UITextFieldDelegate
   
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-    self.eventHandler?.calculateOffset(textField)
+    self.baseEventHandler?.calculateOffset(textField)
     if let pvw = (textField as? MYLTextField)?.parentView as? MYLTextFieldView {
       pvw.beginEditing()
     }
@@ -48,10 +48,10 @@ class BaseTextFieldViewController: BaseViewController, UITextFieldDelegate {
       return
     }
     
-    self.eventHandler?.shouldScroll(keyboardSize.height, self.view.frame.size.height)
+    self.baseEventHandler?.shouldScroll(keyboardSize.height, self.view.frame.size.height)
   }
   
   @objc func keyboardWillHide(notification: NSNotification) {
-    self.eventHandler?.shouldScroll(0, self.view.frame.size.height)
+    self.baseEventHandler?.shouldScroll(0, self.view.frame.size.height)
   }
 }

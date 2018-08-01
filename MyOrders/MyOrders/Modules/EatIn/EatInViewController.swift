@@ -2,8 +2,8 @@
 //  EatInViewController.swift
 //  MyOrders
 //
-//  Created by RBC on 2018-07-23.
-//  Copyright © 2018 RBC. All rights reserved.
+//  Created by Yaoli.Ma on 2018-07-23.
+//  Copyright © 2018 Yaoli.Ma. All rights reserved.
 //
 
 import UIKit
@@ -19,10 +19,9 @@ class EatInViewController: BaseTextFieldViewController {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
-    centerView.layer.shadowOffset =  CGSize(width: 5, height: 5)
-    centerView.layer.shadowColor = UIColor.black.cgColor
-    centerView.layer.shadowRadius = 10
-    centerView.layer.shadowOpacity = 0.65
+    self.title = "Eat-In"
+    
+    centerView.shadow(radius: 10)
     
     let validations = ValidationType.IsRequired.rawValue + ValidationType.IsNumeric.rawValue
     staffPIN.configure(placeholder: nil, validationType: validations, maxLength: 4, alignment: .left, keyboardType: .numberPad)
@@ -33,16 +32,32 @@ class EatInViewController: BaseTextFieldViewController {
     customerNumber.delegate = self
     customerNumber.fieldText.returnKeyType = .done
   }
-
-  /*
-  // MARK: - Navigation
-
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      // Get the new view controller using segue.destinationViewController.
-      // Pass the selected object to the new view controller.
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    staffPIN.fieldText.becomeFirstResponder()
   }
-  */
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    switch segue.identifier {
+    case ReuseIdentifier.toMenu.rawValue?:
+      
+      guard let destVC = segue.destination as? MenuViewController else {
+        break
+      }
+      
+      thisBill.staffPIN = staffPIN.fieldText.text
+      if let num: Int = Int(customerNumber.fieldText.text!) {
+        thisBill.customers = [Customer](repeating: Customer(), count: num)
+      }
+      
+      destVC.thisBill = thisBill
+      
+    default:
+      break
+    }
+  }
 
   // MARK: UITextFieldDelegate
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -55,11 +70,7 @@ class EatInViewController: BaseTextFieldViewController {
       customerNumber.validate()
       
       if staffPIN.isValid && customerNumber.isValid {
-        thisBill.staffPIN = staffPIN.fieldText.text
-        if let num: Int = Int(customerNumber.fieldText.text!) {
-          thisBill.customers = [Customer](repeating: Customer(), count: num)
-        }
-        self.performSegue(withIdentifier: SegueIdentifier.toMenu.rawValue, sender: nil)
+        self.performSegue(withIdentifier: ReuseIdentifier.toMenu.rawValue, sender: nil)
         return super.textFieldShouldBeginEditing(textField)
       }
       

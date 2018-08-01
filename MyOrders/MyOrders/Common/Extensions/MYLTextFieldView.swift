@@ -2,8 +2,8 @@
 //  MYLTextFieldView.swift
 //  MyOrders
 //
-//  Created by RBC on 2018-07-16.
-//  Copyright © 2018 RBC. All rights reserved.
+//  Created by Yaoli.Ma on 2018-07-16.
+//  Copyright © 2018 Yaoli.Ma. All rights reserved.
 //
 
 import UIKit
@@ -20,7 +20,7 @@ class MYLTextFieldView: UIView {
   
   var isValid: Bool = true
   var maximumValueLength: Int = 0
-  var delegate: UIViewController? = nil {
+  weak var delegate: UIViewController? = nil {
     didSet {
       fieldText.delegate = delegate as? UITextFieldDelegate
     }

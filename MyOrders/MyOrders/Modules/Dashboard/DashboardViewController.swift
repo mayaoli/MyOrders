@@ -2,8 +2,8 @@
 //  DashboardViewController.swift
 //  MyOrders
 //
-//  Created by RBC on 2018-07-16.
-//  Copyright © 2018 RBC. All rights reserved.
+//  Created by Yaoli.Ma on 2018-07-16.
+//  Copyright © 2018 Yaoli.Ma. All rights reserved.
 //
 
 import UIKit
@@ -23,15 +23,21 @@ class DashboardViewController: BaseTextFieldViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    self.title = "Dashboard"
+    
     gestureRecognizer = UITapGestureRecognizer(target: self,action: #selector(tappedAnywhere(_:)))
     gestureRecognizer.cancelsTouchesInView = false
     gestureRecognizer.delegate = self
     
   }
   
+//  override func createPresenter() -> BasePresenter {
+//    return DashboardPresenter()
+//  }
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     switch segue.identifier {
-    case SegueIdentifier.toEatIn.rawValue?:
+    case ReuseIdentifier.toEatIn.rawValue?:
       let bill = Bill()
       
       guard let destVC = segue.destination as? EatInViewController, TableNumber.isValid else {
@@ -57,7 +63,7 @@ class DashboardViewController: BaseTextFieldViewController {
     if TableNumber.isValid  {
       textField.resignFirstResponder()
       TableNumberInputView.isHidden = true
-      self.performSegue(withIdentifier: SegueIdentifier.toEatIn.rawValue, sender: nil)
+      self.performSegue(withIdentifier: ReuseIdentifier.toEatIn.rawValue, sender: nil)
       return true
     } else {
       return false
@@ -75,10 +81,7 @@ class DashboardViewController: BaseTextFieldViewController {
     TableNumberInputView.transform = CGAffineTransform(scaleX: eps, y: eps)
     TableNumberInputView.updateConstraints()
     
-    TableNumberInputView.layer.shadowOffset =  CGSize(width: 5, height: 5)
-    TableNumberInputView.layer.shadowColor = UIColor.black.cgColor
-    TableNumberInputView.layer.shadowRadius = 10
-    TableNumberInputView.layer.shadowOpacity = 0.65
+    TableNumberInputView.shadow(radius: 10)
 
     let validations = ValidationType.IsRequired.rawValue + ValidationType.IsNumeric.rawValue
     TableNumber.configure(placeholder: nil, validationType: validations, maxLength: 2, alignment: .center, keyboardType: .numberPad)

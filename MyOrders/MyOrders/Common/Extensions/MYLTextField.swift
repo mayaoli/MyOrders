@@ -2,8 +2,8 @@
 //  MYLTextField.swift
 //  MyOrders
 //
-//  Created by RBC on 2018-07-23.
-//  Copyright © 2018 RBC. All rights reserved.
+//  Created by Yaoli.Ma on 2018-07-23.
+//  Copyright © 2018 Yaoli.Ma. All rights reserved.
 //
 
 import UIKit
@@ -11,7 +11,7 @@ import UIKit
 class MYLTextField: UITextField {
   
   var fieldValidationType: UInt = 0
-  var parentView: UIView? = nil
+  weak var parentView: UIView? = nil
   
   func validate() -> String? {
     guard self.text != nil, fieldValidationType > 0 else {

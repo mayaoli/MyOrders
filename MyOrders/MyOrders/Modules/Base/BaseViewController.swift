@@ -9,6 +9,7 @@
 import UIKit
 import TTGSnackbar
 
+// access to view controller from presenter
 protocol BaseViewInterface: class {
   var snackbar: TTGSnackbar? { get set }
   
@@ -20,24 +21,30 @@ protocol BaseViewInterface: class {
 class BaseViewController: UIViewController, BaseViewInterface {
   
   private var presenter : BasePresenter!
-  weak var eventHandler: BaseEventsInterface? {
+  weak var baseEventHandler: BaseEventsInterface? {
     return presenter
   }
   
   var snackbar: TTGSnackbar?
+  var showBackButton: Bool = true {
+    didSet {
+      self.navigationItem.hidesBackButton = !showBackButton
+    }
+  }
 
   // MARK: - following 2 functions could be defined a parent class (ex. baseViewControl)
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     
-    (self.eventHandler as? BasePresenter)?.view = self
+    presenter = createPresenter()
+    presenter.baseView = self
   }
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder);
     
-    presenter = BasePresenter()
-    presenter.view = self
+    presenter = createPresenter()
+    presenter.baseView = self
   }
   
   override func viewDidLoad() {
@@ -57,6 +64,12 @@ class BaseViewController: UIViewController, BaseViewInterface {
   override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
       // Dispose of any resources that can be recreated.
+  }
+  
+  func createPresenter() -> BasePresenter {
+    //precondition(false, "Prior to use eventHandler, must implement createPresenter func in view controller!")
+    
+    return BasePresenter()
   }
   
   func animateViewMoving(_ movement :CGFloat) {

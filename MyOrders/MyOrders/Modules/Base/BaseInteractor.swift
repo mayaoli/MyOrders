@@ -8,6 +8,17 @@
 
 import Foundation
 
+// For access the entities in interactor
+protocol BaseInputInterface: class {
+  
+}
+
 class BaseInteractor: NSObject {
 
+  weak var baseOutput: BaseOutputInterface?
+  
+  override init() {
+    super.init()
+  }
+  
 }
