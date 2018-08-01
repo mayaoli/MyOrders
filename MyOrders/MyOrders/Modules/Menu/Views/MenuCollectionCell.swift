@@ -18,7 +18,7 @@ class MenuCollectionCell: UICollectionViewCell {
       if menuItem.imageURL != nil {
         itemImage.imageFromUrl(menuItem.imageURL!)
       }
-      itemName.text = menuItem.name // + " \(menuItem.shortDescription)"
+      itemName.text = "\(menuItem.mid) \(menuItem.name)" // + " \(menuItem.shortDescription)"
     }
   }
   
@@ -26,7 +26,8 @@ class MenuCollectionCell: UICollectionViewCell {
     super.awakeFromNib()
     // Initialization code
     
-    self.roundCorners([.allCorners], radius: 20)
+    self.itemImage.roundCorners([.topLeft, .topRight], radius: 10)
+    self.roundCorners([.allCorners], radius: 10)
     
   }
   

@@ -36,10 +36,16 @@ class EatInViewController: BaseTextFieldViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    staffPIN.fieldText.becomeFirstResponder()
+    if thisBill.customers?.count == 0 {
+      // only first time will get focus
+      staffPIN.fieldText.becomeFirstResponder()
+    }
+    
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    view.endEditing(true)
+    
     switch segue.identifier {
     case ReuseIdentifier.toMenu.rawValue?:
       

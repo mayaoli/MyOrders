@@ -90,31 +90,6 @@ extension MenuViewController: UICollectionViewDataSource {
     let menu: Menu = self.menuCategories[indexPath.section]
     cell.menuItem = menu.menuItems[indexPath.row]
     
-//    switch indexPath.item {
-//    case 0:
-//      let dollars = clientInfo?.earnedDollars ?? ""
-//      cell.valueEarnedLabel.text = dollars
-//      cell.valueTypeLabel.text = R.string.saved^
-//    case 1:
-//      let earnedPoints = clientInfo?.earnedPoints ?? 0 //Total number of available offers to the client
-//      cell.valueEarnedLabel.text = "\(earnedPoints)"
-//      cell.valueTypeLabel.text = R.string.available^
-//    case 2:
-//      let expiringOffers = clientInfo?.expiringOffers ?? 0
-//      cell.valueEarnedLabel.text = "\(expiringOffers)"
-//      cell.valueTypeLabel.text = R.string.expiring_offers^
-//    default:
-//      break
-//    }
-//
-//    if indexPath.row < 2 {
-//      cell.seperator.isHidden = false
-//      cell.seperator.backgroundColor = UIColor(red: 115.0/255.0, green: 176.0/255.0, blue: 227.0/255.0, alpha: 1.0)
-//    }
-//    else {
-//      cell.seperator.isHidden = true
-//    }
-    
     return cell
   }
 
@@ -129,9 +104,21 @@ extension MenuViewController: UICollectionViewDelegate {
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
-//    guard let searches = recentSearches else {
-//      return
-//    }
+    //self.performSegue(withIdentifier: ReuseIdentifier.toLargeView.rawValue, sender: nil)
+    
+    guard let largeView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ReuseIdentifier.largeImageView.rawValue) as? MenuImageViewController else {
+      collectionView.deselectItem(at: indexPath, animated: true)
+      return
+    }
+    
+    self.present(largeView, animated: true) { () -> Void in
+      largeView.menuItem = self.menuCategories[indexPath.section].menuItems[indexPath.row]
+      collectionView.deselectItem(at: indexPath, animated: true)
+    }
+ 
+  }
+    
+    
 //    let maximumAllowedCell = min(searches.count, Constants.maximumRecentSearches)
 //
 //    if indexPath.row >= maximumAllowedCell {
@@ -140,5 +127,5 @@ extension MenuViewController: UICollectionViewDelegate {
 //      delegate?.didSelectRecentSearch(searchParams: searches[indexPath.row])
 //      AnalyticsManager.trackRecentSearchTileClick()
 //    }
-  }
+ 
 }

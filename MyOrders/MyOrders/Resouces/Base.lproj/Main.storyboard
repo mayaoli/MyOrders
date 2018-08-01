@@ -281,11 +281,82 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="5yq-cP-Hcu" id="fqY-aN-fbx"/>
+                        <segue destination="SSm-0Q-2hD" kind="presentation" identifier="toLargeView" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="obo-bI-cfY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbW-jj-023" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="873.56115107913672" y="1032.3741007194246"/>
+        </scene>
+        <!--Menu Image View Controller-->
+        <scene sceneID="Zxc-Xm-Klt">
+            <objects>
+                <viewController storyboardIdentifier="largeImageView" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="SSm-0Q-2hD" customClass="MenuImageViewController" customModule="MyOrders" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wYj-c2-Wty"/>
+                        <viewControllerLayoutGuide type="bottom" id="v6b-cB-2aX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bB6-F1-S4v">
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-image" translatesAutoresizingMaskIntoConstraints="NO" id="eIM-kE-U98">
+                                <rect key="frame" x="120" y="120" width="872" height="614"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YMe-YI-L4o">
+                                <rect key="frame" x="148" y="148" width="138" height="36"/>
+                                <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="gWJ-V0-MLF"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="xbX-GZ-eif"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="8" height="-8"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WhM-ES-rlt" userLabel="Description Panel View">
+                                <rect key="frame" x="120" y="606" width="872" height="96"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.7486819401840491" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="96" id="48E-Er-WsX"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yke-my-Uyf">
+                                <rect key="frame" x="140" y="616" width="832" height="76"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.75059911809815949" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Yke-my-Uyf" firstAttribute="trailing" secondItem="WhM-ES-rlt" secondAttribute="trailing" constant="-20" id="9Pk-Op-Cie"/>
+                            <constraint firstItem="YMe-YI-L4o" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="bB6-F1-S4v" secondAttribute="trailing" constant="20" symbolic="YES" id="9bf-K6-Avt"/>
+                            <constraint firstItem="WhM-ES-rlt" firstAttribute="bottom" secondItem="eIM-kE-U98" secondAttribute="bottom" constant="-32" id="ISE-lE-a8R"/>
+                            <constraint firstItem="YMe-YI-L4o" firstAttribute="leading" secondItem="eIM-kE-U98" secondAttribute="leading" constant="28" id="JDk-m6-MUF"/>
+                            <constraint firstItem="eIM-kE-U98" firstAttribute="leading" secondItem="bB6-F1-S4v" secondAttribute="leading" constant="120" id="KEQ-YR-ZoC"/>
+                            <constraint firstItem="eIM-kE-U98" firstAttribute="bottom" secondItem="v6b-cB-2aX" secondAttribute="top" constant="-100" id="SsE-rh-7Et"/>
+                            <constraint firstItem="Yke-my-Uyf" firstAttribute="leading" secondItem="WhM-ES-rlt" secondAttribute="leading" constant="20" id="WKZ-Y5-IHV"/>
+                            <constraint firstItem="YMe-YI-L4o" firstAttribute="top" secondItem="eIM-kE-U98" secondAttribute="top" constant="28" id="Waw-Ud-Tiq"/>
+                            <constraint firstItem="Yke-my-Uyf" firstAttribute="bottom" secondItem="WhM-ES-rlt" secondAttribute="bottom" constant="-10" id="gDX-qY-rpN"/>
+                            <constraint firstItem="eIM-kE-U98" firstAttribute="top" secondItem="wYj-c2-Wty" secondAttribute="bottom" constant="100" id="jjB-f2-951"/>
+                            <constraint firstItem="Yke-my-Uyf" firstAttribute="top" secondItem="WhM-ES-rlt" secondAttribute="top" constant="10" id="k5e-yh-Mqo"/>
+                            <constraint firstItem="WhM-ES-rlt" firstAttribute="leading" secondItem="eIM-kE-U98" secondAttribute="leading" id="rXv-RN-ggg"/>
+                            <constraint firstItem="WhM-ES-rlt" firstAttribute="width" secondItem="eIM-kE-U98" secondAttribute="width" id="vxw-33-Lqk"/>
+                            <constraint firstItem="eIM-kE-U98" firstAttribute="trailing" secondItem="bB6-F1-S4v" secondAttribute="trailing" constant="-120" id="yH4-mE-SS4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="itemDescription" destination="Yke-my-Uyf" id="oSp-t8-KRI"/>
+                        <outlet property="itemName" destination="YMe-YI-L4o" id="mse-0P-yY5"/>
+                        <outlet property="largeImage" destination="eIM-kE-U98" id="LSt-91-nrR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8VC-GW-c7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="873.56115107913672" y="1794.9640287769785"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ewt-wa-yyS">
@@ -309,6 +380,7 @@
     <resources>
         <image name="delivery" width="255" height="184"/>
         <image name="eat-in" width="255" height="184"/>
+        <image name="no-image" width="850" height="500"/>
         <image name="take-out" width="255" height="184"/>
     </resources>
 </document>

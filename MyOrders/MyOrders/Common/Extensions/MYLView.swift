@@ -17,13 +17,30 @@ extension UIView {
     self.layer.mask = mask
   }
   
-  func shadow(radius: CGFloat) {
-    self.layer.shadowOffset =  CGSize(width: 5, height: 5)
+  func shadow(radius: CGFloat, strength: CGFloat = 5.0) {
+    self.layer.shadowOffset =  CGSize(width: strength, height: strength)
     self.layer.shadowColor = UIColor.black.cgColor
     self.layer.shadowRadius = radius
     self.layer.shadowOpacity = 0.65
   }
   
+  func addDashedBorder(offset: CGFloat = 0) {
+    
+    let shapeLayer:CAShapeLayer = CAShapeLayer()
+    let frameSize = self.frame.size
+    let shapeRect = CGRect(x: offset, y: offset, width: frameSize.width - offset*2, height: frameSize.height - offset*2)
+    
+    shapeLayer.bounds = shapeRect
+    shapeLayer.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)
+    shapeLayer.fillColor = UIColor.clear.cgColor
+    shapeLayer.strokeColor = UIColor.white.cgColor
+    shapeLayer.lineWidth = 3
+    shapeLayer.lineJoin = kCALineJoinRound
+    shapeLayer.lineDashPattern = [6, 3]
+    shapeLayer.path = UIBezierPath(roundedRect: shapeRect, cornerRadius: 5).cgPath
+    
+    self.layer.addSublayer(shapeLayer)
+  }
 }
 
 extension UIImageView {

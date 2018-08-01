@@ -19,8 +19,10 @@ struct Constants {
 enum ReuseIdentifier: String {
   case toEatIn
   case toMenu
+  case toLargeView
   case menuCollectionCell
   case sectionHeader
+  case largeImageView
   
   var nib:UINib? {
     switch self {

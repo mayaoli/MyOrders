@@ -23,10 +23,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="236" height="210"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-image" translatesAutoresizingMaskIntoConstraints="NO" id="cfA-rA-5E5" userLabel="Image View">
-                                <rect key="frame" x="0.0" y="0.0" width="236" height="160"/>
+                                <rect key="frame" x="2" y="2" width="232" height="158"/>
                             </imageView>
                             <view alpha="0.78000000000000003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byH-zT-bu6" userLabel="Item Name Panel">
-                                <rect key="frame" x="0.0" y="107" width="236" height="50"/>
+                                <rect key="frame" x="0.0" y="108" width="236" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Label Label Label Label 123456 7890" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ii-3U-Ttq" userLabel="Name Label">
                                         <rect key="frame" x="12" y="3.5" width="212" height="44"/>
@@ -47,7 +47,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EuK-oP-1ai" userLabel="Image Border">
-                                <rect key="frame" x="0.0" y="160" width="236" height="2"/>
+                                <rect key="frame" x="2" y="160" width="232" height="2"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="rUx-6t-8mV"/>
@@ -74,18 +74,18 @@
                         <constraints>
                             <constraint firstItem="EDf-fo-vbS" firstAttribute="top" secondItem="EuK-oP-1ai" secondAttribute="top" constant="8" id="4c1-ZD-zMs"/>
                             <constraint firstItem="EuK-oP-1ai" firstAttribute="top" secondItem="cfA-rA-5E5" secondAttribute="bottom" id="8Bd-5a-VFY"/>
-                            <constraint firstItem="cfA-rA-5E5" firstAttribute="top" secondItem="pBW-4o-ErJ" secondAttribute="top" id="9V9-lc-FQz"/>
-                            <constraint firstItem="byH-zT-bu6" firstAttribute="trailing" secondItem="EuK-oP-1ai" secondAttribute="trailing" id="9qw-bV-1fE"/>
-                            <constraint firstItem="cfA-rA-5E5" firstAttribute="width" secondItem="pBW-4o-ErJ" secondAttribute="width" id="DcL-zK-lax"/>
+                            <constraint firstItem="cfA-rA-5E5" firstAttribute="top" secondItem="pBW-4o-ErJ" secondAttribute="top" constant="2" id="9V9-lc-FQz"/>
+                            <constraint firstAttribute="trailing" secondItem="byH-zT-bu6" secondAttribute="trailing" id="BPk-eF-zdq"/>
+                            <constraint firstItem="byH-zT-bu6" firstAttribute="leading" secondItem="pBW-4o-ErJ" secondAttribute="leading" id="EFq-rJ-1Xl"/>
                             <constraint firstAttribute="bottom" secondItem="cfA-rA-5E5" secondAttribute="bottom" constant="50" id="aAf-cS-KYr"/>
-                            <constraint firstItem="cfA-rA-5E5" firstAttribute="leading" secondItem="pBW-4o-ErJ" secondAttribute="leading" id="b20-tm-Wgx"/>
+                            <constraint firstItem="cfA-rA-5E5" firstAttribute="leading" secondItem="pBW-4o-ErJ" secondAttribute="leading" constant="2" id="b20-tm-Wgx"/>
                             <constraint firstItem="EDf-fo-vbS" firstAttribute="leading" secondItem="pBW-4o-ErJ" secondAttribute="leading" constant="20" id="bgs-ar-g3g"/>
+                            <constraint firstAttribute="trailing" secondItem="cfA-rA-5E5" secondAttribute="trailing" constant="2" id="eQa-rH-Uhh"/>
                             <constraint firstItem="EuK-oP-1ai" firstAttribute="width" secondItem="cfA-rA-5E5" secondAttribute="width" id="fVE-uE-Uyc"/>
                             <constraint firstAttribute="trailing" secondItem="hwO-O3-5IZ" secondAttribute="trailing" constant="20" id="pcC-uU-kIB"/>
                             <constraint firstItem="EuK-oP-1ai" firstAttribute="leading" secondItem="cfA-rA-5E5" secondAttribute="leading" id="rmR-Dm-pNM"/>
                             <constraint firstItem="hwO-O3-5IZ" firstAttribute="top" secondItem="EDf-fo-vbS" secondAttribute="top" id="sKY-Ur-yjk"/>
-                            <constraint firstItem="byH-zT-bu6" firstAttribute="leading" secondItem="EuK-oP-1ai" secondAttribute="leading" id="vv6-j1-cZl"/>
-                            <constraint firstItem="byH-zT-bu6" firstAttribute="bottom" secondItem="cfA-rA-5E5" secondAttribute="bottom" constant="-3" id="yCX-6q-XcE"/>
+                            <constraint firstItem="byH-zT-bu6" firstAttribute="bottom" secondItem="cfA-rA-5E5" secondAttribute="bottom" constant="-2" id="yCX-6q-XcE"/>
                         </constraints>
                     </view>
                 </subviews>

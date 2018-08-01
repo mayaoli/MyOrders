@@ -36,6 +36,9 @@ class DashboardViewController: BaseTextFieldViewController {
 //  }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    view.endEditing(true)
+    
     switch segue.identifier {
     case ReuseIdentifier.toEatIn.rawValue?:
       let bill = Bill()
@@ -86,7 +89,6 @@ class DashboardViewController: BaseTextFieldViewController {
     let validations = ValidationType.IsRequired.rawValue + ValidationType.IsNumeric.rawValue
     TableNumber.configure(placeholder: nil, validationType: validations, maxLength: 2, alignment: .center, keyboardType: .numberPad)
     TableNumber.delegate = self
-    
     
     UIView.animate(withDuration: 1.0,
                    delay: 0.0,

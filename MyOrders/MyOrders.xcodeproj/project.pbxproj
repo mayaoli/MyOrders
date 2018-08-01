@@ -47,6 +47,7 @@
 		24419C75210F633700517B5D /* MyOrders.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24419C50210F633700517B5D /* MyOrders.xcdatamodeld */; };
 		24419C782110E89100517B5D /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24419C762110E89100517B5D /* SectionHeader.swift */; };
 		24419C792110E89100517B5D /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24419C772110E89100517B5D /* SectionHeader.xib */; };
+		24419C802111F06E00517B5D /* MenuImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24419C7F2111F06E00517B5D /* MenuImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		24419C51210F633700517B5D /* MyOrders.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyOrders.xcdatamodel; sourceTree = "<group>"; };
 		24419C762110E89100517B5D /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		24419C772110E89100517B5D /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
+		24419C7F2111F06E00517B5D /* MenuImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuImageViewController.swift; sourceTree = "<group>"; };
 		BD725C4175D35B51940C0AE0 /* Pods-MyOrders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.debug.xcconfig"; sourceTree = "<group>"; };
 		E970EAD61DDE8F7CEF5CC522 /* Pods-MyOrders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.release.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.release.xcconfig"; sourceTree = "<group>"; };
 		F6F1B91989FD00BAA50CD38B /* Pods_MyOrders.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyOrders.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,9 +190,9 @@
 		24419C24210F633600517B5D /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				24419C25210F633600517B5D /* DashboardInteractor.swift */,
 				24419C26210F633600517B5D /* DashboardViewController.swift */,
 				24419C27210F633600517B5D /* DashboardPresenter.swift */,
+				24419C25210F633600517B5D /* DashboardInteractor.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -216,13 +218,11 @@
 		24419C2E210F633600517B5D /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				24419C7E2111EDC900517B5D /* Views */,
 				24419C33210F633600517B5D /* MenuViewController.swift */,
 				24419C30210F633600517B5D /* MenuPresenter.swift */,
 				24419C31210F633600517B5D /* MenuInteractor.swift */,
-				24419C32210F633600517B5D /* MenuCollectionCell.swift */,
-				24419C2F210F633600517B5D /* MenuCollectionCell.xib */,
-				24419C762110E89100517B5D /* SectionHeader.swift */,
-				24419C772110E89100517B5D /* SectionHeader.xib */,
+				24419C7F2111F06E00517B5D /* MenuImageViewController.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -283,6 +283,17 @@
 				24419C50210F633700517B5D /* MyOrders.xcdatamodeld */,
 			);
 			path = Resouces;
+			sourceTree = "<group>";
+		};
+		24419C7E2111EDC900517B5D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				24419C32210F633600517B5D /* MenuCollectionCell.swift */,
+				24419C2F210F633600517B5D /* MenuCollectionCell.xib */,
+				24419C762110E89100517B5D /* SectionHeader.swift */,
+				24419C772110E89100517B5D /* SectionHeader.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		75EF9FA236AD8C98BC9C483F /* Pods */ = {
@@ -430,6 +441,7 @@
 				24419C75210F633700517B5D /* MyOrders.xcdatamodeld in Sources */,
 				24419C58210F633700517B5D /* SignInPresenter.swift in Sources */,
 				24419C65210F633700517B5D /* Order.swift in Sources */,
+				24419C802111F06E00517B5D /* MenuImageViewController.swift in Sources */,
 				24419C6A210F633700517B5D /* UtilityManager.swift in Sources */,
 				24419C64210F633700517B5D /* Credit.swift in Sources */,
 				24419C66210F633700517B5D /* Bill.swift in Sources */,
