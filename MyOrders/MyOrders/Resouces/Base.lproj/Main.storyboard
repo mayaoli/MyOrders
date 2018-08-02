@@ -317,28 +317,28 @@
                                 <size key="shadowOffset" width="8" height="-8"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WhM-ES-rlt" userLabel="Description Panel View">
-                                <rect key="frame" x="120" y="606" width="872" height="96"/>
+                                <rect key="frame" x="120" y="614" width="872" height="96"/>
                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.7486819401840491" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="96" id="48E-Er-WsX"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yke-my-Uyf">
-                                <rect key="frame" x="140" y="616" width="832" height="76"/>
+                                <rect key="frame" x="152" y="624" width="808" height="76"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.75059911809815949" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="0.74878978144171782" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Yke-my-Uyf" firstAttribute="trailing" secondItem="WhM-ES-rlt" secondAttribute="trailing" constant="-20" id="9Pk-Op-Cie"/>
+                            <constraint firstItem="Yke-my-Uyf" firstAttribute="trailing" secondItem="WhM-ES-rlt" secondAttribute="trailing" constant="-32" id="9Pk-Op-Cie"/>
                             <constraint firstItem="YMe-YI-L4o" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="bB6-F1-S4v" secondAttribute="trailing" constant="20" symbolic="YES" id="9bf-K6-Avt"/>
-                            <constraint firstItem="WhM-ES-rlt" firstAttribute="bottom" secondItem="eIM-kE-U98" secondAttribute="bottom" constant="-32" id="ISE-lE-a8R"/>
+                            <constraint firstItem="WhM-ES-rlt" firstAttribute="bottom" secondItem="eIM-kE-U98" secondAttribute="bottom" constant="-24" id="ISE-lE-a8R"/>
                             <constraint firstItem="YMe-YI-L4o" firstAttribute="leading" secondItem="eIM-kE-U98" secondAttribute="leading" constant="28" id="JDk-m6-MUF"/>
                             <constraint firstItem="eIM-kE-U98" firstAttribute="leading" secondItem="bB6-F1-S4v" secondAttribute="leading" constant="120" id="KEQ-YR-ZoC"/>
                             <constraint firstItem="eIM-kE-U98" firstAttribute="bottom" secondItem="v6b-cB-2aX" secondAttribute="top" constant="-100" id="SsE-rh-7Et"/>
-                            <constraint firstItem="Yke-my-Uyf" firstAttribute="leading" secondItem="WhM-ES-rlt" secondAttribute="leading" constant="20" id="WKZ-Y5-IHV"/>
+                            <constraint firstItem="Yke-my-Uyf" firstAttribute="leading" secondItem="WhM-ES-rlt" secondAttribute="leading" constant="32" id="WKZ-Y5-IHV"/>
                             <constraint firstItem="YMe-YI-L4o" firstAttribute="top" secondItem="eIM-kE-U98" secondAttribute="top" constant="28" id="Waw-Ud-Tiq"/>
                             <constraint firstItem="Yke-my-Uyf" firstAttribute="bottom" secondItem="WhM-ES-rlt" secondAttribute="bottom" constant="-10" id="gDX-qY-rpN"/>
                             <constraint firstItem="eIM-kE-U98" firstAttribute="top" secondItem="wYj-c2-Wty" secondAttribute="bottom" constant="100" id="jjB-f2-951"/>

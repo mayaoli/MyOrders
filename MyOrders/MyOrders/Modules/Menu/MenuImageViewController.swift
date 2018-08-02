@@ -14,24 +14,22 @@ class MenuImageViewController: UIViewController {
   @IBOutlet weak var itemName: UILabel!
   @IBOutlet weak var itemDescription: UILabel!
   
-  var menuItem: MenuItem! {
-    didSet {
-      if menuItem.imageURL != nil {
-        self.largeImage.imageFromUrl(menuItem.imageURL!)
-      } else {
-        self.largeImage.image = #imageLiteral(resourceName: "no-image")
-      }
-      
-      itemName.text = "\(menuItem.mid) \(menuItem.name)"
-      itemDescription.text = menuItem.shortDescription
-    }
-  }
+  var menuItem: MenuItem!
   
   private var gestureRecognizer:UITapGestureRecognizer!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    if menuItem.imageURL != nil {
+      self.largeImage.imageFromUrl(menuItem.imageURL!)
+    } else {
+      self.largeImage.image = #imageLiteral(resourceName: "no-image")
+    }
+    
+    itemName.text = "\(menuItem.mid) \(menuItem.name)"
+    itemDescription.text = menuItem.shortDescription
+  
     // Do any additional setup after loading the view.
     gestureRecognizer = UITapGestureRecognizer(target: self,action: #selector(tappedAnywhere(_:)))
     gestureRecognizer.cancelsTouchesInView = false
@@ -40,9 +38,9 @@ class MenuImageViewController: UIViewController {
   }
 
   override func viewDidLayoutSubviews() {
-    largeImage.addDashedBorder(offset: 20.0)
-    largeImage.roundCorners([.allCorners], radius: 10.0)
-    largeImage.shadow(radius: 5.0, strength: 10.0)
+    largeImage.addDashedBorder(offsetX: 0, offsetY: 20.0)
+    largeImage.roundCorners([.topRight, .topLeft], radius: 20.0)
+    //largeImage.shadow(radius: 5.0, strength: 10.0)
     
     super.viewDidLayoutSubviews()
   }

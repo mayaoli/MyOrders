@@ -44,7 +44,7 @@ class Menu: NSObject, NSCoding, JSONModel {
     } else {
       categoryId = ""
     }
-    if let dcategoryName = aDecoder.decodeObject(forKey: "categoryName") as? String {
+    if let dcategoryName = aDecoder.decodeObject(forKey: "name") as? String {
       categoryName = dcategoryName
     } else {
       categoryName = ""
@@ -97,7 +97,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
       aCoder.encode(self.category, forKey: "category")
       aCoder.encode(self.price, forKey: "price")
       aCoder.encode(self.isHot, forKey: "ishot")
-      aCoder.encode(self.orderType, forKey: "orderType")
+      aCoder.encode(self.orderType.rawValue, forKey: "orderType")
   }
   
   override init() {
@@ -149,10 +149,10 @@ class MenuItem: NSObject, NSCoding, JSONModel {
       } else {
           isHot = true
       }
-      if let dType = aDecoder.decodeObject(forKey: "orderType") as? OrderType{
-          orderType = dType
+      if let dType = aDecoder.decodeObject(forKey: "orderType") as? String {
+        orderType = OrderType(rawValue: dType)!
       } else {
-          orderType = OrderType.eatin
+          orderType = .eatin
       }
   }
   

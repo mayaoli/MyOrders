@@ -13,7 +13,8 @@ import SWXMLHash
 struct Constants {
   static let BUNDLE_NUMBER = 10
   static let BASE_URL = "https://www.google.ca"
-  static let STORAGE_PATH: String = Bundle.main.bundleIdentifier!
+  static let STORAGE_MENU_PATH: String = "MENU"
+  static let STORAGE_BILL_PATH: String = "BILL"
 }
 
 enum ReuseIdentifier: String {

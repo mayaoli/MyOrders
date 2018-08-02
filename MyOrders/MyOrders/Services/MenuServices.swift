@@ -21,29 +21,28 @@ class MenuServices: BaseServices {
     }
     
     return get(url: url) { (response, data, error) in
+      
+      var menu: [Menu]? = StorageManager.getObject(path: Constants.STORAGE_MENU_PATH) as? [Menu]
+      
       guard error == nil else {
-        completion([], error)
+        completion(menu, error)
         return
       }
       
       guard data?.type == .json, let json = data?.json else {
-        completion([], .responseValidationFailed)
+        completion(menu, .responseValidationFailed)
         return
       }
-      
-      let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
-      var menu: [Menu]?
       
       do {
         menu = try UtilityManager.getArray(json, type: Menu.self)
       } catch {}
      
-      if appDelegate != nil {
-        if menu != nil, menu!.count > 0 {
-          appDelegate!.persistentContainer.setValue(menu, forKeyPath: "MENU")
-        } else {
-          menu = appDelegate!.persistentContainer.value(forKeyPath: "MENU") as? [Menu]
-        }
+      if menu != nil, menu!.count > 0 {
+        StorageManager.setObject(arrayToSave: menu! as NSArray, path: Constants.STORAGE_MENU_PATH)
+      } else {
+        // this shall not happen
+        menu = StorageManager.getObject(path: Constants.STORAGE_MENU_PATH) as? [Menu]
       }
       
       completion(menu, nil)

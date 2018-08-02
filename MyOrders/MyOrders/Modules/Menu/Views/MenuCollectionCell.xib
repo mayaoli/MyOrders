@@ -26,7 +26,7 @@
                                 <rect key="frame" x="2" y="2" width="232" height="158"/>
                             </imageView>
                             <view alpha="0.78000000000000003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byH-zT-bu6" userLabel="Item Name Panel">
-                                <rect key="frame" x="0.0" y="108" width="236" height="50"/>
+                                <rect key="frame" x="0.0" y="110" width="236" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Label Label Label Label 123456 7890" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ii-3U-Ttq" userLabel="Name Label">
                                         <rect key="frame" x="12" y="3.5" width="212" height="44"/>
@@ -85,7 +85,7 @@
                             <constraint firstAttribute="trailing" secondItem="hwO-O3-5IZ" secondAttribute="trailing" constant="20" id="pcC-uU-kIB"/>
                             <constraint firstItem="EuK-oP-1ai" firstAttribute="leading" secondItem="cfA-rA-5E5" secondAttribute="leading" id="rmR-Dm-pNM"/>
                             <constraint firstItem="hwO-O3-5IZ" firstAttribute="top" secondItem="EDf-fo-vbS" secondAttribute="top" id="sKY-Ur-yjk"/>
-                            <constraint firstItem="byH-zT-bu6" firstAttribute="bottom" secondItem="cfA-rA-5E5" secondAttribute="bottom" constant="-2" id="yCX-6q-XcE"/>
+                            <constraint firstItem="byH-zT-bu6" firstAttribute="bottom" secondItem="cfA-rA-5E5" secondAttribute="bottom" id="yCX-6q-XcE"/>
                         </constraints>
                     </view>
                 </subviews>

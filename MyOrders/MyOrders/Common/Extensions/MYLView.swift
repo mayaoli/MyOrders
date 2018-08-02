@@ -24,14 +24,14 @@ extension UIView {
     self.layer.shadowOpacity = 0.65
   }
   
-  func addDashedBorder(offset: CGFloat = 0) {
+  func addDashedBorder(offsetX: CGFloat = 0, offsetY: CGFloat = 0) {
     
     let shapeLayer:CAShapeLayer = CAShapeLayer()
     let frameSize = self.frame.size
-    let shapeRect = CGRect(x: offset, y: offset, width: frameSize.width - offset*2, height: frameSize.height - offset*2)
+    let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width - 40.0, height: frameSize.height)
     
     shapeLayer.bounds = shapeRect
-    shapeLayer.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)
+    shapeLayer.position = CGPoint(x: frameSize.width/2 + offsetX, y: frameSize.height/2 + offsetY)
     shapeLayer.fillColor = UIColor.clear.cgColor
     shapeLayer.strokeColor = UIColor.white.cgColor
     shapeLayer.lineWidth = 3

@@ -24,6 +24,8 @@ class MenuViewController: BaseViewController, MenuViewInterface {
     return baseEventHandler as? MenuEventsInterface
   }
   
+  private var thisItem: MenuItem!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -44,15 +46,21 @@ class MenuViewController: BaseViewController, MenuViewInterface {
     return MenuPresenter()
   }
   
-  /*
   // MARK: - Navigation
-
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      // Get the new view controller using segue.destinationViewController.
-      // Pass the selected object to the new view controller.
+    switch segue.identifier {
+    case ReuseIdentifier.toLargeView.rawValue?:
+      
+      guard let destVC = segue.destination as? MenuImageViewController else {
+        break
+      }
+      
+      destVC.menuItem = thisItem
+      
+    default:
+      break
+    }
   }
-  */
   
   func renderMenuList(_ menuList: [Menu]) {
     menuCategories = menuList
@@ -104,28 +112,22 @@ extension MenuViewController: UICollectionViewDelegate {
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
-    //self.performSegue(withIdentifier: ReuseIdentifier.toLargeView.rawValue, sender: nil)
+    thisItem = self.menuCategories[indexPath.section].menuItems[indexPath.row]
+    self.performSegue(withIdentifier: ReuseIdentifier.toLargeView.rawValue, sender: nil)
+    collectionView.deselectItem(at: indexPath, animated: true)
     
-    guard let largeView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ReuseIdentifier.largeImageView.rawValue) as? MenuImageViewController else {
-      collectionView.deselectItem(at: indexPath, animated: true)
-      return
-    }
-    
-    self.present(largeView, animated: true) { () -> Void in
-      largeView.menuItem = self.menuCategories[indexPath.section].menuItems[indexPath.row]
-      collectionView.deselectItem(at: indexPath, animated: true)
-    }
+    /// - the other way to present model view -
+//    guard let largeView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ReuseIdentifier.largeImageView.rawValue) as? MenuImageViewController else {
+//      collectionView.deselectItem(at: indexPath, animated: true)
+//      return
+//    }
+//
+//    self.present(largeView, animated: true) { () -> Void in
+//      largeView.menuItem = self.menuCategories[indexPath.section].menuItems[indexPath.row]
+//      collectionView.deselectItem(at: indexPath, animated: true)
+//    }
  
   }
-    
-    
-//    let maximumAllowedCell = min(searches.count, Constants.maximumRecentSearches)
-//
-//    if indexPath.row >= maximumAllowedCell {
-//      delegate?.didSelectSeeOnAllSearches()
-//    } else {
-//      delegate?.didSelectRecentSearch(searchParams: searches[indexPath.row])
-//      AnalyticsManager.trackRecentSearchTileClick()
-//    }
+
  
 }
