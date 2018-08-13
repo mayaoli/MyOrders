@@ -90,7 +90,7 @@ class DashboardViewController: BaseTextFieldViewController {
     TableNumber.configure(placeholder: nil, validationType: validations, maxLength: 2, alignment: .center, keyboardType: .numberPad)
     TableNumber.delegate = self
     
-    UIView.animate(withDuration: 1.0,
+    UIView.animate(withDuration: Constants.ANIMATION_DURATION,
                    delay: 0.0,
                    usingSpringWithDamping: 0.6,
                    initialSpringVelocity: 0.5,

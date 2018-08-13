@@ -86,7 +86,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
   let isHot: Bool
   
   // orderType - delivery|pick-up/take-out|eat-in
-  let orderType: OrderType
+  let orderAvailability: OrderType
   
   
   func encode(with aCoder: NSCoder) {
@@ -97,7 +97,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
       aCoder.encode(self.category, forKey: "category")
       aCoder.encode(self.price, forKey: "price")
       aCoder.encode(self.isHot, forKey: "ishot")
-      aCoder.encode(self.orderType.rawValue, forKey: "orderType")
+      aCoder.encode(self.orderAvailability.rawValue, forKey: "orderType")
   }
   
   override init() {
@@ -108,7 +108,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
       category = ""
       price = 0
       isHot = true
-      orderType = OrderType.eatin
+      orderAvailability = OrderType.eatin
   }
   
   
@@ -150,9 +150,9 @@ class MenuItem: NSObject, NSCoding, JSONModel {
           isHot = true
       }
       if let dType = aDecoder.decodeObject(forKey: "orderType") as? String {
-        orderType = OrderType(rawValue: dType)!
+        orderAvailability = OrderType(rawValue: dType)!
       } else {
-          orderType = .eatin
+          orderAvailability = .eatin
       }
   }
   
@@ -164,7 +164,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
       category = json["category"].stringValue
       price = Decimal(string: json["price"].stringValue)
       isHot = json["isHot"].boolValue
-      orderType = OrderType.init(rawValue: json["orderType"].stringValue) ?? OrderType.eatin
+      orderAvailability = OrderType.init(rawValue: json["orderType"].stringValue) ?? OrderType.eatin
   }
   
   var payload: [String : String] {
@@ -176,7 +176,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
           "category": self.category,
           "price": self.price?.description ?? "",
           "isHot": self.isHot.description,
-          "orderType": self.orderType.rawValue
+          "orderType": self.orderAvailability.rawValue
       ]
   }
     

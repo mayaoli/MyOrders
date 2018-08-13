@@ -10,8 +10,10 @@ import UIKit
 
 protocol MenuViewInterface: BaseViewInterface {
   func renderMenuList(_ menuList: [Menu])
+  
+  func addToOrder(item: MenuItem)
+  func removeFromOrder(item: MenuItem)
 }
-
 
 class MenuViewController: BaseViewController, MenuViewInterface {
 
@@ -42,6 +44,30 @@ class MenuViewController: BaseViewController, MenuViewInterface {
     }
   }
   
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    if UIApplication.shared.keyWindow!.viewWithTag(ViewTags.StickyButton.rawValue) == nil {
+      let stickyButton = UIButton(type: UIButtonType.custom)
+      stickyButton.setImage(#imageLiteral(resourceName: "delivery"), for: UIControlState.normal)
+      stickyButton.frame = CGRect(x: self.view.frame.size.width - 80, y: 100, width: 50.0, height: 50.0)
+      stickyButton.layer.cornerRadius = 25.0
+      stickyButton.layer.borderWidth = 2.0
+      stickyButton.layer.borderColor = UIColor.orange.cgColor
+      stickyButton.roundCorners(.allCorners, radius: 25.0)
+      stickyButton.shadow(radius: 25.0)
+      stickyButton.tag = ViewTags.StickyButton.rawValue
+      
+      stickyButton.addTarget(self, action: #selector(buttonTapped), for: UIControlEvents.touchUpInside)
+      UIApplication.shared.keyWindow!.addSubview(stickyButton)
+    }
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    UIApplication.shared.keyWindow!.viewWithTag(ViewTags.StickyButton.rawValue)?.removeFromSuperview()
+  }
+  
   override func createPresenter() -> BasePresenter {
     return MenuPresenter()
   }
@@ -62,13 +88,46 @@ class MenuViewController: BaseViewController, MenuViewInterface {
     }
   }
   
+  // MARK: - MenuViewInterface
   func renderMenuList(_ menuList: [Menu]) {
     menuCategories = menuList
     collectionView.delegate = self
     collectionView.dataSource = self
     self.collectionView.reloadData()
   }
-
+  
+  func addToOrder(item: MenuItem) {
+    var orderItems: [String:MenuOrder]
+    
+    if thisBill.order == nil {
+      thisBill.order = Order()
+    }
+    orderItems = thisBill.order!.items
+      
+    if orderItems[item.mid] != nil {
+      orderItems[item.mid]?.quantity += 1
+    } else {
+      orderItems["k" + item.mid] = item as? MenuOrder
+    }
+    
+  }
+  
+  func removeFromOrder(item: MenuItem) {
+    guard thisBill.order != nil else {
+      return
+    }
+    var orderItems = thisBill.order!.items
+    
+    if orderItems[item.mid] != nil, orderItems[item.mid]!.quantity > 1 {
+      orderItems[item.mid]!.quantity -= 1
+    } else {
+      orderItems.removeValue(forKey: item.mid)
+    }
+  }
+  
+  @objc func buttonTapped() {
+    
+  }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -97,7 +156,7 @@ extension MenuViewController: UICollectionViewDataSource {
     
     let menu: Menu = self.menuCategories[indexPath.section]
     cell.menuItem = menu.menuItems[indexPath.row]
-    
+    cell.delegate = self
     return cell
   }
 

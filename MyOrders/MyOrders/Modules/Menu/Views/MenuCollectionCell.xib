@@ -26,7 +26,7 @@
                                 <rect key="frame" x="2" y="2" width="232" height="158"/>
                             </imageView>
                             <view alpha="0.78000000000000003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byH-zT-bu6" userLabel="Item Name Panel">
-                                <rect key="frame" x="0.0" y="110" width="236" height="50"/>
+                                <rect key="frame" x="0.0" y="112" width="236" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Label Label Label Label 123456 7890" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ii-3U-Ttq" userLabel="Name Label">
                                         <rect key="frame" x="12" y="3.5" width="212" height="44"/>
@@ -60,7 +60,16 @@
                                     <constraint firstAttribute="width" constant="36" id="YF8-Pt-VgB"/>
                                 </constraints>
                                 <state key="normal" title="remove" image="remove"/>
+                                <connections>
+                                    <action selector="removeTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="cfc-fS-slq"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5N-G2-I1Y" userLabel="Quantity">
+                                <rect key="frame" x="111.5" y="173" width="13" height="26"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="21"/>
+                                <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwO-O3-5IZ" userLabel="add button">
                                 <rect key="frame" x="180" y="168" width="36" height="36"/>
                                 <constraints>
@@ -68,6 +77,9 @@
                                     <constraint firstAttribute="width" constant="36" id="iJy-gA-AjW"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="add"/>
+                                <connections>
+                                    <action selector="addTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="o33-KS-ACv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,14 +90,16 @@
                             <constraint firstAttribute="trailing" secondItem="byH-zT-bu6" secondAttribute="trailing" id="BPk-eF-zdq"/>
                             <constraint firstItem="byH-zT-bu6" firstAttribute="leading" secondItem="pBW-4o-ErJ" secondAttribute="leading" id="EFq-rJ-1Xl"/>
                             <constraint firstAttribute="bottom" secondItem="cfA-rA-5E5" secondAttribute="bottom" constant="50" id="aAf-cS-KYr"/>
+                            <constraint firstItem="b5N-G2-I1Y" firstAttribute="centerY" secondItem="EDf-fo-vbS" secondAttribute="centerY" id="agg-8d-ZxC"/>
                             <constraint firstItem="cfA-rA-5E5" firstAttribute="leading" secondItem="pBW-4o-ErJ" secondAttribute="leading" constant="2" id="b20-tm-Wgx"/>
                             <constraint firstItem="EDf-fo-vbS" firstAttribute="leading" secondItem="pBW-4o-ErJ" secondAttribute="leading" constant="20" id="bgs-ar-g3g"/>
                             <constraint firstAttribute="trailing" secondItem="cfA-rA-5E5" secondAttribute="trailing" constant="2" id="eQa-rH-Uhh"/>
                             <constraint firstItem="EuK-oP-1ai" firstAttribute="width" secondItem="cfA-rA-5E5" secondAttribute="width" id="fVE-uE-Uyc"/>
+                            <constraint firstItem="b5N-G2-I1Y" firstAttribute="centerX" secondItem="pBW-4o-ErJ" secondAttribute="centerX" id="hc7-A2-omP"/>
                             <constraint firstAttribute="trailing" secondItem="hwO-O3-5IZ" secondAttribute="trailing" constant="20" id="pcC-uU-kIB"/>
                             <constraint firstItem="EuK-oP-1ai" firstAttribute="leading" secondItem="cfA-rA-5E5" secondAttribute="leading" id="rmR-Dm-pNM"/>
                             <constraint firstItem="hwO-O3-5IZ" firstAttribute="top" secondItem="EDf-fo-vbS" secondAttribute="top" id="sKY-Ur-yjk"/>
-                            <constraint firstItem="byH-zT-bu6" firstAttribute="bottom" secondItem="cfA-rA-5E5" secondAttribute="bottom" id="yCX-6q-XcE"/>
+                            <constraint firstItem="byH-zT-bu6" firstAttribute="bottom" secondItem="cfA-rA-5E5" secondAttribute="bottom" constant="2" id="yCX-6q-XcE"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -98,8 +112,11 @@
             </constraints>
             <size key="customSize" width="312" height="260"/>
             <connections>
+                <outlet property="addButton" destination="hwO-O3-5IZ" id="JgQ-Qg-qTc"/>
                 <outlet property="itemImage" destination="cfA-rA-5E5" id="nTF-we-2BM"/>
                 <outlet property="itemName" destination="8Ii-3U-Ttq" id="IJd-Mb-oNN"/>
+                <outlet property="quantityLabel" destination="b5N-G2-I1Y" id="cZG-5S-QQy"/>
+                <outlet property="removeButton" destination="EDf-fo-vbS" id="g6I-yy-LmQ"/>
             </connections>
             <point key="canvasLocation" x="165" y="56"/>
         </collectionViewCell>

@@ -28,7 +28,7 @@ class Bill: NSObject, NSCoding, JSONModel {
   var address: String?
   
   // orders
-  var orders: [Order]
+  var order: Order?
   
   // raw amount
   var rawAmount: Decimal
@@ -55,7 +55,7 @@ class Bill: NSObject, NSCoding, JSONModel {
     aCoder.encode(self.customers, forKey: "customers")
     aCoder.encode(self.phoneNumber, forKey: "phoneNumber")
     aCoder.encode(self.address, forKey: "address")
-    aCoder.encode(self.orders, forKey: "orders")
+    aCoder.encode(self.order, forKey: "orders")
     aCoder.encode(self.rawAmount, forKey: "rawAmount")
     aCoder.encode(self.discount, forKey: "discount")
     aCoder.encode(self.tax, forKey: "tax")
@@ -90,10 +90,10 @@ class Bill: NSObject, NSCoding, JSONModel {
     } else {
         address = ""
     }
-    if let dorders = aDecoder.decodeObject(forKey: "orders") as? [Order]{
-        orders = dorders
+    if let dorders = aDecoder.decodeObject(forKey: "orders") as? Order{
+        order = dorders
     } else {
-        orders = []
+        order = nil
     }
     if let drawAmount = aDecoder.decodeObject(forKey: "rawAmount") as? Decimal{
         rawAmount = drawAmount
@@ -133,7 +133,7 @@ class Bill: NSObject, NSCoding, JSONModel {
     customers = try UtilityManager.getArray(json["customers"], type: Customer.self)
     phoneNumber = json["phoneNumber"].stringValue
     address = json["address"].stringValue
-    orders = try UtilityManager.getArray(json["orders"], type: Order.self)
+    order = try? Order(json: json["orders"])
     rawAmount = Decimal(string: json["rawAmount"].stringValue) ?? 0
     discount = Decimal(string: json["discount"].stringValue) ?? 0
     tax = Decimal(string: json["tax"].stringValue) ?? 0
@@ -148,7 +148,7 @@ class Bill: NSObject, NSCoding, JSONModel {
     customers = []
     phoneNumber = "-"
     address = "-"
-    orders = []
+    order = nil
     rawAmount = 0
     discount = 0
     tax = 0

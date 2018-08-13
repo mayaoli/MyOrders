@@ -15,6 +15,12 @@ struct Constants {
   static let BASE_URL = "https://www.google.ca"
   static let STORAGE_MENU_PATH: String = "MENU"
   static let STORAGE_BILL_PATH: String = "BILL"
+  static let ANIMATION_DURATION: TimeInterval = 0.6
+}
+
+enum ViewTags: Int {
+  case TextFieldView = 1
+  case StickyButton = 2
 }
 
 enum ReuseIdentifier: String {
@@ -92,7 +98,7 @@ enum NetworkStatus {
   case unknown
 }
 
-enum FoodStatus: String {
+enum OrderStatus: String {
     case new = "New Order"
     case processing = "Processing"
     case ready = "Ready / Wait for deliver"

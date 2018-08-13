@@ -41,6 +41,25 @@ extension UIView {
     
     self.layer.addSublayer(shapeLayer)
   }
+  
+  func calculateOffset() -> CGPoint {
+    var x: CGFloat = self.frame.origin.x
+    var y: CGFloat = self.frame.origin.y
+    var superVW = self.superview
+    
+    while superVW != nil {
+      if let contentOffset = (superVW as? UIScrollView)?.contentOffset {
+        x -= contentOffset.x
+        y -= contentOffset.y
+      }
+      x += superVW!.frame.origin.x
+      y += superVW!.frame.origin.y
+      
+      superVW = superVW!.superview
+    }
+    
+    return CGPoint(x: x, y: y)
+  }
 }
 
 extension UIImageView {

@@ -105,11 +105,11 @@ class MYLTextFieldView: UIView {
   }
   
   private func loadViewFromNib() {
-    guard self.viewWithTag(99) == nil else {
+    guard self.viewWithTag(ViewTags.TextFieldView.rawValue) == nil else {
       return
     }
     Bundle.main.loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)
-    contentView.tag = 99
+    contentView.tag = ViewTags.TextFieldView.rawValue
     addSubview(contentView)
     contentView.frame = self.bounds
     contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

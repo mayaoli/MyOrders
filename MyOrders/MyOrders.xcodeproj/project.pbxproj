@@ -48,6 +48,7 @@
 		24419C782110E89100517B5D /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24419C762110E89100517B5D /* SectionHeader.swift */; };
 		24419C792110E89100517B5D /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24419C772110E89100517B5D /* SectionHeader.xib */; };
 		24419C802111F06E00517B5D /* MenuImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24419C7F2111F06E00517B5D /* MenuImageViewController.swift */; };
+		24419CAB211E84D200517B5D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24419CAA211E84D200517B5D /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 		24419C762110E89100517B5D /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		24419C772110E89100517B5D /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 		24419C7F2111F06E00517B5D /* MenuImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuImageViewController.swift; sourceTree = "<group>"; };
+		24419CAA211E84D200517B5D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		BD725C4175D35B51940C0AE0 /* Pods-MyOrders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.debug.xcconfig"; sourceTree = "<group>"; };
 		E970EAD61DDE8F7CEF5CC522 /* Pods-MyOrders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.release.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.release.xcconfig"; sourceTree = "<group>"; };
 		F6F1B91989FD00BAA50CD38B /* Pods_MyOrders.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyOrders.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24419CAB211E84D200517B5D /* AudioToolbox.framework in Frameworks */,
 				1E123FE0858F429AD7B1079A /* Pods_MyOrders.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +311,7 @@
 		A803A4EE0E32F8C71CDACAF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24419CAA211E84D200517B5D /* AudioToolbox.framework */,
 				F6F1B91989FD00BAA50CD38B /* Pods_MyOrders.framework */,
 			);
 			name = Frameworks;
