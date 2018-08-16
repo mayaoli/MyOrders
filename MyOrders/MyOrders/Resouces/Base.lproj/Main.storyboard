@@ -282,11 +282,68 @@
                     <connections>
                         <outlet property="collectionView" destination="5yq-cP-Hcu" id="fqY-aN-fbx"/>
                         <segue destination="SSm-0Q-2hD" kind="presentation" identifier="toLargeView" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="obo-bI-cfY"/>
+                        <segue destination="Jey-sS-BRS" kind="presentation" identifier="toOrders" id="Isp-NQ-7uq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbW-jj-023" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="873.56115107913672" y="1032.3741007194246"/>
+        </scene>
+        <!--Orders View Controller-->
+        <scene sceneID="5K7-C4-0FE">
+            <objects>
+                <viewController storyboardIdentifier="orders" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="Jey-sS-BRS" customClass="OrdersViewController" customModule="MyOrders" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dBA-sb-jAJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="sR8-gi-ytW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vqc-5R-03I">
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="8dP-Sf-Glb">
+                                <rect key="frame" x="100" y="120" width="912" height="624"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Jey-sS-BRS" id="BLq-gi-adv"/>
+                                    <outlet property="delegate" destination="Jey-sS-BRS" id="hlA-vU-Zhb"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4q-Ne-UBu">
+                                <rect key="frame" x="978" y="104" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="TKJ-aD-k7s"/>
+                                    <constraint firstAttribute="height" constant="50" id="uq9-v0-ArB"/>
+                                </constraints>
+                                <state key="normal" image="close"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="32"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="closeTapped:" destination="Jey-sS-BRS" eventType="touchUpInside" id="pJq-CM-4ue"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="u4q-Ne-UBu" firstAttribute="trailing" secondItem="8dP-Sf-Glb" secondAttribute="trailing" constant="16" id="IQd-ON-gK7"/>
+                            <constraint firstItem="sR8-gi-ytW" firstAttribute="top" secondItem="8dP-Sf-Glb" secondAttribute="bottom" constant="90" id="IZc-V7-4R5"/>
+                            <constraint firstItem="8dP-Sf-Glb" firstAttribute="trailing" secondItem="vqc-5R-03I" secondAttribute="trailing" constant="-100" id="MGf-Fb-h71"/>
+                            <constraint firstItem="8dP-Sf-Glb" firstAttribute="top" secondItem="dBA-sb-jAJ" secondAttribute="bottom" constant="100" id="SGp-hv-0ar"/>
+                            <constraint firstItem="u4q-Ne-UBu" firstAttribute="top" secondItem="8dP-Sf-Glb" secondAttribute="top" constant="-16" id="W01-aT-jfF"/>
+                            <constraint firstItem="8dP-Sf-Glb" firstAttribute="leading" secondItem="vqc-5R-03I" secondAttribute="leading" constant="100" id="zsG-x4-sP0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="8dP-Sf-Glb" id="cqZ-YK-zdg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OUB-QM-R9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2129.6762589928057" y="1031.6546762589928"/>
         </scene>
         <!--Menu Image View Controller-->
         <scene sceneID="Zxc-Xm-Klt">
@@ -330,7 +387,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="0.74878978144171782" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Yke-my-Uyf" firstAttribute="trailing" secondItem="WhM-ES-rlt" secondAttribute="trailing" constant="-32" id="9Pk-Op-Cie"/>
                             <constraint firstItem="YMe-YI-L4o" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="bB6-F1-S4v" secondAttribute="trailing" constant="20" symbolic="YES" id="9bf-K6-Avt"/>
@@ -378,6 +435,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="close" width="128" height="128"/>
         <image name="delivery" width="255" height="184"/>
         <image name="eat-in" width="255" height="184"/>
         <image name="no-image" width="850" height="500"/>

@@ -17,11 +17,13 @@ extension UIView {
     self.layer.mask = mask
   }
   
-  func shadow(radius: CGFloat, strength: CGFloat = 5.0) {
+  func shadow(radius: CGFloat, strength: CGFloat = 6.0) {
     self.layer.shadowOffset =  CGSize(width: strength, height: strength)
     self.layer.shadowColor = UIColor.black.cgColor
     self.layer.shadowRadius = radius
-    self.layer.shadowOpacity = 0.65
+    self.layer.cornerRadius = radius
+    self.layer.shadowOpacity = 1
+    self.layer.masksToBounds = false
   }
   
   func addDashedBorder(offsetX: CGFloat = 0, offsetY: CGFloat = 0) {

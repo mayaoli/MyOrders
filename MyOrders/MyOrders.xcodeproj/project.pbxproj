@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1E123FE0858F429AD7B1079A /* Pods_MyOrders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6F1B91989FD00BAA50CD38B /* Pods_MyOrders.framework */; };
+		2417106B2122118D001895E8 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417106A2122118D001895E8 /* OrdersViewController.swift */; };
+		2417106D21221DCD001895E8 /* OrdersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417106C21221DCD001895E8 /* OrdersPresenter.swift */; };
+		2417106F21221DE4001895E8 /* OrdersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417106E21221DE4001895E8 /* OrdersInteractor.swift */; };
+		2417107321227BF6001895E8 /* OrderTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417107121227BF6001895E8 /* OrderTableCell.swift */; };
+		2417107421227BF6001895E8 /* OrderTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2417107221227BF6001895E8 /* OrderTableCell.xib */; };
+		241710772123158E001895E8 /* OrderHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241710752123158E001895E8 /* OrderHeaderCell.swift */; };
+		241710782123158E001895E8 /* OrderHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 241710762123158E001895E8 /* OrderHeaderCell.xib */; };
 		24419C0A210F60E300517B5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24419C09210F60E300517B5D /* AppDelegate.swift */; };
 		24419C52210F633700517B5D /* MenuServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24419C1E210F633600517B5D /* MenuServices.swift */; };
 		24419C53210F633700517B5D /* BaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24419C1F210F633600517B5D /* BaseServices.swift */; };
@@ -52,6 +59,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2417106A2122118D001895E8 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		2417106C21221DCD001895E8 /* OrdersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersPresenter.swift; sourceTree = "<group>"; };
+		2417106E21221DE4001895E8 /* OrdersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersInteractor.swift; sourceTree = "<group>"; };
+		2417107121227BF6001895E8 /* OrderTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableCell.swift; sourceTree = "<group>"; };
+		2417107221227BF6001895E8 /* OrderTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTableCell.xib; sourceTree = "<group>"; };
+		241710752123158E001895E8 /* OrderHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHeaderCell.swift; sourceTree = "<group>"; };
+		241710762123158E001895E8 /* OrderHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderHeaderCell.xib; sourceTree = "<group>"; };
 		24419C06210F60E300517B5D /* MyOrders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyOrders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24419C09210F60E300517B5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24419C15210F60E400517B5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -113,6 +127,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2417107021227B32001895E8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2417107121227BF6001895E8 /* OrderTableCell.swift */,
+				2417107221227BF6001895E8 /* OrderTableCell.xib */,
+				241710752123158E001895E8 /* OrderHeaderCell.swift */,
+				241710762123158E001895E8 /* OrderHeaderCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		24419BFD210F60E300517B5D = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +197,10 @@
 		24419C21210F633600517B5D /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				2417107021227B32001895E8 /* Views */,
+				2417106A2122118D001895E8 /* OrdersViewController.swift */,
+				2417106C21221DCD001895E8 /* OrdersPresenter.swift */,
+				2417106E21221DE4001895E8 /* OrdersInteractor.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -281,8 +310,8 @@
 			isa = PBXGroup;
 			children = (
 				24419C4B210F633700517B5D /* Assets.xcassets */,
-				24419C4C210F633700517B5D /* LaunchScreen.storyboard */,
 				24419C4E210F633700517B5D /* Main.storyboard */,
+				24419C4C210F633700517B5D /* LaunchScreen.storyboard */,
 				24419C50210F633700517B5D /* MyOrders.xcdatamodeld */,
 			);
 			path = Resouces;
@@ -382,6 +411,8 @@
 				24419C792110E89100517B5D /* SectionHeader.xib in Resources */,
 				24419C73210F633700517B5D /* LaunchScreen.storyboard in Resources */,
 				24419C72210F633700517B5D /* Assets.xcassets in Resources */,
+				2417107421227BF6001895E8 /* OrderTableCell.xib in Resources */,
+				241710782123158E001895E8 /* OrderHeaderCell.xib in Resources */,
 				24419C71210F633700517B5D /* MYLTextFieldView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,10 +479,13 @@
 				24419C802111F06E00517B5D /* MenuImageViewController.swift in Sources */,
 				24419C6A210F633700517B5D /* UtilityManager.swift in Sources */,
 				24419C64210F633700517B5D /* Credit.swift in Sources */,
+				2417107321227BF6001895E8 /* OrderTableCell.swift in Sources */,
 				24419C66210F633700517B5D /* Bill.swift in Sources */,
 				24419C782110E89100517B5D /* SectionHeader.swift in Sources */,
+				2417106B2122118D001895E8 /* OrdersViewController.swift in Sources */,
 				24419C52210F633700517B5D /* MenuServices.swift in Sources */,
 				24419C68210F633700517B5D /* Constants.swift in Sources */,
+				241710772123158E001895E8 /* OrderHeaderCell.swift in Sources */,
 				24419C5F210F633700517B5D /* MenuViewController.swift in Sources */,
 				24419C70210F633700517B5D /* MYLColor.swift in Sources */,
 				24419C5D210F633700517B5D /* MenuInteractor.swift in Sources */,
@@ -462,6 +496,8 @@
 				24419C6C210F633700517B5D /* MYLTextField.swift in Sources */,
 				24419C5E210F633700517B5D /* MenuCollectionCell.swift in Sources */,
 				24419C5C210F633700517B5D /* MenuPresenter.swift in Sources */,
+				2417106F21221DE4001895E8 /* OrdersInteractor.swift in Sources */,
+				2417106D21221DCD001895E8 /* OrdersPresenter.swift in Sources */,
 				24419C0A210F60E300517B5D /* AppDelegate.swift in Sources */,
 				24419C57210F633700517B5D /* EatInViewController.swift in Sources */,
 				24419C6B210F633700517B5D /* NetworkManager.swift in Sources */,

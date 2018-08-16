@@ -13,7 +13,7 @@ class EatInViewController: BaseTextFieldViewController {
   @IBOutlet weak var customerNumber: MYLTextFieldView!
   @IBOutlet weak var centerView: UIView!
   
-  var thisBill: Bill!
+  private let thisBill = Bill.sharedInstance
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -49,7 +49,7 @@ class EatInViewController: BaseTextFieldViewController {
     switch segue.identifier {
     case ReuseIdentifier.toMenu.rawValue?:
       
-      guard let destVC = segue.destination as? MenuViewController else {
+      guard let _ = segue.destination as? MenuViewController else {
         break
       }
       
@@ -58,8 +58,6 @@ class EatInViewController: BaseTextFieldViewController {
       if let num: Int = Int(customerNumber.fieldText.text!) {
         thisBill.customers = [Customer](repeating: Customer(), count: num)
       }
-      
-      destVC.thisBill = thisBill
       
     default:
       break

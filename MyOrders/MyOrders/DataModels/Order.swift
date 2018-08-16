@@ -67,7 +67,7 @@ class Order: NSObject, NSCoding, JSONModel {
     
     override init() {
       orderId = ""
-      items = [String:MenuOrder]()
+      items = [:]
       orderType = OrderType.eatin
       splitPay = false
     }
@@ -105,6 +105,13 @@ class MenuOrder: MenuItem {
     quantity = 1
     
     super.init()
+  }
+  
+  convenience init(item: MenuItem) {
+    try! self.init(json: JSON.init(item.payload))
+    
+    status = OrderStatus.new
+    quantity = 1
   }
 }
 

@@ -17,7 +17,6 @@ protocol MenuViewInterface: BaseViewInterface {
 
 class MenuViewController: BaseViewController, MenuViewInterface {
 
-  var thisBill: Bill!
   var menuCategories: [Menu]!
   
   @IBOutlet weak var collectionView: UICollectionView!
@@ -26,6 +25,7 @@ class MenuViewController: BaseViewController, MenuViewInterface {
     return baseEventHandler as? MenuEventsInterface
   }
   
+  private let thisBill = Bill.sharedInstance
   private var thisItem: MenuItem!
   
   override func viewDidLoad() {
@@ -44,18 +44,23 @@ class MenuViewController: BaseViewController, MenuViewInterface {
     }
   }
   
+//  override func viewWillAppear(_ animated: Bool) {
+//    super.viewWillAppear(animated)
+//    
+//    self.collectionView.reloadData()
+//  }
+  
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
     if UIApplication.shared.keyWindow!.viewWithTag(ViewTags.StickyButton.rawValue) == nil {
       let stickyButton = UIButton(type: UIButtonType.custom)
-      stickyButton.setImage(#imageLiteral(resourceName: "delivery"), for: UIControlState.normal)
-      stickyButton.frame = CGRect(x: self.view.frame.size.width - 80, y: 100, width: 50.0, height: 50.0)
+      stickyButton.setImage(#imageLiteral(resourceName: "order"), for: UIControlState.normal)
+      stickyButton.frame = CGRect(x: self.view.frame.size.width - 80, y: 120, width: 50.0, height: 50.0)
       stickyButton.layer.cornerRadius = 25.0
-      stickyButton.layer.borderWidth = 2.0
-      stickyButton.layer.borderColor = UIColor.orange.cgColor
-      stickyButton.roundCorners(.allCorners, radius: 25.0)
-      stickyButton.shadow(radius: 25.0)
+      stickyButton.layer.borderWidth = 3.0
+      stickyButton.layer.borderColor = UIColor.white.cgColor
+      stickyButton.shadow(radius: 25.0, strength: 2.0)
       stickyButton.tag = ViewTags.StickyButton.rawValue
       
       stickyButton.addTarget(self, action: #selector(buttonTapped), for: UIControlEvents.touchUpInside)
@@ -76,13 +81,14 @@ class MenuViewController: BaseViewController, MenuViewInterface {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     switch segue.identifier {
     case ReuseIdentifier.toLargeView.rawValue?:
-      
       guard let destVC = segue.destination as? MenuImageViewController else {
         break
       }
-      
       destVC.menuItem = thisItem
-      
+    case ReuseIdentifier.toOrders.rawValue?:
+      guard let _ = segue.destination as? OrdersViewController else {
+        break
+      }
     default:
       break
     }
@@ -97,36 +103,33 @@ class MenuViewController: BaseViewController, MenuViewInterface {
   }
   
   func addToOrder(item: MenuItem) {
-    var orderItems: [String:MenuOrder]
-    
     if thisBill.order == nil {
       thisBill.order = Order()
     }
-    orderItems = thisBill.order!.items
       
-    if orderItems[item.mid] != nil {
-      orderItems[item.mid]?.quantity += 1
+    if thisBill.order!.items[item.mid] == nil {
+      thisBill.order!.items[item.mid] = MenuOrder(item: item)
     } else {
-      orderItems["k" + item.mid] = item as? MenuOrder
+      thisBill.order!.items[item.mid]?.quantity += 1
     }
-    
   }
   
   func removeFromOrder(item: MenuItem) {
     guard thisBill.order != nil else {
       return
     }
-    var orderItems = thisBill.order!.items
     
-    if orderItems[item.mid] != nil, orderItems[item.mid]!.quantity > 1 {
-      orderItems[item.mid]!.quantity -= 1
+    if thisBill.order!.items[item.mid] != nil, thisBill.order!.items[item.mid]!.quantity > 1 {
+      thisBill.order!.items[item.mid]!.quantity -= 1
     } else {
-      orderItems.removeValue(forKey: item.mid)
+      thisBill.order!.items.removeValue(forKey: item.mid)
     }
   }
   
   @objc func buttonTapped() {
-    
+    if thisBill.order != nil && thisBill.order!.items.count > 0 {
+      self.performSegue(withIdentifier: ReuseIdentifier.toOrders.rawValue, sender: nil)
+    }
   }
 }
 

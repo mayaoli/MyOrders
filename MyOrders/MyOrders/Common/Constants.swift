@@ -24,12 +24,16 @@ enum ViewTags: Int {
 }
 
 enum ReuseIdentifier: String {
-  case toEatIn
-  case toMenu
-  case toLargeView
   case menuCollectionCell
   case sectionHeader
   case largeImageView
+  case orderTableCell
+  case orderHeaderCell
+  
+  case toEatIn
+  case toMenu
+  case toLargeView
+  case toOrders
   
   var nib:UINib? {
     switch self {
@@ -37,6 +41,10 @@ enum ReuseIdentifier: String {
       return UINib(nibName: "MenuCollectionCell", bundle: nil)
     case .sectionHeader:
       return UINib(nibName: "SectionHeader", bundle: nil)
+    case .orderTableCell:
+      return UINib(nibName: "OrderTableCell", bundle: nil)
+    case .orderHeaderCell:
+      return UINib(nibName: "OrderHeaderCell", bundle: nil)
     default:
       return nil
     }

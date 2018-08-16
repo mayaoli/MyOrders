@@ -27,7 +27,7 @@ class MenuImageViewController: UIViewController {
       self.largeImage.image = #imageLiteral(resourceName: "no-image")
     }
     
-    itemName.text = "\(menuItem.mid) \(menuItem.name)"
+    itemName.text = "[\(menuItem.mid.uppercased())] \(menuItem.name)"
     itemDescription.text = menuItem.shortDescription
   
     // Do any additional setup after loading the view.

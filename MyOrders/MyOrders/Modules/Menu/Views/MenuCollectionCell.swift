@@ -18,13 +18,18 @@ class MenuCollectionCell: UICollectionViewCell {
   @IBOutlet weak var removeButton: UIButton!
   @IBOutlet weak var addButton: UIButton!
   
-  
   var menuItem: MenuItem! {
     didSet {
       if menuItem.imageURL != nil {
         itemImage.imageFromUrl(menuItem.imageURL!)
       }
-      itemName.text = "\(menuItem.mid) \(menuItem.name)" // + " \(menuItem.shortDescription)"
+      itemName.text = "[\(menuItem.mid.uppercased())] \(menuItem.name)" // + " \(menuItem.shortDescription)"
+      // TODO: improve
+      if let q = Bill.sharedInstance.order?.items[menuItem.mid]?.quantity, q > 0 {
+        quantityLabel.text = "\(q)"
+      } else {
+        quantityLabel.text = ""
+      }
     }
   }
   
@@ -80,7 +85,7 @@ class MenuCollectionCell: UICollectionViewCell {
     self.delegate.view.addSubview(imageView)
     
     let eps: CGFloat = 1e-5
-    let scaledAndTranslatedTransform = imageView.transform.translatedBy(x: screenSize.width - offset.x - 140, y: -offset.y - 10).scaledBy(x: eps, y: eps)
+    let scaledAndTranslatedTransform = imageView.transform.translatedBy(x: screenSize.width - offset.x - 140, y: -offset.y + 20).scaledBy(x: eps, y: eps)
     
     UIView.animate(withDuration: Constants.ANIMATION_DURATION,
                    animations: {
@@ -92,11 +97,11 @@ class MenuCollectionCell: UICollectionViewCell {
       imageView.removeFromSuperview()
       
       let stickyButton = UIApplication.shared.keyWindow!.viewWithTag(ViewTags.StickyButton.rawValue)
-      UIView.animate(withDuration: Constants.ANIMATION_DURATION/2,
+      UIView.animate(withDuration: Constants.ANIMATION_DURATION/3,
                      animations: {
                       stickyButton?.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
       }) { _ in
-        UIView.animate(withDuration: Constants.ANIMATION_DURATION/2,
+        UIView.animate(withDuration: Constants.ANIMATION_DURATION/3,
                        animations: {
                         stickyButton?.transform = CGAffineTransform(scaleX: 1, y: 1)
         })

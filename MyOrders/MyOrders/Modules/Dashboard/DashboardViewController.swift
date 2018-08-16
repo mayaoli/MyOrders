@@ -41,13 +41,10 @@ class DashboardViewController: BaseTextFieldViewController {
     
     switch segue.identifier {
     case ReuseIdentifier.toEatIn.rawValue?:
-      let bill = Bill()
-      
-      guard let destVC = segue.destination as? EatInViewController, TableNumber.isValid else {
+      guard let _ = segue.destination as? EatInViewController, TableNumber.isValid else {
           break
       }
-      bill.tableNumber = TableNumber.fieldText.text
-      destVC.thisBill = bill
+      Bill.sharedInstance.tableNumber = TableNumber.fieldText.text
       
     default:
       break
