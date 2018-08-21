@@ -22,7 +22,8 @@ class Order: NSObject, NSCoding, JSONModel {
     
     // split pay - split the payment for each customer
     var splitPay: Bool
-    
+  
+  //TODO: add order time
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(self.orderId, forKey: "orderId")
@@ -60,8 +61,10 @@ class Order: NSObject, NSCoding, JSONModel {
       splitPay = json["splitPay"].boolValue
       items = [:]
       let ods = try UtilityManager.getArray(json["orderItems"], type: MenuOrder.self)
+      var key:String
       for x in ods {
-        items[x.mid] = x
+        key = "C\(x.category)-I\(x.mid)"
+        items[key] = x
       }
     }
     
@@ -82,10 +85,10 @@ class MenuOrder: MenuItem {
     if let dStatus = aDecoder.decodeObject(forKey: "status") as? String {
       status = OrderStatus(rawValue: dStatus)!
     } else {
-      status = OrderStatus.new
+      status = OrderStatus.pending
     }
-    if let dQuantity = aDecoder.decodeObject(forKey: "quantity") as? Int {
-      quantity = dQuantity
+    if let dQuantity = aDecoder.decodeObject(forKey: "quantity") as? String, !dQuantity.isEmpty {
+      quantity = (dQuantity as NSString).integerValue
     } else {
       quantity = 0
     }
@@ -93,15 +96,22 @@ class MenuOrder: MenuItem {
     super.init(coder: aDecoder)
   }
   
+  override func encode(with aCoder: NSCoder) {
+    aCoder.encode(self.status.rawValue, forKey: "status")
+    aCoder.encode(String(self.quantity), forKey: "quantity")
+    
+    super.encode(with: aCoder)
+  }
+  
   required init(json: JSON) throws {
-    status = OrderStatus.init(rawValue: json["status"].stringValue) ?? OrderStatus.new
+    status = OrderStatus.init(rawValue: json["status"].stringValue) ?? OrderStatus.pending
     quantity = json["quantity"].intValue
     
     try! super.init(json: json)
   }
   
   override init() {
-    status = OrderStatus.new
+    status = OrderStatus.pending
     quantity = 1
     
     super.init()
@@ -110,8 +120,12 @@ class MenuOrder: MenuItem {
   convenience init(item: MenuItem) {
     try! self.init(json: JSON.init(item.payload))
     
-    status = OrderStatus.new
+    status = OrderStatus.pending
     quantity = 1
+  }
+  
+  var pushPayload: JSON {
+    return JSON.init([])
   }
 }
 

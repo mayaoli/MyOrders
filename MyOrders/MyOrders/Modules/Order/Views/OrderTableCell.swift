@@ -20,16 +20,30 @@ class OrderTableCell: UITableViewCell {
   @IBOutlet weak var price: UILabel!
   
   var thisItem: MenuOrder! {
+    //TODO: need more images
     didSet {
+      addButton.isHidden = true
+      removeButton.isHidden = true
+      
       switch thisItem.status {
+      case .pending:
+        statusImage.image = #imageLiteral(resourceName: "pending")
+        addButton.isHidden = false
+        removeButton.isHidden = false
       case .new:
-        statusImage.image = #imageLiteral(resourceName: "order")
-      default:
-        statusImage.image = #imageLiteral(resourceName: "order")
+        statusImage.image = #imageLiteral(resourceName: "new")
+      case .processing:
+        statusImage.image = #imageLiteral(resourceName: "processing")
+      case .ready:
+        statusImage.image = #imageLiteral(resourceName: "ready")
+      case .fulfilled:
+        statusImage.image = #imageLiteral(resourceName: "fulfilled")
+//      default:
+//        statusImage.image = #imageLiteral(resourceName: "order")
       }
       statusLabel.text = thisItem.status.rawValue
       itemName.text = thisItem.name
-      quantity.text = String(thisItem.quantity)
+      quantity.text = "Qty: \(thisItem.quantity)"
       if thisItem.price == nil {
         price.isHidden = true
       } else {
@@ -58,18 +72,18 @@ class OrderTableCell: UITableViewCell {
     thisItem.quantity += 1
     quantity.text = String(thisItem.quantity)
     
-    (self.delegate as! OrdersViewInterface).refreshView()
+    (self.delegate as! OrdersViewInterface).refreshView(false)
   }
   
   @IBAction func removeTapped(_ sender: Any) {
     if thisItem.quantity > 1 {
       thisItem.quantity -= 1
       quantity.text = String(thisItem.quantity)
+      (self.delegate as! OrdersViewInterface).refreshView(false)
     } else {
-      Bill.sharedInstance.order!.items.removeValue(forKey: thisItem.mid)
-      self.removeFromSuperview()
+      Bill.sharedInstance.order!.items.removeValue(forKey: "C\(thisItem.category)-I\(thisItem.mid)")
+      (self.delegate as! OrdersViewInterface).refreshView(true)
     }
-    (self.delegate as! OrdersViewInterface).refreshView()
   }
   
 }

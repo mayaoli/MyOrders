@@ -106,7 +106,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
       name = ""
       shortDescription = ""
       category = ""
-      price = 0
+      price = nil
       isHot = true
       orderAvailability = OrderType.eatin
   }
@@ -142,7 +142,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
       if let dprice = aDecoder.decodeObject(forKey: "price") as? Decimal{
           price = dprice
       } else {
-          price = 0
+          price = nil
       }
       if let dhot = aDecoder.decodeObject(forKey: "isHot") as? Bool{
           isHot = dhot

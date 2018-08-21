@@ -56,6 +56,7 @@
 		24419C792110E89100517B5D /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24419C772110E89100517B5D /* SectionHeader.xib */; };
 		24419C802111F06E00517B5D /* MenuImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24419C7F2111F06E00517B5D /* MenuImageViewController.swift */; };
 		24419CAB211E84D200517B5D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24419CAA211E84D200517B5D /* AudioToolbox.framework */; };
+		24D92F862127477700F4B973 /* BillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D92F852127477700F4B973 /* BillViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +110,7 @@
 		24419C772110E89100517B5D /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 		24419C7F2111F06E00517B5D /* MenuImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuImageViewController.swift; sourceTree = "<group>"; };
 		24419CAA211E84D200517B5D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		24D92F852127477700F4B973 /* BillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillViewController.swift; sourceTree = "<group>"; };
 		BD725C4175D35B51940C0AE0 /* Pods-MyOrders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.debug.xcconfig"; sourceTree = "<group>"; };
 		E970EAD61DDE8F7CEF5CC522 /* Pods-MyOrders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.release.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.release.xcconfig"; sourceTree = "<group>"; };
 		F6F1B91989FD00BAA50CD38B /* Pods_MyOrders.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyOrders.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +210,7 @@
 		24419C22210F633600517B5D /* Bill */ = {
 			isa = PBXGroup;
 			children = (
+				24D92F852127477700F4B973 /* BillViewController.swift */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				24419C62210F633700517B5D /* BasePresenter.swift in Sources */,
 				24419C54210F633700517B5D /* DashboardInteractor.swift in Sources */,
 				24419C5A210F633700517B5D /* SignInViewController.swift in Sources */,
+				24D92F862127477700F4B973 /* BillViewController.swift in Sources */,
 				24419C56210F633700517B5D /* DashboardPresenter.swift in Sources */,
 				24419C63210F633700517B5D /* BaseTextFieldViewController.swift in Sources */,
 			);

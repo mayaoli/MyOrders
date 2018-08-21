@@ -32,7 +32,7 @@ extension UIColor {
   }
   
   static func textFieldFocusedBorderColor() -> UIColor {
-    return UIColor.orange
+    return UIColor(hex: 0xF98619)
   }
   
   static func textFieldErrorColor() -> UIColor {

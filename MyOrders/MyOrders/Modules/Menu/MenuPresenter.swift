@@ -41,7 +41,7 @@ class MenuPresenter: BasePresenter, MenuEventsInterface, MenuOutputInterface {
       return
     }
     
-    self.view?.renderMenuList(menuList!)
+    self.view?.renderMenuList(menuList ?? [])
   }
   
 }

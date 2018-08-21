@@ -26,4 +26,10 @@ class StorageManager {
     let result = NSKeyedUnarchiver.unarchiveObject(withFile: file)
     return result as? NSArray
   }
+  
+  class func deleteObject(path: String) -> Bool {
+    // TODO: file should be removed
+    let file = documentsDirectory().appendingPathComponent(path)
+    return NSKeyedArchiver.archiveRootObject([], toFile: file)
+  }
 }

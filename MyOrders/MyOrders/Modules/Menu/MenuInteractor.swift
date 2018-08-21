@@ -25,10 +25,10 @@ class MenuInteractor: BaseInteractor, MenuInteractorInput {
     
     _ = service.getMenuList { menuList, error in
       
-      guard error == nil else {
-        self.output?.gotMenuList(nil, error)
-        return
-      }
+//      guard error == nil else {
+//        self.output?.gotMenuList(menuList, error)
+//        return
+//      }
       
       self.output?.gotMenuList(menuList, nil)
     }

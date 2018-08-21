@@ -14,13 +14,14 @@ struct Constants {
   static let BUNDLE_NUMBER = 10
   static let BASE_URL = "https://www.google.ca"
   static let STORAGE_MENU_PATH: String = "MENU"
-  static let STORAGE_BILL_PATH: String = "BILL"
+  static let STORAGE_ORDER_PATH: String = "ORDER"
   static let ANIMATION_DURATION: TimeInterval = 0.6
 }
 
 enum ViewTags: Int {
   case TextFieldView = 1
-  case StickyButton = 2
+  case StickyOrderButton = 2
+  case StickyBillButton = 3
 }
 
 enum ReuseIdentifier: String {
@@ -34,6 +35,7 @@ enum ReuseIdentifier: String {
   case toMenu
   case toLargeView
   case toOrders
+  case toBill
   
   var nib:UINib? {
     switch self {
@@ -69,7 +71,8 @@ enum NetworkingError: Error {
   case responseValidationFailed
   /// Request or Response encoding failed
   case encodingFailed
-  
+  /// custom error message
+  case customError(message: String)
   
   var debugDescription: String {
     switch self {
@@ -86,6 +89,9 @@ enum NetworkingError: Error {
     case .encodingFailed:
       print("Parameter or Multi-part encoding failed. Reason: Missing URL, json/plist encoding failed, stream read/write failed, etc.")
       return "Technical issue"
+    case .customError(let message):
+      print(message)
+      return message
     }
   }
 }
@@ -107,10 +113,11 @@ enum NetworkStatus {
 }
 
 enum OrderStatus: String {
-    case new = "New Order"
-    case processing = "Processing"
-    case ready = "Ready / Wait for deliver"
-    case fulfilled = "Fulfilled / Completed"
+  case pending = "Pending Submit"
+  case new = "New Order"
+  case processing = "Processing"
+  case ready = "Ready / Wait for deliver"
+  case fulfilled = "Fulfilled / Completed"
 }
 
 enum OrderType: String {
@@ -138,10 +145,11 @@ enum ValidationType: UInt {
   case IsRequired = 1
   case IsAlphabet = 2
   case IsNumeric = 4
-  case IsEmail = 8
-  case IsPhoneNumber = 16
-  case IsPostcode = 32
-  case IsDate = 64
+  case IsPositiveNumber = 8 // 1~99
+  case IsEmail = 16
+  case IsPhoneNumber = 32
+  case IsPostcode = 64
+  case IsDate = 128
   
   var regex: String {
     switch self {
@@ -151,6 +159,8 @@ enum ValidationType: UInt {
       return "^(A-Za-z)*$"
     case .IsNumeric:
       return "^\\d*$"
+    case .IsPositiveNumber:
+      return "^[1-9][0-9]?$"
     case .IsEmail:
       return "^([0-9a-zA-Z]([-.\\w]*[0-9a-zA-Z])*@(([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)|([0-9a-zA-Z]+\\.))+[a-zA-Z]{2,9})$"
     case .IsPhoneNumber:
@@ -171,7 +181,9 @@ enum ValidationType: UInt {
     case .IsAlphabet:
       return "must be an alphabet value"
     case .IsNumeric:
-      return "must be an number"
+      return "must be numeric"
+    case .IsPositiveNumber:
+      return "must be an number between 1 and 99"
     case .IsEmail:
       return "must be a valid Email address"
     case .IsPhoneNumber:

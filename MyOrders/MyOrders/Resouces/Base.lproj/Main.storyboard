@@ -283,6 +283,7 @@
                         <outlet property="collectionView" destination="5yq-cP-Hcu" id="fqY-aN-fbx"/>
                         <segue destination="SSm-0Q-2hD" kind="presentation" identifier="toLargeView" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="obo-bI-cfY"/>
                         <segue destination="Jey-sS-BRS" kind="presentation" identifier="toOrders" id="Isp-NQ-7uq"/>
+                        <segue destination="TF8-hV-nlE" kind="show" identifier="toBill" id="1i4-aX-UYD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbW-jj-023" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -302,14 +303,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="8dP-Sf-Glb">
-                                <rect key="frame" x="100" y="120" width="912" height="624"/>
+                                <rect key="frame" x="100" y="120" width="912" height="554"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Jey-sS-BRS" id="BLq-gi-adv"/>
                                     <outlet property="delegate" destination="Jey-sS-BRS" id="hlA-vU-Zhb"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4q-Ne-UBu">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4q-Ne-UBu" userLabel="Close Button">
                                 <rect key="frame" x="978" y="104" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="TKJ-aD-k7s"/>
@@ -326,24 +327,93 @@
                                     <action selector="closeTapped:" destination="Jey-sS-BRS" eventType="touchUpInside" id="pJq-CM-4ue"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yk2-k5-whs" userLabel="Button Panel">
+                                <rect key="frame" x="100" y="674" width="912" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="089-zF-mhg">
+                                        <rect key="frame" x="414.5" y="7.5" width="83" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="83" id="74H-9F-4SK"/>
+                                            <constraint firstAttribute="height" constant="45" id="sSd-ao-hN7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <state key="normal" title="Submit"/>
+                                        <connections>
+                                            <action selector="submitTapped:" destination="Jey-sS-BRS" eventType="touchUpInside" id="eMw-mH-TMV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OrP-SY-KSZ">
+                                        <rect key="frame" x="667" y="7" width="235" height="45"/>
+                                        <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <inset key="contentEdgeInsets" minX="12" minY="8" maxX="12" maxY="8"/>
+                                        <size key="titleShadowOffset" width="2" height="2"/>
+                                        <state key="normal" title="I'm done! Bill please.">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="billTapped:" destination="Jey-sS-BRS" eventType="touchUpInside" id="BcL-nS-ADd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="089-zF-mhg" firstAttribute="centerX" secondItem="yk2-k5-whs" secondAttribute="centerX" id="1kh-Rd-oQQ"/>
+                                    <constraint firstItem="OrP-SY-KSZ" firstAttribute="trailing" secondItem="yk2-k5-whs" secondAttribute="trailing" constant="-10" id="79z-JE-fg9"/>
+                                    <constraint firstItem="089-zF-mhg" firstAttribute="centerY" secondItem="yk2-k5-whs" secondAttribute="centerY" id="86Q-yM-bas"/>
+                                    <constraint firstAttribute="height" constant="60" id="ERa-fl-pZg"/>
+                                    <constraint firstItem="OrP-SY-KSZ" firstAttribute="centerY" secondItem="yk2-k5-whs" secondAttribute="centerY" id="x9i-k9-Jf1"/>
+                                    <constraint firstItem="OrP-SY-KSZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="089-zF-mhg" secondAttribute="trailing" id="yl9-0P-Rs8"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="yk2-k5-whs" firstAttribute="top" secondItem="8dP-Sf-Glb" secondAttribute="bottom" id="4Ni-N0-bVR"/>
                             <constraint firstItem="u4q-Ne-UBu" firstAttribute="trailing" secondItem="8dP-Sf-Glb" secondAttribute="trailing" constant="16" id="IQd-ON-gK7"/>
-                            <constraint firstItem="sR8-gi-ytW" firstAttribute="top" secondItem="8dP-Sf-Glb" secondAttribute="bottom" constant="90" id="IZc-V7-4R5"/>
+                            <constraint firstItem="sR8-gi-ytW" firstAttribute="top" secondItem="8dP-Sf-Glb" secondAttribute="bottom" constant="160" id="IZc-V7-4R5"/>
                             <constraint firstItem="8dP-Sf-Glb" firstAttribute="trailing" secondItem="vqc-5R-03I" secondAttribute="trailing" constant="-100" id="MGf-Fb-h71"/>
                             <constraint firstItem="8dP-Sf-Glb" firstAttribute="top" secondItem="dBA-sb-jAJ" secondAttribute="bottom" constant="100" id="SGp-hv-0ar"/>
                             <constraint firstItem="u4q-Ne-UBu" firstAttribute="top" secondItem="8dP-Sf-Glb" secondAttribute="top" constant="-16" id="W01-aT-jfF"/>
+                            <constraint firstItem="yk2-k5-whs" firstAttribute="width" secondItem="8dP-Sf-Glb" secondAttribute="width" id="iv3-oz-AlP"/>
+                            <constraint firstItem="yk2-k5-whs" firstAttribute="leading" secondItem="8dP-Sf-Glb" secondAttribute="leading" id="zCA-mM-3Id"/>
                             <constraint firstItem="8dP-Sf-Glb" firstAttribute="leading" secondItem="vqc-5R-03I" secondAttribute="leading" constant="100" id="zsG-x4-sP0"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="billButton" destination="OrP-SY-KSZ" id="eLF-fL-3Gy"/>
+                        <outlet property="submitButton" destination="089-zF-mhg" id="Tbm-gh-NyO"/>
                         <outlet property="tableView" destination="8dP-Sf-Glb" id="cqZ-YK-zdg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OUB-QM-R9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2129.6762589928057" y="1031.6546762589928"/>
+            <point key="canvasLocation" x="1660" y="1032"/>
+        </scene>
+        <!--Bill View Controller-->
+        <scene sceneID="fM3-4W-aFV">
+            <objects>
+                <viewController id="TF8-hV-nlE" customClass="BillViewController" customModule="MyOrders" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bXJ-ef-mFp"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Gw-B1-35U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9vu-tn-a5z">
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l65-bf-M9A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="874" y="1842"/>
         </scene>
         <!--Menu Image View Controller-->
         <scene sceneID="Zxc-Xm-Klt">
@@ -413,7 +483,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8VC-GW-c7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="873.56115107913672" y="1794.9640287769785"/>
+            <point key="canvasLocation" x="137" y="1032"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ewt-wa-yyS">

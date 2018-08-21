@@ -18,15 +18,15 @@ class MenuCollectionCell: UICollectionViewCell {
   @IBOutlet weak var removeButton: UIButton!
   @IBOutlet weak var addButton: UIButton!
   
-  var menuItem: MenuItem! {
+  var thisItem: MenuItem! {
     didSet {
-      if menuItem.imageURL != nil {
-        itemImage.imageFromUrl(menuItem.imageURL!)
+      if thisItem.imageURL != nil {
+        itemImage.imageFromUrl(thisItem.imageURL!)
       }
-      itemName.text = "[\(menuItem.mid.uppercased())] \(menuItem.name)" // + " \(menuItem.shortDescription)"
+      itemName.text = "[\(thisItem.mid.uppercased())] \(thisItem.name)"
       // TODO: improve
-      if let q = Bill.sharedInstance.order?.items[menuItem.mid]?.quantity, q > 0 {
-        quantityLabel.text = "\(q)"
+      if let item = Bill.sharedInstance.order?.items["C\(thisItem.category)-I\(thisItem.mid)"], item.status == .pending, item.quantity > 0 {
+        quantityLabel.text = "\(item.quantity)"
       } else {
         quantityLabel.text = ""
       }
@@ -50,7 +50,7 @@ class MenuCollectionCell: UICollectionViewCell {
   
   @IBAction func removeTapped(_ sender: Any) {
     if let q = Int(quantityLabel.text ?? ""), q > 0 {
-      (self.delegate as! MenuViewInterface).removeFromOrder(item: menuItem)
+      (self.delegate as! MenuViewInterface).removeFromOrder(item: thisItem)
       quantityLabel.text = q > 1 ? "\(q - 1)" : ""
     } else {
       quantityLabel.text = ""
@@ -60,7 +60,7 @@ class MenuCollectionCell: UICollectionViewCell {
   }
 
   @IBAction func addTapped(_ sender: Any) {
-    (self.delegate as! MenuViewInterface).addToOrder(item: menuItem)
+    (self.delegate as! MenuViewInterface).addToOrder(item: thisItem)
     if let q = Int(quantityLabel.text ?? "") {
       quantityLabel.text = "\(q + 1)"
     } else {
@@ -96,7 +96,7 @@ class MenuCollectionCell: UICollectionViewCell {
       
       imageView.removeFromSuperview()
       
-      let stickyButton = UIApplication.shared.keyWindow!.viewWithTag(ViewTags.StickyButton.rawValue)
+      let stickyButton = UIApplication.shared.keyWindow!.viewWithTag(ViewTags.StickyOrderButton.rawValue)
       UIView.animate(withDuration: Constants.ANIMATION_DURATION/3,
                      animations: {
                       stickyButton?.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)

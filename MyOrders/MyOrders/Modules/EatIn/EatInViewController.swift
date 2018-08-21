@@ -23,11 +23,12 @@ class EatInViewController: BaseTextFieldViewController {
     
     centerView.shadow(radius: 10)
     
-    let validations = ValidationType.IsRequired.rawValue + ValidationType.IsNumeric.rawValue
+    var validations = ValidationType.IsRequired.rawValue + ValidationType.IsNumeric.rawValue
     staffPIN.configure(placeholder: nil, validationType: validations, maxLength: 4, alignment: .left, keyboardType: .numberPad)
     staffPIN.delegate = self
     staffPIN.fieldText.returnKeyType = .next
     
+    validations = ValidationType.IsRequired.rawValue + ValidationType.IsPositiveNumber.rawValue
     customerNumber.configure(placeholder: nil, validationType: validations, maxLength: 2, alignment: .left, keyboardType: .numberPad)
     customerNumber.delegate = self
     customerNumber.fieldText.returnKeyType = .done

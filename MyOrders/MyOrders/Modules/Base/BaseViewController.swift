@@ -15,7 +15,8 @@ protocol BaseViewInterface: class {
   
   func animateViewMoving(_ movement:CGFloat)
   func renderError(_ error: NetworkingError)
-  func renderMessage(title: String, message: String)
+  func renderWarning(_ message: String)
+  func renderMessage(title: String, message: String, completion completionBlock: (() -> Void)?)
 }
 
 class BaseViewController: UIViewController, BaseViewInterface {
@@ -82,6 +83,14 @@ class BaseViewController: UIViewController, BaseViewInterface {
   }
   
   func renderError(_ error: NetworkingError) {
+    self.renderBar(error)
+  }
+  
+  func renderWarning(_ message: String) {
+    self.renderBar(.customError(message: message), true)
+  }
+  
+  func renderBar(_ error: NetworkingError, _ isWarning: Bool = false) {
     guard self.snackbar == nil else {
       return
     }
@@ -90,7 +99,7 @@ class BaseViewController: UIViewController, BaseViewInterface {
       let noNetworkSnackbar = TTGSnackbar(message: error.debugDescription, duration: .middle)
       //noNetworkSnackbar.contentInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
       noNetworkSnackbar.cornerRadius = 0
-      noNetworkSnackbar.backgroundColor = UIColor.red
+      noNetworkSnackbar.backgroundColor = isWarning ? UIColor.yellow : UIColor.red
       noNetworkSnackbar.messageTextAlign = .center
       noNetworkSnackbar.show()
       noNetworkSnackbar.onSwipeBlock = { (snackbar, direction) in
@@ -112,14 +121,22 @@ class BaseViewController: UIViewController, BaseViewInterface {
     }
   }
   
-  func renderMessage(title: String, message: String) {
-    guard let navController = self.navigationController, let topViewController = navController.viewControllers.first else {
+  func renderMessage(title: String, message: String, completion completionBlock: (() -> Void)?) {
+    var navController: UINavigationController?
+    if self.navigationController != nil {
+      navController = self.navigationController
+    } else {
+      navController = UIApplication.shared.windows[0].rootViewController as? UINavigationController
+    }
+    
+    guard let topViewController = navController?.viewControllers.first else {
       return
     }
+    
     let alertController: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
     
     alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
-      topViewController.dismiss(animated: true, completion: nil)
+      topViewController.dismiss(animated: true, completion: completionBlock)
     }))
     
     topViewController.present(alertController, animated: true, completion: nil)

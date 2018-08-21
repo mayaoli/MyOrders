@@ -59,6 +59,8 @@ extension MenuImageViewController: UIGestureRecognizerDelegate {
       view.endEditing(true)
       self.dismiss(animated: true) {
         self.view.removeGestureRecognizer(self.gestureRecognizer)
+        UIApplication.shared.keyWindow!.viewWithTag(ViewTags.StickyOrderButton.rawValue)?.isHidden = false
+        UIApplication.shared.keyWindow!.viewWithTag(ViewTags.StickyBillButton.rawValue)?.isHidden = false
       }
     }
   }
