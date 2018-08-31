@@ -16,7 +16,7 @@ protocol BaseViewInterface: class {
   func animateViewMoving(_ movement:CGFloat)
   func renderError(_ error: NetworkingError)
   func renderWarning(_ message: String)
-  func renderMessage(title: String, message: String, completion completionBlock: (() -> Void)?)
+  func renderMessage(title: String, message: String, completion completionBlock: ((UIAlertAction) -> Void)?)
 }
 
 class BaseViewController: UIViewController, BaseViewInterface {
@@ -100,6 +100,7 @@ class BaseViewController: UIViewController, BaseViewInterface {
       //noNetworkSnackbar.contentInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
       noNetworkSnackbar.cornerRadius = 0
       noNetworkSnackbar.backgroundColor = isWarning ? UIColor.yellow : UIColor.red
+      noNetworkSnackbar.messageTextColor = isWarning ? UIColor.mainOrangeColor : UIColor.white
       noNetworkSnackbar.messageTextAlign = .center
       noNetworkSnackbar.show()
       noNetworkSnackbar.onSwipeBlock = { (snackbar, direction) in
@@ -121,7 +122,7 @@ class BaseViewController: UIViewController, BaseViewInterface {
     }
   }
   
-  func renderMessage(title: String, message: String, completion completionBlock: (() -> Void)?) {
+  func renderMessage(title: String, message: String, completion completionBlock: ((UIAlertAction) -> Void)?) {
     var navController: UINavigationController?
     if self.navigationController != nil {
       navController = self.navigationController
@@ -129,17 +130,14 @@ class BaseViewController: UIViewController, BaseViewInterface {
       navController = UIApplication.shared.windows[0].rootViewController as? UINavigationController
     }
     
-    guard let topViewController = navController?.viewControllers.first else {
-      return
-    }
-    
     let alertController: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
     
-    alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
-      topViewController.dismiss(animated: true, completion: completionBlock)
-    }))
+    alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: completionBlock))
+    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     
-    topViewController.present(alertController, animated: true, completion: nil)
+    DispatchQueue.main.async {
+      navController?.present(alertController, animated: true, completion: nil)
+    }
   }
 }
 

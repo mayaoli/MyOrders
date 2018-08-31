@@ -7,7 +7,7 @@
          {  
             "id":"1",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Sea weed",
+            "name":"Seaweed",
             "description":"Sea weed - salad",
             "category":"1",
             "price":"$1.99",
@@ -27,8 +27,8 @@
          {  
             "id":"3",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no222",
-            "name":"Edemame",
-            "description":"Edemame with salt",
+            "name":"Sonomono",
+            "description":"noodle salad",
             "category":"1",
             "price":"$1.99",
             "isHot":"false",
@@ -74,8 +74,8 @@
          {  
             "id":"2",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
+            "name":"Miso2",
+            "description":"Miso soup 2",
             "category":"2",
             "price":"$2.99",
             "isHot":"true",
@@ -84,7 +84,7 @@
          {  
             "id":"3",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
+            "name":"Miso3",
             "description":"Miso soup",
             "category":"2",
             "price":"$2.99",
@@ -94,7 +94,7 @@
          {  
             "id":"4",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
+            "name":"Miso4",
             "description":"Miso soup",
             "category":"2",
             "price":"$2.99",
@@ -104,7 +104,7 @@
          {  
             "id":"5",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
+            "name":"Miso5",
             "description":"Miso soup",
             "category":"2",
             "price":"$2.99",

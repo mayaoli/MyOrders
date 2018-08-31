@@ -34,12 +34,12 @@ class MYLTextFieldView: UIView {
         errorMessage.text = ""
         errorMessage.isHidden = true
         errorImage.isHidden = true
-        bottomLine.backgroundColor = UIColor.textFieldBorderColor()
+        bottomLine.backgroundColor = UIColor.textFieldBorderColor
       case .focus:
-        bottomLine.backgroundColor = UIColor.textFieldFocusedBorderColor()
+        bottomLine.backgroundColor = UIColor.textFieldFocusedBorderColor
       case .error(let message):
         isValid = false
-        bottomLine.backgroundColor = UIColor.textFieldErrorColor()
+        bottomLine.backgroundColor = UIColor.textFieldErrorColor
         errorMessage.text = message
         errorMessage.isHidden = false
         errorImage.isHidden = false

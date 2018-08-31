@@ -83,7 +83,7 @@ class DashboardViewController: BaseTextFieldViewController {
     
     TableNumberInputView.shadow(radius: 10)
 
-    let validations = ValidationType.IsRequired.rawValue + ValidationType.IsNumeric.rawValue
+    let validations = ValidationType.IsRequired.rawValue + ValidationType.IsPositiveNumber.rawValue
     TableNumber.configure(placeholder: nil, validationType: validations, maxLength: 2, alignment: .center, keyboardType: .numberPad)
     TableNumber.delegate = self
     

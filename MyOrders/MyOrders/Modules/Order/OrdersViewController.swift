@@ -2,8 +2,8 @@
 //  OrdersViewController.swift
 //  MyOrders
 //
-//  Created by RBC on 2018-08-13.
-//  Copyright © 2018 RBC. All rights reserved.
+//  Created by Yaoli.Ma on 2018-08-13.
+//  Copyright © 2018 Yaoli.Ma. All rights reserved.
 //
 
 import UIKit
@@ -49,7 +49,7 @@ class OrdersViewController: BaseViewController, OrdersViewInterface {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    StorageManager.setObject(arrayToSave: sortedItems as NSArray, path: Constants.STORAGE_ORDER_PATH)
+    StorageManager.setObject(objToSave: sortedItems as NSArray, path: Constants.STORAGE_ORDER_PATH)
     
     tableView.register(ReuseIdentifier.orderTableCell.nib, forCellReuseIdentifier: ReuseIdentifier.orderTableCell.rawValue)
     tableView.register(ReuseIdentifier.orderHeaderCell.nib, forHeaderFooterViewReuseIdentifier: ReuseIdentifier.orderHeaderCell.rawValue)
@@ -96,31 +96,39 @@ class OrdersViewController: BaseViewController, OrdersViewInterface {
     ///TODO: call service to send push notification
     
     pending.forEach { (pi) in
-      if let oldItem = thisOrder.filter({ $0.status == .new })
-                                .first(where: { $0.mid.caseInsensitiveCompare(pi.mid) == .orderedSame }) {
-        oldItem.quantity += pi.quantity
+      let oldkey = pi.key
+      
+      if let orderedItem = thisOrder.first(where: { $0.category.caseInsensitiveCompare(pi.category) == .orderedSame && $0.mid.caseInsensitiveCompare(pi.mid) == .orderedSame && $0.status == .new }) {
+        orderedItem.quantity += pi.quantity
       } else {
         pi.status = .new
+        Bill.sharedInstance.order!.items[pi.key] = pi
       }
+      Bill.sharedInstance.order!.items.removeValue(forKey: oldkey)
     }
-    StorageManager.setObject(arrayToSave: sortedItems as NSArray, path: Constants.STORAGE_ORDER_PATH)
+    StorageManager.setObject(objToSave: sortedItems as NSArray, path: Constants.STORAGE_ORDER_PATH)
     
     self.refreshView(false)
     self.dismiss(animated: true)
   }
   
   @IBAction func billTapped(_ sender: Any) {
-    guard pending.count > 0 else {
-      //TODO: self.renderMessage()
+    guard pending.count == 0 else {
+      DispatchQueue.main.asyncAfter(deadline: Constants.DISPATCH_DELAY, execute: {
+        self.renderMessage(title: "Confirm", message: "It seems that there are still some items in pending.\n\n Are you sure, you don't want them?", completion: { _ in
+          (UIApplication.shared.windows[0].rootViewController as? UINavigationController)?.topViewController?.performSegue(withIdentifier: ReuseIdentifier.toBill.rawValue, sender: nil)
+        })
+      })
+      
+      self.dismiss(animated: true)
       return
     }
+    
+    // call help
     
     // to bill
     self.dismiss(animated: true)
     (UIApplication.shared.windows[0].rootViewController as? UINavigationController)?.topViewController?.performSegue(withIdentifier: ReuseIdentifier.toBill.rawValue, sender: nil)
-    
-    // call help
-    
   }
   
   func refreshView(_ needRefreshSelf: Bool) {

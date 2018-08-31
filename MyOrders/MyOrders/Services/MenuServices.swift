@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 class MenuServices: BaseServices {
   
@@ -39,7 +38,7 @@ class MenuServices: BaseServices {
       } catch {}
      
       if menu != nil, menu!.count > 0 {
-        StorageManager.setObject(arrayToSave: menu! as NSArray, path: Constants.STORAGE_MENU_PATH)
+        StorageManager.setObject(objToSave: menu!, path: Constants.STORAGE_MENU_PATH)
       } else {
         // this shall not happen
         menu = StorageManager.getObject(path: Constants.STORAGE_MENU_PATH) as? [Menu]

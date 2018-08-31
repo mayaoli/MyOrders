@@ -19,23 +19,27 @@ extension UIColor {
 
   // MARK: - Backgrounds
   
-  static func textPlaceholderColor() -> UIColor {
-    return UIColor(hex: 0x6B7782)
-  }
-  
-  static func textValueColor() -> UIColor {
-    return UIColor(hex: 0x252525)
-  }
-  
-  static func textFieldBorderColor() -> UIColor {
-    return UIColor(hex: 0xC4C8CC)
-  }
-  
-  static func textFieldFocusedBorderColor() -> UIColor {
+  open class var mainOrangeColor : UIColor {
     return UIColor(hex: 0xF98619)
   }
   
-  static func textFieldErrorColor() -> UIColor {
+  open class var textPlaceholderColor : UIColor {
+    return UIColor(hex: 0x6B7782)
+  }
+  
+  open class var textValueColor : UIColor {
+    return UIColor(hex: 0x252525)
+  }
+  
+  open class var textFieldBorderColor : UIColor {
+    return UIColor(hex: 0xC4C8CC)
+  }
+  
+  open class var textFieldFocusedBorderColor : UIColor {
+    return UIColor(hex: 0xF98619)
+  }
+  
+  open class var textFieldErrorColor : UIColor {
     return UIColor(hex: 0xB91A0E)
   }
   

@@ -16,20 +16,20 @@ class StorageManager {
     return documentDirectory as NSString
   }
   
-  class func setObject(arrayToSave: NSArray, path: String) {
+  class func setObject(objToSave: Any, path: String) {
     let file = documentsDirectory().appendingPathComponent(path)
-    NSKeyedArchiver.archiveRootObject(arrayToSave, toFile: file)
+    NSKeyedArchiver.archiveRootObject(objToSave, toFile: file)
   }
   
-  class func getObject(path: String) -> NSArray? {
+  class func getObject(path: String) -> Any? {
     let file = documentsDirectory().appendingPathComponent(path)
     let result = NSKeyedUnarchiver.unarchiveObject(withFile: file)
-    return result as? NSArray
+    return result
   }
   
   class func deleteObject(path: String) -> Bool {
     // TODO: file should be removed
     let file = documentsDirectory().appendingPathComponent(path)
-    return NSKeyedArchiver.archiveRootObject([], toFile: file)
+    return NSKeyedArchiver.archiveRootObject(NSNull.self, toFile: file)
   }
 }

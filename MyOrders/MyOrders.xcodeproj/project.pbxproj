@@ -56,6 +56,12 @@
 		24419C792110E89100517B5D /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24419C772110E89100517B5D /* SectionHeader.xib */; };
 		24419C802111F06E00517B5D /* MenuImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24419C7F2111F06E00517B5D /* MenuImageViewController.swift */; };
 		24419CAB211E84D200517B5D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24419CAA211E84D200517B5D /* AudioToolbox.framework */; };
+		244AC242213063390060F84B /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244AC241213063390060F84B /* Payment.swift */; };
+		24AE5F0521371DB6000E3182 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE5F0421371DB6000E3182 /* Customer.swift */; };
+		24AE5F07213735E4000E3182 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE5F06213735E4000E3182 /* Price.swift */; };
+		24AE5F0921386978000E3182 /* ConfigServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE5F0821386978000E3182 /* ConfigServices.swift */; };
+		24AE5F0B21388557000E3182 /* BillPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE5F0A21388557000E3182 /* BillPresenter.swift */; };
+		24AE5F0D2138856D000E3182 /* BillInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE5F0C2138856D000E3182 /* BillInteractor.swift */; };
 		24D92F862127477700F4B973 /* BillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D92F852127477700F4B973 /* BillViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +116,12 @@
 		24419C772110E89100517B5D /* SectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 		24419C7F2111F06E00517B5D /* MenuImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuImageViewController.swift; sourceTree = "<group>"; };
 		24419CAA211E84D200517B5D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		244AC241213063390060F84B /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
+		24AE5F0421371DB6000E3182 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		24AE5F06213735E4000E3182 /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
+		24AE5F0821386978000E3182 /* ConfigServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigServices.swift; sourceTree = "<group>"; };
+		24AE5F0A21388557000E3182 /* BillPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPresenter.swift; sourceTree = "<group>"; };
+		24AE5F0C2138856D000E3182 /* BillInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillInteractor.swift; sourceTree = "<group>"; };
 		24D92F852127477700F4B973 /* BillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillViewController.swift; sourceTree = "<group>"; };
 		BD725C4175D35B51940C0AE0 /* Pods-MyOrders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.debug.xcconfig"; sourceTree = "<group>"; };
 		E970EAD61DDE8F7CEF5CC522 /* Pods-MyOrders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.release.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.release.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +189,7 @@
 			children = (
 				24419C1F210F633600517B5D /* BaseServices.swift */,
 				24419C1E210F633600517B5D /* MenuServices.swift */,
+				24AE5F0821386978000E3182 /* ConfigServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -211,6 +224,8 @@
 			isa = PBXGroup;
 			children = (
 				24D92F852127477700F4B973 /* BillViewController.swift */,
+				24AE5F0A21388557000E3182 /* BillPresenter.swift */,
+				24AE5F0C2138856D000E3182 /* BillInteractor.swift */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -276,10 +291,13 @@
 		24419C39210F633600517B5D /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
+				24419C3C210F633600517B5D /* Bill.swift */,
 				24419C3D210F633600517B5D /* Menu.swift */,
 				24419C3B210F633600517B5D /* Order.swift */,
-				24419C3C210F633600517B5D /* Bill.swift */,
+				244AC241213063390060F84B /* Payment.swift */,
 				24419C3A210F633600517B5D /* Credit.swift */,
+				24AE5F0421371DB6000E3182 /* Customer.swift */,
+				24AE5F06213735E4000E3182 /* Price.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -476,18 +494,22 @@
 			files = (
 				24419C59210F633700517B5D /* SingInInteractor.swift in Sources */,
 				24419C6D210F633700517B5D /* MYLView.swift in Sources */,
+				24AE5F07213735E4000E3182 /* Price.swift in Sources */,
 				24419C75210F633700517B5D /* MyOrders.xcdatamodeld in Sources */,
 				24419C58210F633700517B5D /* SignInPresenter.swift in Sources */,
 				24419C65210F633700517B5D /* Order.swift in Sources */,
 				24419C802111F06E00517B5D /* MenuImageViewController.swift in Sources */,
+				24AE5F0B21388557000E3182 /* BillPresenter.swift in Sources */,
 				24419C6A210F633700517B5D /* UtilityManager.swift in Sources */,
 				24419C64210F633700517B5D /* Credit.swift in Sources */,
+				244AC242213063390060F84B /* Payment.swift in Sources */,
 				2417107321227BF6001895E8 /* OrderTableCell.swift in Sources */,
 				24419C66210F633700517B5D /* Bill.swift in Sources */,
 				24419C782110E89100517B5D /* SectionHeader.swift in Sources */,
 				2417106B2122118D001895E8 /* OrdersViewController.swift in Sources */,
 				24419C52210F633700517B5D /* MenuServices.swift in Sources */,
 				24419C68210F633700517B5D /* Constants.swift in Sources */,
+				24AE5F0521371DB6000E3182 /* Customer.swift in Sources */,
 				241710772123158E001895E8 /* OrderHeaderCell.swift in Sources */,
 				24419C5F210F633700517B5D /* MenuViewController.swift in Sources */,
 				24419C70210F633700517B5D /* MYLColor.swift in Sources */,
@@ -496,6 +518,7 @@
 				24419C61210F633700517B5D /* BaseInteractor.swift in Sources */,
 				24419C6F210F633700517B5D /* MYLTextFieldView.swift in Sources */,
 				24419C60210F633700517B5D /* BaseViewController.swift in Sources */,
+				24AE5F0921386978000E3182 /* ConfigServices.swift in Sources */,
 				24419C6C210F633700517B5D /* MYLTextField.swift in Sources */,
 				24419C5E210F633700517B5D /* MenuCollectionCell.swift in Sources */,
 				24419C5C210F633700517B5D /* MenuPresenter.swift in Sources */,
@@ -504,6 +527,7 @@
 				24419C0A210F60E300517B5D /* AppDelegate.swift in Sources */,
 				24419C57210F633700517B5D /* EatInViewController.swift in Sources */,
 				24419C6B210F633700517B5D /* NetworkManager.swift in Sources */,
+				24AE5F0D2138856D000E3182 /* BillInteractor.swift in Sources */,
 				24419C69210F633700517B5D /* StorageManager.swift in Sources */,
 				24419C55210F633700517B5D /* DashboardViewController.swift in Sources */,
 				24419C53210F633700517B5D /* BaseServices.swift in Sources */,

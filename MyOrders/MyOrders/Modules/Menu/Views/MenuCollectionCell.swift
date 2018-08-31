@@ -24,8 +24,8 @@ class MenuCollectionCell: UICollectionViewCell {
         itemImage.imageFromUrl(thisItem.imageURL!)
       }
       itemName.text = "[\(thisItem.mid.uppercased())] \(thisItem.name)"
-      // TODO: improve
-      if let item = Bill.sharedInstance.order?.items["C\(thisItem.category)-I\(thisItem.mid)"], item.status == .pending, item.quantity > 0 {
+      // TODO: need add status as part of the key
+      if let item = Bill.sharedInstance.order?.items[thisItem.key], item.quantity > 0 {
         quantityLabel.text = "\(item.quantity)"
       } else {
         quantityLabel.text = ""

@@ -88,6 +88,22 @@ class MenuItem: NSObject, NSCoding, JSONModel {
   // orderType - delivery|pick-up/take-out|eat-in
   let orderAvailability: OrderType
   
+  var payload: [String : String] {
+    return [
+      "id": self.mid,
+      "img": self.imageURL ?? "",
+      "name": self.name,
+      "description": self.shortDescription,
+      "category": self.category,
+      "price": self.price?.description ?? "",
+      "isHot": self.isHot.description,
+      "orderType": self.orderAvailability.rawValue
+    ]
+  }
+  
+  var key: String {
+    return "C\(category)-I\(mid)-S\(OrderStatus.pending.hashValue)"
+  }
   
   func encode(with aCoder: NSCoder) {
       aCoder.encode(self.mid, forKey: "id")
@@ -165,19 +181,6 @@ class MenuItem: NSObject, NSCoding, JSONModel {
       price = Decimal(string: json["price"].stringValue)
       isHot = json["isHot"].boolValue
       orderAvailability = OrderType.init(rawValue: json["orderType"].stringValue) ?? OrderType.eatin
-  }
-  
-  var payload: [String : String] {
-      return [
-          "id": self.mid,
-          "img": self.imageURL ?? "",
-          "name": self.name,
-          "description": self.shortDescription,
-          "category": self.category,
-          "price": self.price?.description ?? "",
-          "isHot": self.isHot.description,
-          "orderType": self.orderAvailability.rawValue
-      ]
   }
     
 }

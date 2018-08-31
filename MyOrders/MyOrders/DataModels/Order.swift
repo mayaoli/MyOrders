@@ -19,9 +19,7 @@ class Order: NSObject, NSCoding, JSONModel {
     
     // orderType
     var orderType: OrderType // delivery|pick-up/take-out|eat-in
-    
-    // split pay - split the payment for each customer
-    var splitPay: Bool
+  
   
   //TODO: add order time
     
@@ -29,7 +27,6 @@ class Order: NSObject, NSCoding, JSONModel {
         aCoder.encode(self.orderId, forKey: "orderId")
         aCoder.encode(self.items, forKey: "orderItems")
         aCoder.encode(self.orderType.rawValue, forKey: "orderType")
-        aCoder.encode(self.splitPay, forKey: "splitPay")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,23 +45,15 @@ class Order: NSObject, NSCoding, JSONModel {
         } else {
             orderType = OrderType.eatin
         }
-        if let dSplitPay = aDecoder.decodeObject(forKey: "splitPay") as? Bool {
-            splitPay = dSplitPay
-        } else {
-            splitPay = false
-        }
     }
     
     required init(json: JSON) throws {
       orderId = json["orderId"].stringValue
       orderType = OrderType.init(rawValue: json["orderType"].stringValue) ?? OrderType.eatin
-      splitPay = json["splitPay"].boolValue
       items = [:]
       let ods = try UtilityManager.getArray(json["orderItems"], type: MenuOrder.self)
-      var key:String
       for x in ods {
-        key = "C\(x.category)-I\(x.mid)"
-        items[key] = x
+        items[x.key] = x
       }
     }
     
@@ -72,7 +61,6 @@ class Order: NSObject, NSCoding, JSONModel {
       orderId = ""
       items = [:]
       orderType = OrderType.eatin
-      splitPay = false
     }
     
 }
@@ -80,6 +68,15 @@ class Order: NSObject, NSCoding, JSONModel {
 class MenuOrder: MenuItem {
   var status: OrderStatus
   var quantity: Int
+  
+  
+  var pushPayload: JSON {
+    return JSON.init([])
+  }
+  
+  override var key: String {
+    return "C\(category)-I\(mid)-S\(status.hashValue)"
+  }
   
   required init?(coder aDecoder: NSCoder) {
     if let dStatus = aDecoder.decodeObject(forKey: "status") as? String {
@@ -122,10 +119,6 @@ class MenuOrder: MenuItem {
     
     status = OrderStatus.pending
     quantity = 1
-  }
-  
-  var pushPayload: JSON {
-    return JSON.init([])
   }
 }
 

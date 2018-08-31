@@ -2,11 +2,15 @@
 //  BillViewController.swift
 //  MyOrders
 //
-//  Created by RBC on 2018-08-17.
-//  Copyright © 2018 RBC. All rights reserved.
+//  Created by Yaoli.Ma on 2018-08-17.
+//  Copyright © 2018 Yaoli.Ma. All rights reserved.
 //
 
 import UIKit
+
+protocol BillViewInterface: BaseViewInterface {
+  func renderBill(_ price: Price)
+}
 
 class BillViewController: UIViewController {
 

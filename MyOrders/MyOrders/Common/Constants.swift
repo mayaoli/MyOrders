@@ -11,11 +11,13 @@ import SwiftyJSON
 import SWXMLHash
 
 struct Constants {
-  static let BUNDLE_NUMBER = 10
   static let BASE_URL = "https://www.google.ca"
   static let STORAGE_MENU_PATH: String = "MENU"
   static let STORAGE_ORDER_PATH: String = "ORDER"
+  static let STORAGE_PRICE_PATH: String = "PRICE"
   static let ANIMATION_DURATION: TimeInterval = 0.6
+  // DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+  static let DISPATCH_DELAY = DispatchTime.now() + 0.1
 }
 
 enum ViewTags: Int {

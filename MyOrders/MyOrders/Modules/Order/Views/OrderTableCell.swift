@@ -2,8 +2,8 @@
 //  OrderTableCell.swift
 //  MyOrders
 //
-//  Created by RBC on 2018-08-13.
-//  Copyright © 2018 RBC. All rights reserved.
+//  Created by Yaoli.Ma on 2018-08-13.
+//  Copyright © 2018 Yaoli.Ma. All rights reserved.
 //
 
 import UIKit
@@ -81,7 +81,8 @@ class OrderTableCell: UITableViewCell {
       quantity.text = String(thisItem.quantity)
       (self.delegate as! OrdersViewInterface).refreshView(false)
     } else {
-      Bill.sharedInstance.order!.items.removeValue(forKey: "C\(thisItem.category)-I\(thisItem.mid)")
+      // TODO: need add status as part of the key
+      Bill.sharedInstance.order!.items.removeValue(forKey: thisItem.key)
       (self.delegate as! OrdersViewInterface).refreshView(true)
     }
   }

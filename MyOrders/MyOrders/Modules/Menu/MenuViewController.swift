@@ -32,8 +32,9 @@ class MenuViewController: BaseViewController, MenuViewInterface {
     if thisBill.order == nil {
       thisBill.order = Order()
       
+      // TODO: need add status as part of the key
       if let items = StorageManager.getObject(path: Constants.STORAGE_ORDER_PATH) as? [MenuOrder] {
-        thisBill.order?.items =  items.reduce(into: [String:MenuOrder]()) { $0["C\($1.category)-I\($1.mid)"]=$1 }
+        thisBill.order?.items =  items.reduce(into: [String:MenuOrder]()) { $0[$1.key]=$1 }
       }
     }
     
@@ -124,11 +125,10 @@ class MenuViewController: BaseViewController, MenuViewInterface {
   }
   
   func addToOrder(item: MenuItem) {
-    let key = "C\(item.category)-I\(item.mid)"
-    if thisBill.order!.items[key] == nil {
-      thisBill.order!.items[key] = MenuOrder(item: item)
+    if thisBill.order!.items[item.key] == nil {
+      thisBill.order!.items[item.key] = MenuOrder(item: item)
     } else {
-      thisBill.order!.items[key]?.quantity += 1
+      thisBill.order!.items[item.key]?.quantity += 1
     }
   }
   
@@ -137,11 +137,10 @@ class MenuViewController: BaseViewController, MenuViewInterface {
       return
     }
     
-    let key = "C\(item.category)-I\(item.mid)"
-    if thisBill.order!.items[key] != nil, thisBill.order!.items[key]!.quantity > 1 {
-      thisBill.order!.items[key]!.quantity -= 1
+    if thisBill.order!.items[item.key] != nil, thisBill.order!.items[item.key]!.quantity > 1 {
+      thisBill.order!.items[item.key]!.quantity -= 1
     } else {
-      thisBill.order!.items.removeValue(forKey: key)
+      thisBill.order!.items.removeValue(forKey: item.key)
     }
   }
   
