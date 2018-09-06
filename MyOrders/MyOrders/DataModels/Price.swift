@@ -44,6 +44,38 @@ class Price: NSObject, NSCoding, JSONModel {
       self.dinner = nil
     }
   }
+  
+  open class func getAmount(_ type: OrderType, _ age: UInt) -> Double {
+    var weekPrice : Weekdays?
+    if type == .lunchBuffet {
+      weekPrice = self.sharedInstance.lunch
+    } else if type == .dinnerBuffet {
+      weekPrice = self.sharedInstance.dinner
+    }
+    
+    var agePrice : Age?
+    if Calendar.current.dateComponents([.weekday], from: Date()).weekday! > 5 {
+      agePrice = weekPrice?.Sat2Sun
+    } else {
+      agePrice = weekPrice?.Mon2Fri
+    }
+    
+    var finalPrice: String?
+    switch age {
+    case 0..<12:
+      finalPrice = agePrice?.kid
+    case 13..<64:
+      finalPrice = agePrice?.adult
+    default:
+      finalPrice = agePrice?.senior
+    }
+    
+    if let val = Double(finalPrice!) {
+      return val
+    }
+    
+    return 0.0
+  }
 }
 
 class Weekdays {

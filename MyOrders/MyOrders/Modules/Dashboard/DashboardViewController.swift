@@ -17,6 +17,7 @@ class DashboardViewController: BaseTextFieldViewController {
   @IBOutlet weak var DeliveryButton: UIButton!
   @IBOutlet weak var TableNumberInputView: UIView!
   @IBOutlet weak var TableNumber: MYLTextFieldView!
+  @IBOutlet weak var OrderTypesegmentedControl: UISegmentedControl!
   
   private var gestureRecognizer:UITapGestureRecognizer!
   
@@ -29,6 +30,8 @@ class DashboardViewController: BaseTextFieldViewController {
     gestureRecognizer.cancelsTouchesInView = false
     gestureRecognizer.delegate = self
     
+    let font: [AnyHashable : Any] = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 24)]
+    OrderTypesegmentedControl.setTitleTextAttributes(font, for: .normal)
   }
   
 //  override func createPresenter() -> BasePresenter {
@@ -45,6 +48,20 @@ class DashboardViewController: BaseTextFieldViewController {
           break
       }
       Bill.sharedInstance.tableNumber = TableNumber.fieldText.text
+      
+      if Bill.sharedInstance.order == nil {
+        Bill.sharedInstance.order = Order()
+        switch OrderTypesegmentedControl.selectedSegmentIndex {
+        case 0:
+          Bill.sharedInstance.order?.orderType = .lunchBuffet
+        case 1:
+          Bill.sharedInstance.order?.orderType = .dinnerBuffet
+        case 2:
+          Bill.sharedInstance.order?.orderType = .byOrder
+        default:
+          Bill.sharedInstance.order?.orderType = .all
+        }
+      }
       
     default:
       break

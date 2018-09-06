@@ -54,7 +54,6 @@ class EatInViewController: BaseTextFieldViewController {
         break
       }
       
-      thisBill.order?.orderType = .eatin
       thisBill.staffPIN = staffPIN.fieldText.text
       if let num: Int = Int(customerNumber.fieldText.text!) {
         thisBill.customers = [Customer](repeating: Customer(), count: num)

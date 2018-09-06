@@ -123,7 +123,15 @@ class Bill: NSObject, NSCoding, JSONModel {
       return false
     }
     
+    self.payment?.rawAmount = 0
     
+    if order?.orderType == .lunchBuffet || order?.orderType == .dinnerBuffet {
+      customers?.forEach({ (customer) in
+        self.payment?.rawAmount += Price.getAmount((order?.orderType)!, customer.age!)
+      })
+    } else {
+      return false
+    }
     
     return true
   }

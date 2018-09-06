@@ -71,16 +71,25 @@
                                                 </connections>
                                             </button>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZV-Wb-fOy" userLabel="Eat In InputView">
-                                                <rect key="frame" x="268" y="225.5" width="576" height="320"/>
+                                                <rect key="frame" x="268" y="225" width="576" height="320"/>
                                                 <subviews>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="EB3-ku-L2q">
+                                                        <rect key="frame" x="145" y="40" width="287" height="29"/>
+                                                        <segments>
+                                                            <segment title="Lunch Buffet"/>
+                                                            <segment title="Dinner Buffet"/>
+                                                            <segment title="By Order"/>
+                                                        </segments>
+                                                        <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </segmentedControl>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Table Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Flo-3k-6l9" userLabel="Table Number Label">
-                                                        <rect key="frame" x="169" y="80" width="238" height="48"/>
+                                                        <rect key="frame" x="169" y="100" width="238" height="48"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                         <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hlv-T3-TVT" userLabel="Table Number Field" customClass="MYLTextFieldView" customModule="MyOrders" customModuleProvider="target">
-                                                        <rect key="frame" x="171" y="160" width="235" height="91"/>
+                                                        <rect key="frame" x="171" y="180" width="235" height="91"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="hlv-T3-TVT" secondAttribute="height" multiplier="235:91" id="Ekw-aw-aob"/>
                                                             <constraint firstAttribute="width" constant="235" id="F8P-Dd-V4e"/>
@@ -93,8 +102,10 @@
                                                     <constraint firstItem="hlv-T3-TVT" firstAttribute="centerX" secondItem="GZV-Wb-fOy" secondAttribute="centerX" id="GMt-dW-tkr"/>
                                                     <constraint firstItem="hlv-T3-TVT" firstAttribute="top" secondItem="Flo-3k-6l9" secondAttribute="bottom" constant="32" id="HOa-yN-fyx"/>
                                                     <constraint firstAttribute="height" secondItem="GZV-Wb-fOy" secondAttribute="width" multiplier="5:9" id="WLp-ZR-0dv"/>
+                                                    <constraint firstItem="EB3-ku-L2q" firstAttribute="top" secondItem="GZV-Wb-fOy" secondAttribute="top" constant="40" id="Y3n-6R-lwm"/>
                                                     <constraint firstAttribute="height" constant="320" id="fJf-rJ-ATO"/>
-                                                    <constraint firstItem="Flo-3k-6l9" firstAttribute="top" secondItem="GZV-Wb-fOy" secondAttribute="top" constant="80" id="kxM-4V-w3H"/>
+                                                    <constraint firstItem="Flo-3k-6l9" firstAttribute="top" secondItem="GZV-Wb-fOy" secondAttribute="top" constant="100" id="kxM-4V-w3H"/>
+                                                    <constraint firstItem="EB3-ku-L2q" firstAttribute="centerX" secondItem="GZV-Wb-fOy" secondAttribute="centerX" id="lGx-pM-9Zx"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -139,6 +150,7 @@
                         <outlet property="ButtonContainer" destination="I10-wJ-yic" id="mPW-F9-7g8"/>
                         <outlet property="DeliveryButton" destination="Hog-fk-iSJ" id="nUc-44-wkN"/>
                         <outlet property="EatInButton" destination="je0-We-hsZ" id="I9X-cw-i9j"/>
+                        <outlet property="OrderTypesegmentedControl" destination="EB3-ku-L2q" id="9Hr-VZ-iyc"/>
                         <outlet property="ScrollView" destination="UFW-Rm-o5X" id="0pW-D8-fzd"/>
                         <outlet property="TableNumber" destination="hlv-T3-TVT" id="evk-fP-vXm"/>
                         <outlet property="TableNumberInputView" destination="GZV-Wb-fOy" id="ZN3-KB-EDi"/>
@@ -511,4 +523,5 @@
         <image name="no-image" width="850" height="500"/>
         <image name="take-out" width="255" height="184"/>
     </resources>
+    <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

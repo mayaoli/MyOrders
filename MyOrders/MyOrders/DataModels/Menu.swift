@@ -80,7 +80,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
   let shortDescription: String
   
   // price
-  let price: Decimal?
+  let price: Double?
   
   // is hot or cold
   let isHot: Bool
@@ -124,7 +124,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
       category = ""
       price = nil
       isHot = true
-      orderAvailability = OrderType.eatin
+      orderAvailability = OrderType.all
   }
   
   
@@ -155,7 +155,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
       } else {
           category = ""
       }
-      if let dprice = aDecoder.decodeObject(forKey: "price") as? Decimal{
+      if let dprice = aDecoder.decodeObject(forKey: "price") as? Double{
           price = dprice
       } else {
           price = nil
@@ -168,7 +168,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
       if let dType = aDecoder.decodeObject(forKey: "orderType") as? String {
         orderAvailability = OrderType(rawValue: dType)!
       } else {
-          orderAvailability = .eatin
+          orderAvailability = .all
       }
   }
   
@@ -178,9 +178,9 @@ class MenuItem: NSObject, NSCoding, JSONModel {
       name = json["name"].stringValue
       shortDescription = json["description"].stringValue
       category = json["category"].stringValue
-      price = Decimal(string: json["price"].stringValue)
+      price = Double(json["price"].stringValue)
       isHot = json["isHot"].boolValue
-      orderAvailability = OrderType.init(rawValue: json["orderType"].stringValue) ?? OrderType.eatin
+      orderAvailability = OrderType.init(rawValue: json["orderType"].stringValue) ?? OrderType.all
   }
     
 }

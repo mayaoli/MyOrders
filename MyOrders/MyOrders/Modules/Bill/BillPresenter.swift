@@ -41,7 +41,7 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
       return
     }
     
-    //self.view?.renderBillList(BillList ?? [])
+    self.view?.renderBill(price!)
   }
   
 }

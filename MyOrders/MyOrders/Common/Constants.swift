@@ -18,6 +18,7 @@ struct Constants {
   static let ANIMATION_DURATION: TimeInterval = 0.6
   // DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
   static let DISPATCH_DELAY = DispatchTime.now() + 0.1
+  static let DISCOUNT_RATE = 0.05
 }
 
 enum ViewTags: Int {
@@ -123,17 +124,19 @@ enum OrderStatus: String {
 }
 
 enum OrderType: String {
-    case all = "All"
-    case delivery = "Delivery"
-    case pickupOrTakeout = "Pick Up / Take out"
-    case eatin = "Eat In"
+  case all = "All"
+  case delivery = "Delivery"
+  case pickupOrTakeout = "Pick Up / Take out"
+  case lunchBuffet = "Lunch Buffet"
+  case dinnerBuffet = "Dinner Buffet"
+  case byOrder = "Eat-In By Order"
 }
 
 enum PaymentMethod: String {
-    case cash = "Cash"
-    case debit = "Debit Card"
-    case credit = "Credit Card"
-    case other = "Other" // like paypal
+  case cash = "Cash"
+  case debit = "Debit Card"
+  case credit = "Credit Card"
+  case other = "Other" // like paypal
 }
 
 enum FieldState {

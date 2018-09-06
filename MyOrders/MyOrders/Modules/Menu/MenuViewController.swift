@@ -29,9 +29,7 @@ class MenuViewController: BaseViewController, MenuViewInterface {
   private var thisItem: MenuItem!
   
   override func viewDidLoad() {
-    if thisBill.order == nil {
-      thisBill.order = Order()
-      
+    if thisBill.order!.items.isEmpty {
       // TODO: need add status as part of the key
       if let items = StorageManager.getObject(path: Constants.STORAGE_ORDER_PATH) as? [MenuOrder] {
         thisBill.order?.items =  items.reduce(into: [String:MenuOrder]()) { $0[$1.key]=$1 }

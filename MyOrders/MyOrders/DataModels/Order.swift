@@ -18,7 +18,7 @@ class Order: NSObject, NSCoding, JSONModel {
     var items: [String:MenuOrder]
     
     // orderType
-    var orderType: OrderType // delivery|pick-up/take-out|eat-in
+    var orderType: OrderType // delivery|pick-up/take-out|eat-in(by-order/lunch-buffet/dinner-buffet)
   
   
   //TODO: add order time
@@ -43,13 +43,13 @@ class Order: NSObject, NSCoding, JSONModel {
         if let dType = aDecoder.decodeObject(forKey: "orderType") as? String {
             orderType = OrderType(rawValue: dType)!
         } else {
-            orderType = OrderType.eatin
+            orderType = OrderType.all
         }
     }
     
     required init(json: JSON) throws {
       orderId = json["orderId"].stringValue
-      orderType = OrderType.init(rawValue: json["orderType"].stringValue) ?? OrderType.eatin
+      orderType = OrderType.init(rawValue: json["orderType"].stringValue) ?? OrderType.all
       items = [:]
       let ods = try UtilityManager.getArray(json["orderItems"], type: MenuOrder.self)
       for x in ods {
@@ -60,7 +60,7 @@ class Order: NSObject, NSCoding, JSONModel {
     override init() {
       orderId = ""
       items = [:]
-      orderType = OrderType.eatin
+      orderType = OrderType.all
     }
     
 }
