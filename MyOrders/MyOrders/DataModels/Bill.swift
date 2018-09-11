@@ -105,27 +105,42 @@ class Bill: NSObject, NSCoding, JSONModel {
       return false
     }
     
-    if self.payment!.byOrder {
-      return calculateOrderBill()
-    } else {
+    if order?.orderType == .lunchBuffet || order?.orderType == .dinnerBuffet {
       return calculateBuffetBill()
+    } else if order?.orderType == .eatInByOrder || order?.orderType == .delivery || order?.orderType == .pickupOrTakeout {
+      return calculateOrderBill()
     }
+    
+    return false
   }
   
   func calculateOrderBill()-> Bool {
-    
-    
-    return true
-  }
-  
-  func calculateBuffetBill()-> Bool {
-    guard self.customers != nil, !self.customers!.contains(where: { $0.age == nil }) else {
+    guard let orderItems = order?.items, !orderItems.isEmpty else {
       return false
     }
     
     self.payment?.rawAmount = 0
     
-    if order?.orderType == .lunchBuffet || order?.orderType == .dinnerBuffet {
+    if order!.isByOrder {
+      orderItems.forEach { (item) in
+        self.payment?.rawAmount += Double(item.value.price!)
+      }
+    } else {
+      return false
+    }
+    
+    return true
+  }
+  
+  func calculateBuffetBill()-> Bool {
+    guard self.order != nil, self.customers != nil, !self.customers!.contains(where: { $0.age == nil }) else {
+      return false
+    }
+    
+    //TODO: need to consider paid beverage items, set to the initial amount
+    self.payment?.rawAmount = 0
+    
+    if order!.isBuffet {
       customers?.forEach({ (customer) in
         self.payment?.rawAmount += Price.getAmount((order?.orderType)!, customer.age!)
       })

@@ -57,7 +57,7 @@ class DashboardViewController: BaseTextFieldViewController {
         case 1:
           Bill.sharedInstance.order?.orderType = .dinnerBuffet
         case 2:
-          Bill.sharedInstance.order?.orderType = .byOrder
+          Bill.sharedInstance.order?.orderType = .eatInByOrder
         default:
           Bill.sharedInstance.order?.orderType = .all
         }

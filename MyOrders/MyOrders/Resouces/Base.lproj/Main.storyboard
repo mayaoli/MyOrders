@@ -420,12 +420,83 @@
                     <view key="view" contentMode="scaleToFill" id="9vu-tn-a5z">
                         <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="bZP-D8-dHq">
+                                <rect key="frame" x="100" y="164" width="912" height="510"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="billTableCell" id="lQp-hD-o6T">
+                                        <rect key="frame" x="0.0" y="55.5" width="912" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lQp-hD-o6T" id="4xb-pX-jAl">
+                                            <rect key="frame" x="0.0" y="0.0" width="912" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="TF8-hV-nlE" id="etp-ot-Ktw"/>
+                                    <outlet property="delegate" destination="TF8-hV-nlE" id="iXe-Zj-Ebb"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ooM-AS-KbK" userLabel="Close Button">
+                                <rect key="frame" x="978" y="148" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5Yf-b6-2MT"/>
+                                    <constraint firstAttribute="width" constant="50" id="ysd-ZX-tGH"/>
+                                </constraints>
+                                <state key="normal" image="close"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="32"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="closeTapped:" destination="TF8-hV-nlE" eventType="touchUpInside" id="PFA-J8-pVM"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C9q-Nd-lp2" userLabel="Button Panel">
+                                <rect key="frame" x="100" y="674" width="912" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Oa-tf-GN7">
+                                        <rect key="frame" x="414.5" y="7.5" width="83" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="ZIC-LE-zab"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="83" id="syo-Jh-6q9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <state key="normal" title="Pay"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="5Oa-tf-GN7" firstAttribute="centerX" secondItem="C9q-Nd-lp2" secondAttribute="centerX" id="HdL-3f-CNJ"/>
+                                    <constraint firstItem="5Oa-tf-GN7" firstAttribute="centerY" secondItem="C9q-Nd-lp2" secondAttribute="centerY" id="syX-rP-1IW"/>
+                                    <constraint firstAttribute="height" constant="60" id="ybU-AX-SxE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="C9q-Nd-lp2" firstAttribute="top" secondItem="bZP-D8-dHq" secondAttribute="bottom" id="4Vi-8E-fnI"/>
+                            <constraint firstItem="bZP-D8-dHq" firstAttribute="trailing" secondItem="9vu-tn-a5z" secondAttribute="trailing" constant="-100" id="6a2-kz-4pu"/>
+                            <constraint firstItem="C9q-Nd-lp2" firstAttribute="width" secondItem="bZP-D8-dHq" secondAttribute="width" id="ACg-CA-kMl"/>
+                            <constraint firstItem="C9q-Nd-lp2" firstAttribute="leading" secondItem="bZP-D8-dHq" secondAttribute="leading" id="QYW-VN-s7X"/>
+                            <constraint firstItem="bZP-D8-dHq" firstAttribute="leading" secondItem="9vu-tn-a5z" secondAttribute="leading" constant="100" id="aIU-gi-7mo"/>
+                            <constraint firstItem="ooM-AS-KbK" firstAttribute="top" secondItem="bZP-D8-dHq" secondAttribute="top" constant="-16" id="dNh-1Y-UiQ"/>
+                            <constraint firstItem="ooM-AS-KbK" firstAttribute="trailing" secondItem="bZP-D8-dHq" secondAttribute="trailing" constant="16" id="ij4-zb-LS3"/>
+                            <constraint firstItem="bZP-D8-dHq" firstAttribute="top" secondItem="bXJ-ef-mFp" secondAttribute="bottom" constant="100" id="lnv-jo-14L"/>
+                            <constraint firstItem="bZP-D8-dHq" firstAttribute="bottom" secondItem="5Gw-B1-35U" secondAttribute="top" constant="-160" id="vLY-y0-ahw"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="bZP-D8-dHq" id="cWX-3c-qex"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l65-bf-M9A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="874" y="1842"/>
+            <point key="canvasLocation" x="873.56115107913672" y="1841.7266187050361"/>
         </scene>
         <!--Menu Image View Controller-->
         <scene sceneID="Zxc-Xm-Klt">

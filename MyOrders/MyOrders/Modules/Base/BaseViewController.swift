@@ -133,7 +133,7 @@ class BaseViewController: UIViewController, BaseViewInterface {
     let alertController: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
     
     alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: completionBlock))
-    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: completionBlock))
     
     DispatchQueue.main.async {
       navController?.present(alertController, animated: true, completion: nil)

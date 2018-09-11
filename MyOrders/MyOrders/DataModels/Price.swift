@@ -62,8 +62,8 @@ class Price: NSObject, NSCoding, JSONModel {
     
     var finalPrice: String?
     switch age {
-    case 0..<12:
-      finalPrice = agePrice?.kid
+    case 3..<12:
+      finalPrice = agePrice?.kid[Int(age)-3]
     case 13..<64:
       finalPrice = agePrice?.adult
     default:
@@ -89,12 +89,12 @@ class Weekdays {
 }
 
 class Age {
-  let kid: String     // 1-12
+  let kid: [String]     // 1-12
   let adult: String   // 13-64
   let senior: String  // 65+
   
   required init(json: JSON) throws {
-    kid = json["kid"].stringValue
+    kid = try UtilityManager.getArray(json["kid"], type: String)
     adult = json["adult"].stringValue
     senior = json["senior"].stringValue
   }

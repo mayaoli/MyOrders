@@ -33,6 +33,7 @@ enum ReuseIdentifier: String {
   case largeImageView
   case orderTableCell
   case orderHeaderCell
+  case billTableCell
   
   case toEatIn
   case toMenu
@@ -129,7 +130,7 @@ enum OrderType: String {
   case pickupOrTakeout = "Pick Up / Take out"
   case lunchBuffet = "Lunch Buffet"
   case dinnerBuffet = "Dinner Buffet"
-  case byOrder = "Eat-In By Order"
+  case eatInByOrder = "Eat-In By Order"
 }
 
 enum PaymentMethod: String {

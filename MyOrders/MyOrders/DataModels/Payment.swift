@@ -10,8 +10,6 @@ import Foundation
 import SwiftyJSON
 
 struct Payment {
-  // pay by per order | all you can eat
-  var byOrder: Bool = false
   
   // split pay - split the payment for each customer
   var splitPay: Bool = false
@@ -63,7 +61,6 @@ struct Payment {
   var totalAmount: Double?
   
   init(json: JSON) throws {
-    byOrder = json["byOrder"].boolValue
     splitPay = json["splitPay"].boolValue
     paymentMethod = PaymentMethod(rawValue: json["paymentMethod"].stringValue) ?? PaymentMethod.other
     rawAmount = Double(json["rawAmount"].stringValue) ?? 0
@@ -74,7 +71,6 @@ struct Payment {
   }
   
   func encode(with aCoder: NSCoder) {
-    aCoder.encode(self.byOrder, forKey: "byOrder")
     aCoder.encode(self.splitPay, forKey: "splitPay")
     aCoder.encode(self.paymentMethod, forKey: "paymentMethod")
     aCoder.encode(self.rawAmount, forKey: "rawAmount")
@@ -85,11 +81,6 @@ struct Payment {
   }
   
   init?(coder aDecoder: NSCoder) {
-    if let dByOrder = aDecoder.decodeObject(forKey: "byOrder") as? Bool {
-      byOrder = dByOrder
-    } else {
-      byOrder = false
-    }
     if let dSplitPay = aDecoder.decodeObject(forKey: "splitPay") as? Bool {
       splitPay = dSplitPay
     } else {

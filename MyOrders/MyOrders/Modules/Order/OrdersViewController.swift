@@ -115,8 +115,10 @@ class OrdersViewController: BaseViewController, OrdersViewInterface {
   @IBAction func billTapped(_ sender: Any) {
     guard pending.count == 0 else {
       DispatchQueue.main.asyncAfter(deadline: Constants.DISPATCH_DELAY, execute: {
-        self.renderMessage(title: "Confirm", message: "It seems that there are still some items in pending.\n\n Are you sure, you don't want them?", completion: { _ in
-          (UIApplication.shared.windows[0].rootViewController as? UINavigationController)?.topViewController?.performSegue(withIdentifier: ReuseIdentifier.toBill.rawValue, sender: nil)
+        self.renderMessage(title: "Confirm", message: "It seems that there are still some items in pending.\n\n Are you sure, you don't want them?", completion: { action in
+          if action.style == .default {
+            (UIApplication.shared.windows[0].rootViewController as? UINavigationController)?.topViewController?.performSegue(withIdentifier: ReuseIdentifier.toBill.rawValue, sender: nil)
+          }
         })
       })
       

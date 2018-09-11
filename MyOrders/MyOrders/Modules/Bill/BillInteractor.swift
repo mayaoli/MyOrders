@@ -24,7 +24,12 @@ class BillInteractor: BaseInteractor, BillInteractorInput {
     let service = ConfigServices()
     
     _ = service.getPriceMatrix { price, error in
-      self.output?.gotPrice(price, error)
+      
+      if price != nil {
+        Price.sharedInstance = price!
+      }
+        
+      self.output?.gotPrice(error)
     }
   }
   
