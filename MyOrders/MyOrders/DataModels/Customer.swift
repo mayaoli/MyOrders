@@ -11,36 +11,36 @@ import SwiftyJSON
 
 class Customer: NSObject, NSCoding, JSONModel {
   
-  let customerName: String?
+  var customerName: String?
   
-  let age: UInt?
+  var priceRange: PriceRange
   
   func encode(with aCoder: NSCoder) {
     aCoder.encode(self.customerName, forKey: "customerName")
-    aCoder.encode(self.age, forKey: "age")
+    aCoder.encode(self.priceRange, forKey: "priceRange")
   }
   
   override init() {
     customerName = ""
-    age = 0
+    priceRange = .none
   }
   
   required init?(coder aDecoder: NSCoder) {
-    if let dcustomerName = aDecoder.decodeObject(forKey: "customerName") as? String{
+    if let dcustomerName = aDecoder.decodeObject(forKey: "customerName") as? String {
       customerName = dcustomerName
     } else {
       customerName = ""
     }
-    if let dage = aDecoder.decodeObject(forKey: "age") as? UInt{
-      age = dage
+    if let dpriceRange = aDecoder.decodeObject(forKey: "priceRange") as? PriceRange {
+      priceRange = dpriceRange
     } else {
-      age = 0
+      priceRange = .none
     }
   }
   
   required init(json: JSON) throws {
     customerName = json["customerName"].stringValue
-    age = json["age"].uIntValue
+    priceRange = PriceRange(rawValue: json["priceRange"]) ?? .none
   }
   
 }

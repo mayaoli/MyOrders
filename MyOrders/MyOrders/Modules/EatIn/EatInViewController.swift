@@ -9,8 +9,22 @@
 import UIKit
 
 class EatInViewController: BaseTextFieldViewController {
-  @IBOutlet weak var staffPIN: MYLTextFieldView!
-  @IBOutlet weak var customerNumber: MYLTextFieldView!
+  @IBOutlet weak var staffPIN: MYLTextFieldView! {
+    didSet {
+      staffPIN.bind { self.thisBill.staffPIN = $0 }
+    }
+  }
+  @IBOutlet weak var customerNumber: MYLTextFieldView! {
+    didSet {
+      customerNumber.bind {
+        if let num: Int = Int($0) {
+          for _ in 1...num {
+            self.thisBill.customers?.append(Customer())
+          }
+        }
+      }
+    }
+  }
   @IBOutlet weak var centerView: UIView!
   
   private let thisBill = Bill.sharedInstance
@@ -52,11 +66,6 @@ class EatInViewController: BaseTextFieldViewController {
       
       guard let _ = segue.destination as? MenuViewController else {
         break
-      }
-      
-      thisBill.staffPIN = staffPIN.fieldText.text
-      if let num: Int = Int(customerNumber.fieldText.text!) {
-        thisBill.customers = [Customer](repeating: Customer(), count: num)
       }
       
     default:

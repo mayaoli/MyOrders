@@ -60,6 +60,10 @@ struct Payment {
   // total amount with tax
   var totalAmount: Double?
   
+  init() {
+    
+  }
+  
   init(json: JSON) throws {
     splitPay = json["splitPay"].boolValue
     paymentMethod = PaymentMethod(rawValue: json["paymentMethod"].stringValue) ?? PaymentMethod.other

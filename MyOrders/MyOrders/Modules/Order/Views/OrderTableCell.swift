@@ -62,11 +62,6 @@ class OrderTableCell: UITableViewCell {
     self.removeButton.setImage(#imageLiteral(resourceName: "remove_grey"), for: UIControlState.highlighted)
   }
 
-//  override func setSelected(_ selected: Bool, animated: Bool) {
-//      super.setSelected(selected, animated: animated)
-//
-//      // Configure the view for the selected state
-//  }
   
   @IBAction func addTapped(_ sender: Any) {
     thisItem.quantity += 1

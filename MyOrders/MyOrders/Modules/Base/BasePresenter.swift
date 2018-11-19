@@ -64,7 +64,7 @@ class BasePresenter: NSObject, BaseEventsInterface, BaseOutputInterface {
       return
     }
     
-    print("### lastOffsetY = \(lastOffsetY)")
+    print("### lastOffsetY = \(lastOffsetY ?? 0)")
     
     // move if keyboard hide input field
     let collapseSpace = keyboardHeight - viewHeight + containerOffset.y + additionalOffset

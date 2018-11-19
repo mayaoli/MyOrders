@@ -100,6 +100,20 @@ class Bill: NSObject, NSCoding, JSONModel {
     payment = nil
   }
   
+  func validateCustomers()-> String? {
+    guard self.customers != nil, self.customers!.count > 0 else {
+      return nil
+    }
+    
+    for c in self.customers! {
+      if c.priceRange == .none {
+        return "All the customer must be configured!"
+      }
+    }
+    
+    return nil
+  }
+  
   func creatPayment()-> Bool {
     guard self.payment != nil, self.payment?.paymentMethod != .other else {
       return false
@@ -133,7 +147,7 @@ class Bill: NSObject, NSCoding, JSONModel {
   }
   
   func calculateBuffetBill()-> Bool {
-    guard self.order != nil, self.customers != nil, !self.customers!.contains(where: { $0.age == nil }) else {
+    guard self.order != nil, self.customers != nil, self.customers!.contains(where: { $0.priceRange.age != 0 }) else {
       return false
     }
     
@@ -142,7 +156,11 @@ class Bill: NSObject, NSCoding, JSONModel {
     
     if order!.isBuffet {
       customers?.forEach({ (customer) in
-        self.payment?.rawAmount += Price.getAmount((order?.orderType)!, customer.age!)
+        self.payment?.rawAmount += Price.getAmount((order?.orderType)!, customer.priceRange.age)
+      })
+      
+      order?.items.filter{ $0.1.orderAvailability == .eatInByOrder }.forEach({ (item) in
+        self.payment?.rawAmount += item.value.price!
       })
     } else {
       return false

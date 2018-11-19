@@ -16,9 +16,14 @@ class DashboardViewController: BaseTextFieldViewController {
   @IBOutlet weak var TakeOutButton: UIButton!
   @IBOutlet weak var DeliveryButton: UIButton!
   @IBOutlet weak var TableNumberInputView: UIView!
-  @IBOutlet weak var TableNumber: MYLTextFieldView!
+  @IBOutlet weak var TableNumber: MYLTextFieldView! {
+    didSet {
+      TableNumber.bind { self.thisBill.tableNumber = $0 }
+    }
+  }
   @IBOutlet weak var OrderTypesegmentedControl: UISegmentedControl!
   
+  private let thisBill = Bill.sharedInstance
   private var gestureRecognizer:UITapGestureRecognizer!
   
   override func viewDidLoad() {
@@ -47,19 +52,18 @@ class DashboardViewController: BaseTextFieldViewController {
       guard let _ = segue.destination as? EatInViewController, TableNumber.isValid else {
           break
       }
-      Bill.sharedInstance.tableNumber = TableNumber.fieldText.text
       
-      if Bill.sharedInstance.order == nil {
-        Bill.sharedInstance.order = Order()
+      if thisBill.order == nil {
+        thisBill.order = Order()
         switch OrderTypesegmentedControl.selectedSegmentIndex {
         case 0:
-          Bill.sharedInstance.order?.orderType = .lunchBuffet
+          thisBill.order?.orderType = .lunchBuffet
         case 1:
-          Bill.sharedInstance.order?.orderType = .dinnerBuffet
+          thisBill.order?.orderType = .dinnerBuffet
         case 2:
-          Bill.sharedInstance.order?.orderType = .eatInByOrder
+          thisBill.order?.orderType = .eatInByOrder
         default:
-          Bill.sharedInstance.order?.orderType = .all
+          thisBill.order?.orderType = .all
         }
       }
       

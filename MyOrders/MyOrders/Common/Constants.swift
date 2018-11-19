@@ -11,10 +11,11 @@ import SwiftyJSON
 import SWXMLHash
 
 struct Constants {
-  static let BASE_URL = "https://www.google.ca"
+  static let BASE_URL = "https://www.rbc.com"
   static let STORAGE_MENU_PATH: String = "MENU"
   static let STORAGE_ORDER_PATH: String = "ORDER"
   static let STORAGE_PRICE_PATH: String = "PRICE"
+  static let STORAGE_CUSTOMER_PATH: String = "CUSTOMER"
   static let ANIMATION_DURATION: TimeInterval = 0.6
   // DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
   static let DISPATCH_DELAY = DispatchTime.now() + 0.1
@@ -33,12 +34,15 @@ enum ReuseIdentifier: String {
   case largeImageView
   case orderTableCell
   case orderHeaderCell
+  case customerTableCell
+  case paymentTableCell
   case billTableCell
   
   case toEatIn
   case toMenu
   case toLargeView
   case toOrders
+  case toCustomerInfo
   case toBill
   
   var nib:UINib? {
@@ -49,6 +53,10 @@ enum ReuseIdentifier: String {
       return UINib(nibName: "SectionHeader", bundle: nil)
     case .orderTableCell:
       return UINib(nibName: "OrderTableCell", bundle: nil)
+    case .customerTableCell:
+      return UINib(nibName: "CustomerTableCell", bundle: nil)
+    case .paymentTableCell:
+      return UINib(nibName: "PaymentMethodTableCell", bundle: nil)
     case .orderHeaderCell:
       return UINib(nibName: "OrderHeaderCell", bundle: nil)
     default:
@@ -138,6 +146,65 @@ enum PaymentMethod: String {
   case debit = "Debit Card"
   case credit = "Credit Card"
   case other = "Other" // like paypal
+}
+
+enum PriceRange: Equatable {
+  case none
+  case adult
+  case senior
+  case kid(age: UInt)
+  
+  var description: String {
+    switch self {
+    case .none:
+      return "Not Set"
+    case .adult:
+      return "Adult"
+    case .senior:
+      return "Senior"
+    case .kid(let age):
+      return "Kid (\(age))"
+    }
+  }
+  
+  var index: Int {
+    switch self {
+    case .none:
+      return -1
+    case .adult:
+      return 0
+    case .senior:
+      return 1
+    case .kid(_):
+      return 2
+    }
+  }
+  
+  var age: UInt {
+    switch self {
+    case .none:
+      return 0
+    case .adult:
+      return 30
+    case .senior:
+      return 65
+    case .kid(let a):
+      return a
+    }
+  }
+  
+  init?(rawValue : JSON) {
+    switch rawValue.string?.lowercased() {
+    case "none":
+      self = .none
+    case "adult":
+      self = .adult
+    case "senior":
+      self = .senior
+    default:
+      self = .kid(age: UInt(rawValue["age"].intValue))
+    }
+  }
 }
 
 enum FieldState {

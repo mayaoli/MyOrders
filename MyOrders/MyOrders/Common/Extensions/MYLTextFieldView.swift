@@ -18,6 +18,13 @@ class MYLTextFieldView: UIView {
   @IBOutlet weak var errorImage: UIImageView!
   @IBOutlet weak var fieldTextLeading: NSLayoutConstraint!
   
+  var textChanged :(String) -> () = { _ in }
+  
+  func bind(callback :@escaping (String) -> ()) {
+    self.textChanged = callback
+    fieldText.addTarget(self, action: #selector(valueChanged), for: UIControlEvents.editingChanged)
+  }
+  
   var isValid: Bool = true
   var maximumValueLength: Int = 0
   weak var delegate: UIViewController? = nil {
@@ -84,8 +91,6 @@ class MYLTextFieldView: UIView {
       fieldState = .normal
     }
     
-    fieldText.addTarget(self, action: #selector(valueChanged), for: UIControlEvents.editingChanged)
-    
     self.layoutSubviews()
   }
   
@@ -132,10 +137,11 @@ class MYLTextFieldView: UIView {
       return
     }
     
-    if let text = fieldText.text {
-      if text.count > maximumValueLength {
-        fieldText.text = text.getSubstring(fromIndex: text.startIndex, to: maximumValueLength)
+    if let thisText = fieldText.text {
+      if thisText.count > maximumValueLength {
+        fieldText.text = thisText.getSubstring(fromIndex: thisText.startIndex, to: maximumValueLength)
       }
+      self.textChanged(thisText)
     }
   }
 }

@@ -117,7 +117,7 @@ class OrdersViewController: BaseViewController, OrdersViewInterface {
       DispatchQueue.main.asyncAfter(deadline: Constants.DISPATCH_DELAY, execute: {
         self.renderMessage(title: "Confirm", message: "It seems that there are still some items in pending.\n\n Are you sure, you don't want them?", completion: { action in
           if action.style == .default {
-            (UIApplication.shared.windows[0].rootViewController as? UINavigationController)?.topViewController?.performSegue(withIdentifier: ReuseIdentifier.toBill.rawValue, sender: nil)
+            (UIApplication.shared.windows[0].rootViewController as? UINavigationController)?.topViewController?.performSegue(withIdentifier: ReuseIdentifier.toCustomerInfo.rawValue, sender: nil)
           }
         })
       })
@@ -128,9 +128,9 @@ class OrdersViewController: BaseViewController, OrdersViewInterface {
     
     // call help
     
-    // to bill
+    // to customerInfo
     self.dismiss(animated: true)
-    (UIApplication.shared.windows[0].rootViewController as? UINavigationController)?.topViewController?.performSegue(withIdentifier: ReuseIdentifier.toBill.rawValue, sender: nil)
+    (UIApplication.shared.windows[0].rootViewController as? UINavigationController)?.topViewController?.performSegue(withIdentifier: ReuseIdentifier.toCustomerInfo.rawValue, sender: nil)
   }
   
   func refreshView(_ needRefreshSelf: Bool) {

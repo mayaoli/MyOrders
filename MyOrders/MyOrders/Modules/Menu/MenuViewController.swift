@@ -157,11 +157,11 @@ class MenuViewController: BaseViewController, MenuViewInterface {
       return
     }
     
-    guard thisBill.order!.items.filter({ $1.status != .pending }).count == 0 else {
+    guard thisBill.order!.items.filter({ $1.status == .pending }).count == 0 else {
       DispatchQueue.main.asyncAfter(deadline: Constants.DISPATCH_DELAY, execute: {
         self.renderMessage(title: "Confirm", message: "It seems that there are still some items in pending.\n\n Are you sure, you don't want them?", completion: { action in
           if action.style == .default {
-            (UIApplication.shared.windows[0].rootViewController as? UINavigationController)?.topViewController?.performSegue(withIdentifier: ReuseIdentifier.toBill.rawValue, sender: nil)
+            (UIApplication.shared.windows[0].rootViewController as? UINavigationController)?.topViewController?.performSegue(withIdentifier: ReuseIdentifier.toCustomerInfo.rawValue, sender: nil)
           } else {
             self.performSegue(withIdentifier: ReuseIdentifier.toOrders.rawValue, sender: nil)
           }
@@ -170,7 +170,7 @@ class MenuViewController: BaseViewController, MenuViewInterface {
       return
     }
     
-    self.performSegue(withIdentifier: ReuseIdentifier.toBill.rawValue, sender: nil)
+    self.performSegue(withIdentifier: ReuseIdentifier.toCustomerInfo.rawValue, sender: nil)
   }
 }
 

@@ -31,6 +31,10 @@ class BillViewController: BaseViewController, BillViewInterface {
     self.eventHandler?.getPrice()
   }
   
+  override func createPresenter() -> BasePresenter {
+    return BillPresenter()
+  }
+  
   /*
    // MARK: - Navigation
    
@@ -64,22 +68,8 @@ extension BillViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifier.billTableCell.rawValue, for: indexPath) 
     
-    switch indexPath.section {
-    case 0:
-      // Order type
-      cell.textLabel?.text = thisBill.order?.orderType.rawValue
-    case 1:
-      // Order info
-      switch (thisBill.order!.orderType) {
-      case .lunchBuffet, .dinnerBuffet:
-        cell.textLabel?.text = ""
-        cell.detailTextLabel?.text = ""
-      default:
-        cell.textLabel?.text = ""
-      }
-    default:
-      cell.textLabel?.text = ""
-    }
+    cell.textLabel?.text = self.eventHandler?.getRowContent(indexPath)
+    cell.detailTextLabel?.text = self.eventHandler?.getRowContentDetail(indexPath)
     
     return cell
   }
