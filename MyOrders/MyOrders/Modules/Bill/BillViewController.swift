@@ -58,7 +58,7 @@ class BillViewController: BaseViewController, BillViewInterface {
 extension BillViewController: UITableViewDataSource {
   
   func numberOfSections(in tableView: UITableView) -> Int {
-    return 4
+    return 3
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

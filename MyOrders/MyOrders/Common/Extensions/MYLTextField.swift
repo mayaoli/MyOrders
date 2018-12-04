@@ -21,7 +21,7 @@ class MYLTextField: UITextField {
     let trimedVal: String = self.text!.trimmingCharacters(in: .whitespacesAndNewlines)
     var curValidation: ValidationType = .IsRequired
     
-    while curValidation.rawValue <= fieldValidationType, curValidation.rawValue <= ValidationType.IsPostcode.rawValue {
+    while curValidation.rawValue <= fieldValidationType {
       if (fieldValidationType & curValidation.rawValue) == curValidation.rawValue {
         
         if curValidation == .IsRequired {
@@ -45,7 +45,11 @@ class MYLTextField: UITextField {
         }
       }
       
-      curValidation = ValidationType.init(rawValue: curValidation.rawValue * 2)!
+      if curValidation.rawValue < ValidationType.LastType.rawValue {
+        curValidation = ValidationType.init(rawValue: curValidation.rawValue * 2)!
+      } else {
+        break
+      }
     }
     
     return nil

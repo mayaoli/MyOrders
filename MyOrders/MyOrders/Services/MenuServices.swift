@@ -49,7 +49,7 @@ class MenuServices: BaseServices {
   }
 
   func syncMenu(_ menu: [Menu], completion: @escaping (_ error: NetworkingError?) -> Void) -> URLSessionTask? {
-    let urlString = "\(Constants.BASE_URL)/SyncMenu"
+    let urlString = "\(Constants.BASE_URL)/syncmenu"
     
     guard let url = URL(string: urlString), !menu.isEmpty else {
       completion(.unknown)

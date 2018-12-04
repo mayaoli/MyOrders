@@ -554,25 +554,91 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBx-JO-3kf" userLabel="Button Panel">
                                 <rect key="frame" x="100" y="674" width="912" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRh-KQ-uAx">
-                                        <rect key="frame" x="414.5" y="7.5" width="83" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="83" id="9Bv-rZ-cTX"/>
-                                            <constraint firstAttribute="height" constant="45" id="MF4-5p-E0k"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                        <state key="normal" title="Okay"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqx-3s-Djp">
+                                        <rect key="frame" x="20" y="17.5" width="155" height="25.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="SMA-Wd-bVn">
+                                        <rect key="frame" x="405" y="16" width="102" height="29"/>
+                                        <segments>
+                                            <segment title="First"/>
+                                            <segment title="Second"/>
+                                        </segments>
+                                        <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <action selector="okTapped:" destination="pQi-dJ-T7y" eventType="touchUpInside" id="CBY-sc-hnA"/>
+                                            <action selector="PaymentMethodChanged:" destination="pQi-dJ-T7y" eventType="valueChanged" id="VuG-dT-ccY"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="uqx-3s-Djp" firstAttribute="centerY" secondItem="qBx-JO-3kf" secondAttribute="centerY" id="3zT-7c-E5p"/>
+                                    <constraint firstAttribute="height" constant="60" id="b8q-LE-402"/>
+                                    <constraint firstItem="SMA-Wd-bVn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uqx-3s-Djp" secondAttribute="trailing" id="tFB-dH-oyr"/>
+                                    <constraint firstItem="SMA-Wd-bVn" firstAttribute="centerX" secondItem="qBx-JO-3kf" secondAttribute="centerX" id="xPu-0m-XZJ"/>
+                                    <constraint firstItem="SMA-Wd-bVn" firstAttribute="centerY" secondItem="qBx-JO-3kf" secondAttribute="centerY" id="xvo-Xa-Gzk"/>
+                                    <constraint firstItem="uqx-3s-Djp" firstAttribute="leading" secondItem="qBx-JO-3kf" secondAttribute="leading" constant="20" id="y0b-zO-FRk"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mbr-Tl-E3m" userLabel="Staff InputView">
+                                <rect key="frame" x="256" y="257" width="600" height="320"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Staff PIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWt-iX-nqE">
+                                        <rect key="frame" x="143" y="139" width="133" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y6k-Wa-DIl" userLabel="StaffPINTFView" customClass="MYLTextFieldView" customModule="MyOrders" customModuleProvider="target">
+                                        <rect key="frame" x="300" y="139" width="250" height="64"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="EvB-if-exT"/>
+                                            <constraint firstAttribute="width" secondItem="Y6k-Wa-DIl" secondAttribute="height" multiplier="47:12" id="MMI-sj-Czx"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nJ-ZF-Dz6" userLabel="NextButton">
+                                        <rect key="frame" x="430" y="222" width="120" height="48"/>
+                                        <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="Dpc-Uc-AAC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Next">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="nextTapped:" destination="pQi-dJ-T7y" eventType="touchUpInside" id="m0R-St-HOW"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="b8q-LE-402"/>
-                                    <constraint firstItem="aRh-KQ-uAx" firstAttribute="centerX" secondItem="qBx-JO-3kf" secondAttribute="centerX" id="c8z-W9-sMC"/>
-                                    <constraint firstItem="aRh-KQ-uAx" firstAttribute="centerY" secondItem="qBx-JO-3kf" secondAttribute="centerY" id="kba-aQ-dHs"/>
+                                    <constraint firstAttribute="height" constant="320" id="9XA-A4-lQi"/>
+                                    <constraint firstItem="Y6k-Wa-DIl" firstAttribute="centerX" secondItem="Mbr-Tl-E3m" secondAttribute="centerX" constant="125" id="BAz-d5-1uf"/>
+                                    <constraint firstItem="7nJ-ZF-Dz6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mbr-Tl-E3m" secondAttribute="leading" constant="20" symbolic="YES" id="EOM-sU-fxE"/>
+                                    <constraint firstItem="uWt-iX-nqE" firstAttribute="centerY" secondItem="Mbr-Tl-E3m" secondAttribute="centerY" id="L9r-JO-d8F"/>
+                                    <constraint firstItem="uWt-iX-nqE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mbr-Tl-E3m" secondAttribute="leading" id="LUO-7L-f2B"/>
+                                    <constraint firstItem="Y6k-Wa-DIl" firstAttribute="top" secondItem="uWt-iX-nqE" secondAttribute="top" id="QF5-5H-5si"/>
+                                    <constraint firstItem="7nJ-ZF-Dz6" firstAttribute="trailing" secondItem="Mbr-Tl-E3m" secondAttribute="trailing" constant="-50" id="aAF-cf-cQe"/>
+                                    <constraint firstAttribute="width" secondItem="Mbr-Tl-E3m" secondAttribute="height" multiplier="15:8" id="oYc-fA-2b2"/>
+                                    <constraint firstItem="uWt-iX-nqE" firstAttribute="trailing" secondItem="Y6k-Wa-DIl" secondAttribute="leading" constant="-24" id="ob2-IH-gnG"/>
+                                    <constraint firstItem="7nJ-ZF-Dz6" firstAttribute="bottom" secondItem="Mbr-Tl-E3m" secondAttribute="bottom" constant="-50" id="sl6-C6-xOJ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54z-UG-T0c" userLabel="Age InputView">
                                 <rect key="frame" x="268" y="257" width="576" height="320"/>
@@ -611,9 +677,11 @@
                             <constraint firstItem="54z-UG-T0c" firstAttribute="height" secondItem="54z-UG-T0c" secondAttribute="width" multiplier="5:9" id="Lrr-fL-mQp"/>
                             <constraint firstItem="54z-UG-T0c" firstAttribute="centerX" secondItem="zSK-NT-Fck" secondAttribute="centerX" id="Osu-bm-j3G"/>
                             <constraint firstItem="Cct-zt-dsO" firstAttribute="bottom" secondItem="0wa-VV-1XV" secondAttribute="top" constant="-160" id="SCP-jJ-jDk"/>
+                            <constraint firstItem="Mbr-Tl-E3m" firstAttribute="centerY" secondItem="zSK-NT-Fck" secondAttribute="centerY" id="TT9-9H-UIa"/>
                             <constraint firstItem="Cct-zt-dsO" firstAttribute="trailing" secondItem="zSK-NT-Fck" secondAttribute="trailing" constant="-100" id="bsV-dM-VAV"/>
                             <constraint firstItem="Cct-zt-dsO" firstAttribute="leading" secondItem="zSK-NT-Fck" secondAttribute="leading" constant="100" id="efo-zF-OLy"/>
                             <constraint firstItem="54z-UG-T0c" firstAttribute="centerY" secondItem="zSK-NT-Fck" secondAttribute="centerY" id="hSI-6r-KIv"/>
+                            <constraint firstItem="Mbr-Tl-E3m" firstAttribute="centerX" secondItem="zSK-NT-Fck" secondAttribute="centerX" id="kH3-XX-l55"/>
                             <constraint firstItem="qBx-JO-3kf" firstAttribute="width" secondItem="Cct-zt-dsO" secondAttribute="width" id="msB-nh-fz5"/>
                             <constraint firstItem="qBx-JO-3kf" firstAttribute="top" secondItem="Cct-zt-dsO" secondAttribute="bottom" id="nf8-zD-MK7"/>
                             <constraint firstItem="qBx-JO-3kf" firstAttribute="leading" secondItem="Cct-zt-dsO" secondAttribute="leading" id="oL3-ej-cLY"/>
@@ -623,7 +691,10 @@
                         <outlet property="ageInputView" destination="54z-UG-T0c" id="1lC-bv-7dT"/>
                         <outlet property="ageSegment" destination="onR-Id-Dd8" id="oBq-Rz-5ZH"/>
                         <outlet property="ageSegmentYConstraint" destination="zuh-PK-6za" id="CG0-tp-oe6"/>
-                        <outlet property="okButton" destination="aRh-KQ-uAx" id="cT8-cd-Gv8"/>
+                        <outlet property="buttonPanel" destination="qBx-JO-3kf" id="tfa-hh-5Qp"/>
+                        <outlet property="payMethodSegment" destination="SMA-Wd-bVn" id="ZBW-Ao-crd"/>
+                        <outlet property="staffInputView" destination="Mbr-Tl-E3m" id="XZh-8Q-dPn"/>
+                        <outlet property="staffPIN" destination="Y6k-Wa-DIl" id="xtx-gp-nMn"/>
                         <outlet property="tableView" destination="Cct-zt-dsO" id="kzo-wv-5b2"/>
                         <segue destination="TF8-hV-nlE" kind="show" identifier="toBill" id="vbC-hY-hjF"/>
                     </connections>

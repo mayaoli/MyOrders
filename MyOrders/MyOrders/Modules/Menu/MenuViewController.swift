@@ -39,7 +39,7 @@ class MenuViewController: BaseViewController, MenuViewInterface {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
-    //self.showBackButton = false
+    self.showBackButton = false
     
     self.eventHandler?.getMenuList()
     

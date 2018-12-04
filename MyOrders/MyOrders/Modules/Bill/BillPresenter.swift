@@ -81,26 +81,25 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
   }
   
   func getRowContent(_ indexPath: IndexPath) -> String {
-    guard let restaurantInfo = Price.sharedInstance.restaurant else {
-      return ""
-    }
-    
+
     var text: String = ""
     
     switch indexPath.section {
     case 0:
+      let restaurantInfo = Price.sharedInstance.restaurant
+        
       // Order type
       switch indexPath.row {
       case 0:
         text = Bill.sharedInstance.order?.orderType.rawValue ?? ""
       case 1:
-        text = restaurantInfo.name
+        text = restaurantInfo?.name ?? ""
       case 2:
-        text = restaurantInfo.address1 + " " + restaurantInfo.address2
+        text = "\(restaurantInfo?.address1 ?? "") \(restaurantInfo?.address2 ?? "")"
       case 3:
-        text = restaurantInfo.phone
+        text = restaurantInfo?.phone ?? ""
       case 4:
-        text = restaurantInfo.website ?? ""
+        text = restaurantInfo?.website ?? ""
       default:
         break
       }
@@ -131,7 +130,7 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
   }
   
   func getRowContentDetail(_ indexPath: IndexPath) -> String {
-    guard let order = Bill.sharedInstance.order else {
+    guard Price.sharedInstance.restaurant != nil, let order = Bill.sharedInstance.order else {
       return ""
     }
     guard let cust = Bill.sharedInstance.customers, indexPath.row < cust.count else {
@@ -150,19 +149,17 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
       }
     case 2:
       // Bill info
-      if Bill.sharedInstance.creatPayment() {
-        switch indexPath.row {
-        case 0:
-          detail = "$\(Bill.sharedInstance.payment?.rawAmount ?? 0)"
-        case 1:
-          detail = "$\(Bill.sharedInstance.payment?.tax ?? 0)"
-        case 2:
-          detail = "$\(Bill.sharedInstance.payment?.totalAmount ?? 0)"
-        case 3:
-          detail = "$\(Bill.sharedInstance.payment?.cashAmount ?? 0)"
-        default:
-          break
-        }
+      switch indexPath.row {
+      case 0:
+        detail = "$\(Bill.sharedInstance.payment?.rawAmount ?? 0)"
+      case 1:
+        detail = "$\(Bill.sharedInstance.payment?.tax ?? 0)"
+      case 2:
+        detail = "$\(Bill.sharedInstance.payment?.totalAmount ?? 0)"
+      case 3:
+        detail = "$\(Bill.sharedInstance.payment?.cashAmount ?? 0)"
+      default:
+        break
       }
       
     default:
@@ -178,9 +175,6 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
       self.view?.renderError(error!)
       return
     }
-    
-    Bill.sharedInstance.payment = Payment()
-    Bill.sharedInstance.payment?.paymentMethod = .cash
     
     if Bill.sharedInstance.creatPayment() {
       self.view?.renderBill()

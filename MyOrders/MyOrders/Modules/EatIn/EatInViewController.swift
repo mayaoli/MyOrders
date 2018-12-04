@@ -8,7 +8,11 @@
 
 import UIKit
 
-class EatInViewController: BaseTextFieldViewController {
+protocol EatInViewInterface: BaseViewInterface {
+  func gotoNext()
+}
+
+class EatInViewController: BaseTextFieldViewController, EatInViewInterface {
   @IBOutlet weak var staffPIN: MYLTextFieldView! {
     didSet {
       staffPIN.bind { self.thisBill.staffPIN = $0 }
@@ -29,6 +33,15 @@ class EatInViewController: BaseTextFieldViewController {
   
   private let thisBill = Bill.sharedInstance
   
+  private weak var eventHandler: EatInEventsInterface? {
+    return baseEventHandler as? EatInEventsInterface
+  }
+  
+  
+  override func createPresenter() -> BasePresenter {
+    return EatInPresenter()
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -37,8 +50,8 @@ class EatInViewController: BaseTextFieldViewController {
     
     centerView.shadow(radius: 10)
     
-    var validations = ValidationType.IsRequired.rawValue + ValidationType.IsNumeric.rawValue
-    staffPIN.configure(placeholder: nil, validationType: validations, maxLength: 4, alignment: .left, keyboardType: .numberPad)
+    var validations = ValidationType.IsRequired.rawValue + ValidationType.IsNumeric.rawValue + ValidationType.IsPIN.rawValue
+    staffPIN.configure(placeholder: nil, validationType: validations, maxLength: 6, alignment: .left, keyboardType: .numberPad)
     staffPIN.delegate = self
     staffPIN.fieldText.returnKeyType = .next
     
@@ -83,8 +96,10 @@ class EatInViewController: BaseTextFieldViewController {
       staffPIN.validate()
       customerNumber.validate()
       
+      //TODO: validate the PIN
       if staffPIN.isValid && customerNumber.isValid {
-        self.performSegue(withIdentifier: ReuseIdentifier.toMenu.rawValue, sender: nil)
+        self.eventHandler?.validatePIN(self.thisBill.staffPIN)
+        view.endEditing(true)
         return super.textFieldShouldBeginEditing(textField)
       }
       
@@ -92,6 +107,10 @@ class EatInViewController: BaseTextFieldViewController {
     }
     
     return true
+  }
+  
+  func gotoNext() {
+    self.performSegue(withIdentifier: ReuseIdentifier.toMenu.rawValue, sender: nil)
   }
 }
 

@@ -33,7 +33,7 @@ struct Payment {
         return 0
       }
       
-      return rawAmount * 0.13
+      return round(100 * rawAmount * 0.13)/100
     }
     set { }
   }
@@ -52,7 +52,7 @@ struct Payment {
         return (rawAmount + tax)
       }
       
-      return rawAmount + (tax * Constants.DISCOUNT_RATE / 0.13)
+      return round(100 * rawAmount + (tax * Constants.DISCOUNT_RATE / 0.13))/100
     }
     set { }
   }

@@ -1,5 +1,5 @@
 //
-//  OrderHeaderCell.swift
+//  BaseHeaderCell.swift
 //  MyOrders
 //
 //  Created by Yaoli.Ma on 2018-08-14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrderHeaderCell: UITableViewHeaderFooterView {
+class BaseHeaderCell: UITableViewHeaderFooterView {
 
   @IBOutlet weak var headerTitle: UILabel!
   

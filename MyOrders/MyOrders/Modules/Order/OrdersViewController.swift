@@ -52,7 +52,7 @@ class OrdersViewController: BaseViewController, OrdersViewInterface {
     StorageManager.setObject(objToSave: sortedItems as NSArray, path: Constants.STORAGE_ORDER_PATH)
     
     tableView.register(ReuseIdentifier.orderTableCell.nib, forCellReuseIdentifier: ReuseIdentifier.orderTableCell.rawValue)
-    tableView.register(ReuseIdentifier.orderHeaderCell.nib, forHeaderFooterViewReuseIdentifier: ReuseIdentifier.orderHeaderCell.rawValue)
+    tableView.register(ReuseIdentifier.baseHeaderCell.nib, forHeaderFooterViewReuseIdentifier: ReuseIdentifier.baseHeaderCell.rawValue)
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = false
@@ -188,7 +188,7 @@ extension OrdersViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let  headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: ReuseIdentifier.orderHeaderCell.rawValue) as! OrderHeaderCell
+    let  headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: ReuseIdentifier.baseHeaderCell.rawValue) as! BaseHeaderCell
     
     headerCell.headerTitle.text = self.eventHandler?.getSectionTitle(section) ?? ""
       

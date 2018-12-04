@@ -55,7 +55,6 @@ class BasePresenter: NSObject, BaseEventsInterface, BaseOutputInterface {
     }
     
     containerOffset = CGPoint(x: x, y: y)
-    print("### containerOffset = (\(x), \(y))")
   }
   
   func shouldScroll(_ keyboardHeight: CGFloat, _ viewHeight: CGFloat) {
@@ -64,12 +63,9 @@ class BasePresenter: NSObject, BaseEventsInterface, BaseOutputInterface {
       return
     }
     
-    print("### lastOffsetY = \(lastOffsetY ?? 0)")
-    
     // move if keyboard hide input field
     let collapseSpace = keyboardHeight - viewHeight + containerOffset.y + additionalOffset
     
-    print("### collapseSpace = \(collapseSpace)")
     if collapseSpace < 0 {
       // no collapse
       if lastOffsetY > 0 {

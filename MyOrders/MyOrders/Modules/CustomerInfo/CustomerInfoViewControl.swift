@@ -8,19 +8,33 @@
 
 import UIKit
 
-class CustomerInfoViewControl: BaseViewController {
+protocol CustomerInfoViewInterface: BaseViewInterface {
+  func refreshView()
+  func renderCustomerInfo()
+}
 
-  @IBOutlet weak var tableView: UITableView!
+class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInterface {
+
+  @IBOutlet weak var staffInputView: UIView!
+  @IBOutlet weak var staffPIN: MYLTextFieldView!{
+    didSet {
+      staffPIN.configure(placeholder: nil, validationType: ValidationType.IsRequired.rawValue + ValidationType.IsNumeric.rawValue + ValidationType.IsPIN.rawValue, maxLength: 6, alignment: .left, keyboardType: .numberPad)
+      staffPIN.bind { if $0.count > 4 { Bill.sharedInstance.billPIN = $0 } }
+    }
+  }
   
-  @IBOutlet weak var okButton: UIButton!
+  @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var buttonPanel: UIView!
   
   @IBOutlet weak var ageInputView: UIView!
   @IBOutlet weak var ageSegmentYConstraint: NSLayoutConstraint!
   @IBOutlet weak var ageSegment: UISegmentedControl!
   
+  @IBOutlet weak var payMethodSegment: UISegmentedControl!
+  
   private var gestureRecognizer:UITapGestureRecognizer!
   private var agePicker: UIPickerView!
-  private var theCustomers = Bill.sharedInstance.customers!
+  private var theCustomers: [Customer]!
   
   private var valueChanged :(UInt) -> () = { _ in }
   
@@ -31,16 +45,28 @@ class CustomerInfoViewControl: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-//    if let customers = StorageManager.getObject(path: Constants.STORAGE_CUSTOMER_PATH) {
-//      theCustomers = customers as! [Customer]
-//    }
     self.title = "Customer Information"
+    
+    if let customers = StorageManager.getObject(path: Constants.STORAGE_CUSTOMER_PATH) as? [Customer] {
+      Bill.sharedInstance.customers = customers
+    }
+    
+    staffPIN.fieldText.returnKeyType = .next
+    staffPIN.delegate = self
+    staffPIN.fieldText.becomeFirstResponder()
+    
+    staffInputView.shadow(radius: 10)
+    staffInputView.isHidden = false
+    tableView.isHidden = true
+    buttonPanel.isHidden = true
     
     gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedAnywhere(_:)))
     gestureRecognizer.cancelsTouchesInView = false
     gestureRecognizer.delegate = self
     
+    tableView.register(ReuseIdentifier.baseHeaderCell.nib, forHeaderFooterViewReuseIdentifier: ReuseIdentifier.baseHeaderCell.rawValue)
     tableView.register(ReuseIdentifier.customerTableCell.nib, forCellReuseIdentifier: ReuseIdentifier.customerTableCell.rawValue)
+    tableView.register(ReuseIdentifier.addCustomerTableCell.nib, forCellReuseIdentifier: ReuseIdentifier.addCustomerTableCell.rawValue)
     tableView.register(ReuseIdentifier.paymentTableCell.nib, forCellReuseIdentifier: ReuseIdentifier.paymentTableCell.rawValue)
     
     let font: [AnyHashable : Any] = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 32)]
@@ -48,10 +74,41 @@ class CustomerInfoViewControl: BaseViewController {
     ageSegment.setWidth(132.0, forSegmentAt: 0)
     ageSegment.setWidth(132.0, forSegmentAt: 1)
     ageSegment.setWidth(132.0, forSegmentAt: 2)
+    
+    // payment method
+//    self.payMethodSegment.removeAllSegments()
+//    PaymentMethod.allCases.forEach { p in
+//      if p != .other {
+//        self.payMethodSegment.insertSegment(withTitle: p.rawValue, at: p.index, animated: false)
+//      }
+//    }
+//    payMethodSegment.setTitleTextAttributes(font, for: .normal)
+//    payMethodSegment.setWidth(102.0, forSegmentAt: 0)
+//    payMethodSegment.setWidth(168.0, forSegmentAt: 1)
+//    payMethodSegment.setWidth(178.0, forSegmentAt: 2)
+    
+    if let pay =  Bill.sharedInstance.payment {
+      if pay.paymentMethod.index >= 0 {
+        payMethodSegment.selectedSegmentIndex = pay.paymentMethod.index
+      }
+    } else {
+      Bill.sharedInstance.payment = Payment()
+    }
   }
   
   override func createPresenter() -> BasePresenter {
-    return CustomerPresenter()
+    return CustomerInfoPresenter()
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    StorageManager.setObject(objToSave: theCustomers as NSArray, path: Constants.STORAGE_CUSTOMER_PATH)
+  }
+  
+  @IBAction func nextTapped(_ sender: Any) {
+    self.staffPIN.validate()
+    if self.staffPIN.isValid {
+      self.eventHandler?.validatePIN(Bill.sharedInstance.billPIN)
+    }
   }
   
   private func showPopup(_ priceRange: PriceRange) {
@@ -83,63 +140,97 @@ class CustomerInfoViewControl: BaseViewController {
     
   }
   
-  func removeCustomer(_ customer: Customer) {
-    for idx in 0...(theCustomers.count - 1)  {
-      if customer == Bill.sharedInstance.customers![idx] {
-        Bill.sharedInstance.customers!.remove(at: idx)
-        theCustomers = Bill.sharedInstance.customers!
-        self.tableView.reloadData()
-        break
-      }
+  func renderCustomerInfo() {
+    self.staffInputView.endEditing(true)
+    self.staffInputView.isHidden = true
+    self.tableView.isHidden = false
+    self.buttonPanel.isHidden = false
+  }
+  
+  func refreshView() {
+    self.tableView.reloadData()
+  }
+  
+  // MARK: UITextFieldDelegate
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    guard textField.returnKeyType == .next else {
+      return false
+    }
+    
+    self.nextTapped(self)
+    
+    return true
+  }
+  
+  @IBAction func AgeSegmentValueChanged(_ sender: Any) {
+    switch ageSegment.selectedSegmentIndex {
+    case 0:
+      self.valueChanged(PriceRange.adult.age)
+      ageInputView.isHidden = true
+      self.tableView.reloadData()
+    case 1:
+      self.valueChanged(PriceRange.senior.age)
+      ageInputView.isHidden = true
+      self.tableView.reloadData()
+    default:
+      showPicker(ageSegment.tag)
     }
   }
   
-  @IBAction func okTapped(_ sender: Any) {
-    guard let err = Bill.sharedInstance.validateCustomers() else {
-      //StorageManager.setObject(objToSave: theCustomers as NSArray, path: Constants.STORAGE_CUSTOMER_PATH)
-      performSegue(withIdentifier: ReuseIdentifier.toBill.rawValue, sender: nil)
+  @IBAction func PaymentMethodChanged(_ sender: Any) {
+    Bill.sharedInstance.payment?.paymentMethod = PaymentMethod.allCases[self.payMethodSegment.selectedSegmentIndex]
+  }
+  
+  @objc func PaymentMethodTapped(_ sender: Any) {
+    let err = Bill.sharedInstance.validateCustomers()
+    guard err == nil else {
+      self.renderError(.customError(message: err!))
       return
     }
     
-    self.renderError(.customError(message: err))
+    performSegue(withIdentifier: ReuseIdentifier.toBill.rawValue, sender: nil)
   }
-  
 }
+
 
 // MARK: - Table view data source
 extension CustomerInfoViewControl: UITableViewDataSource {
   
   func numberOfSections(in tableView: UITableView) -> Int {
-    return 2
+    return 1
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    theCustomers = Bill.sharedInstance.customers!
     return self.eventHandler?.getRowNumber(section) ?? 0
   }
   
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 60
+  }
+  
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let  headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: ReuseIdentifier.baseHeaderCell.rawValue) as! BaseHeaderCell
     
-    if indexPath.section == 0 {
-      // customer information
-      
+    headerCell.headerTitle.text = self.eventHandler?.getSectionTitle(section) ?? ""
+    
+    return headerCell
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    // customer information
+    if indexPath.row < theCustomers.count {
       let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifier.customerTableCell.rawValue, for: indexPath) as! CustomerTableCell
-      
-      if indexPath.row < theCustomers.count {
-        cell.sequenceNum.text = "\(indexPath.row + 1)"
-        cell.thisCustomer = theCustomers[indexPath.row]
-      } else {
-        cell.sequenceNum.text = ""
-        cell.age.text = ""
-      }
+      cell.sequenceNum.text = "\(indexPath.row + 1)"
+      cell.thisCustomer = theCustomers[indexPath.row]
       cell.delegate = self
-      
       return cell
-      
     } else {
-      // payment method
-      let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifier.paymentTableCell.rawValue, for: indexPath) as! PaymentMethodTableCell
-      
-      
+      // add new customer
+      let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifier.addCustomerTableCell.rawValue, for: indexPath) as! AddCustomerTableCell
+      cell.delegate = self
+      cell.accessoryType = .none
+      cell.selectionStyle = .none
       return cell
     }
   }
@@ -151,6 +242,11 @@ extension CustomerInfoViewControl: UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard indexPath.row < theCustomers.count else {
+      tableView.deselectRow(at: indexPath, animated: true)
+      return
+    }
+    
     if theCustomers[indexPath.row].priceRange == .none {
       self.valueChanged(PriceRange.adult.age)
     }
@@ -164,7 +260,15 @@ extension CustomerInfoViewControl: UITableViewDelegate {
     }
   }
   
-  //(void)deleteRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation;
+  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    return indexPath.section == 0 && indexPath.row < theCustomers.count
+  }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if (editingStyle == .delete) {
+      self.eventHandler?.removeCustomer(indexPath.row)
+    }
+  }
 }
 
 // MARK: - Picker view data source
@@ -185,22 +289,6 @@ extension CustomerInfoViewControl: UIPickerViewDelegate {
   
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     self.valueChanged(UInt(row + 4))
-  }
-  
-  
-  @IBAction func AgeSegmentValueChanged(_ sender: Any) {
-    switch ageSegment.selectedSegmentIndex {
-    case 0:
-      self.valueChanged(PriceRange.adult.age)
-      ageInputView.isHidden = true
-      self.tableView.reloadData()
-    case 1:
-      self.valueChanged(PriceRange.senior.age)
-      ageInputView.isHidden = true
-      self.tableView.reloadData()
-    default:
-      showPicker(ageSegment.tag)
-    }
   }
   
   func showPicker(_ age: Int) {

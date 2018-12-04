@@ -29,12 +29,13 @@ enum ViewTags: Int {
 }
 
 enum ReuseIdentifier: String {
+  case baseHeaderCell
   case menuCollectionCell
   case sectionHeader
   case largeImageView
   case orderTableCell
-  case orderHeaderCell
   case customerTableCell
+  case addCustomerTableCell
   case paymentTableCell
   case billTableCell
   
@@ -55,10 +56,12 @@ enum ReuseIdentifier: String {
       return UINib(nibName: "OrderTableCell", bundle: nil)
     case .customerTableCell:
       return UINib(nibName: "CustomerTableCell", bundle: nil)
+    case .addCustomerTableCell:
+      return UINib(nibName: "AddCustomerTableCell", bundle: nil)
     case .paymentTableCell:
       return UINib(nibName: "PaymentMethodTableCell", bundle: nil)
-    case .orderHeaderCell:
-      return UINib(nibName: "OrderHeaderCell", bundle: nil)
+    case .baseHeaderCell:
+      return UINib(nibName: "BaseHeaderCell", bundle: nil)
     default:
       return nil
     }
@@ -146,6 +149,25 @@ enum PaymentMethod: String {
   case debit = "Debit Card"
   case credit = "Credit Card"
   case other = "Other" // like paypal
+  
+  var index: Int {
+    switch self {
+    case .cash:
+      return 0
+    case .debit:
+      return 1
+    case .credit:
+      return 2
+    case .other:
+      return -1
+    }
+  }
+}
+
+extension PaymentMethod {
+  static var allCases:[PaymentMethod] {
+    return [.cash, .debit, .credit, .other]
+  }
 }
 
 enum PriceRange: Equatable {
@@ -223,6 +245,9 @@ enum ValidationType: UInt {
   case IsPhoneNumber = 32
   case IsPostcode = 64
   case IsDate = 128
+  case IsPIN = 256
+  
+  static let LastType: ValidationType = .IsPIN
   
   var regex: String {
     switch self {
@@ -241,7 +266,9 @@ enum ValidationType: UInt {
     case .IsPostcode:
       return "^(\\d{5}-\\d{4}|\\d{5})$|^([a-zA-Z]\\d[a-zA-Z][\\s-]?\\d[a-zA-Z]\\d)$"
     case .IsDate:
-      return "^(\\d){2}/(\\d){2}/(\\d){4}$"  // dd/mm/yyyy
+      return "^(\\d){2}[/|-](\\d){2}[/|-](\\d){4}$"  // dd/mm/yyyy
+    case .IsPIN:
+      return "^[0-9a-zA-Z]{4,6}$"
     default:
       return ""
     }
@@ -256,7 +283,7 @@ enum ValidationType: UInt {
     case .IsNumeric:
       return "must be numeric"
     case .IsPositiveNumber:
-      return "must be an number between 1 and 99"
+      return "must be a number between 1 and 99"
     case .IsEmail:
       return "must be a valid Email address"
     case .IsPhoneNumber:
@@ -265,6 +292,8 @@ enum ValidationType: UInt {
       return "must be a valid postcode"
     case .IsDate:
       return "must be a valid date"
+    case .IsPIN:
+      return "must be alphabet numeric 4 to 6 in length"
     default:
       return "No error."
     }

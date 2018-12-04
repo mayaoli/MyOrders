@@ -2,8 +2,8 @@
 //  CustomerTableCell.swift
 //  MyOrders
 //
-//  Created by RBC on 2018-10-27.
-//  Copyright © 2018 RBC. All rights reserved.
+//  Created by Yaoli.Ma on 2018-10-27.
+//  Copyright © 2018 Yaoli.Ma. All rights reserved.
 //
 
 
@@ -38,10 +38,6 @@ class CustomerTableCell: UITableViewCell {
     super.awakeFromNib()
     // Initialization code
     
-  }
-  
-  @IBAction func removeTapped(_ sender: Any) {
-    (delegate as! CustomerInfoViewControl).removeCustomer(thisCustomer)
   }
   
 }
