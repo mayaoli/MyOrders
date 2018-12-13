@@ -44,10 +44,20 @@ class OrderTableCell: UITableViewCell {
       statusLabel.text = thisItem.status.rawValue
       itemName.text = thisItem.name
       quantity.text = "Qty: \(thisItem.quantity)"
-      if thisItem.price == nil {
-        price.isHidden = true
+      
+      if Bill.sharedInstance.order?.orderType == .lunchBuffet || Bill.sharedInstance.order?.orderType == .dinnerBuffet {
+        if thisItem.orderAvailability == .eatInByOrder {
+          price.text = thisItem.price!.toCurrency()
+          price.textColor = UIColor.red
+        } else {
+          price.isHidden = true
+        }
       } else {
-        price.text = "$\(thisItem.price!)"
+        if thisItem.price == nil {
+          price.isHidden = true
+        } else {
+          price.text = thisItem.price!.toCurrency()
+        }
       }
     }
   }

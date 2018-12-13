@@ -27,9 +27,9 @@ class PaymentMethodTableCell: UIView {
       }
     }
     payMethodSegment.setTitleTextAttributes(font, for: .normal)
-    payMethodSegment.setWidth(102.0, forSegmentAt: 0)
-    payMethodSegment.setWidth(168.0, forSegmentAt: 1)
-    payMethodSegment.setWidth(178.0, forSegmentAt: 2)
+//    payMethodSegment.setWidth(132.0, forSegmentAt: 0)
+//    payMethodSegment.setWidth(168.0, forSegmentAt: 1)
+//    payMethodSegment.setWidth(178.0, forSegmentAt: 2)
   }
   
   @IBAction func PaymentMethodChanged(_ sender: Any) {

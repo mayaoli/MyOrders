@@ -28,8 +28,6 @@ class Order: NSObject, NSCoding, JSONModel {
     return orderType == .eatInByOrder || orderType == .delivery || orderType == .pickupOrTakeout
   }
   
-  //TODO: add order time
-  
   func encode(with aCoder: NSCoder) {
     aCoder.encode(self.orderId, forKey: "orderId")
     aCoder.encode(self.items, forKey: "orderItems")
@@ -75,7 +73,6 @@ class Order: NSObject, NSCoding, JSONModel {
 class MenuOrder: MenuItem {
   var status: OrderStatus
   var quantity: Int
-  
   
   var pushPayload: JSON {
     return JSON.init([])

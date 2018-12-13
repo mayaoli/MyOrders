@@ -18,11 +18,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imx-dn-GOp">
-                        <rect key="frame" x="140" y="2" width="40" height="40"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imx-dn-GOp" userLabel="Button Add">
+                        <rect key="frame" x="121" y="7" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="40" id="8NE-6e-BWf"/>
-                            <constraint firstAttribute="width" secondItem="imx-dn-GOp" secondAttribute="height" multiplier="1:1" id="zkC-5i-JP4"/>
+                            <constraint firstAttribute="width" constant="30" id="8NE-6e-BWf"/>
+                            <constraint firstAttribute="width" secondItem="imx-dn-GOp" secondAttribute="height" multiplier="1:1" id="T9f-GZ-j6L"/>
                         </constraints>
                         <state key="normal" image="add">
                             <color key="titleColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -31,9 +31,21 @@
                             <action selector="AddTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="38b-zd-7Rz"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96c-sP-fd4">
+                        <rect key="frame" x="167" y="1.5" width="43" height="41"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <state key="normal" title="Add">
+                            <color key="titleColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="AddTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="E7s-6a-TEF"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="imx-dn-GOp" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="IJt-MX-9We"/>
+                    <constraint firstItem="96c-sP-fd4" firstAttribute="leading" secondItem="imx-dn-GOp" secondAttribute="trailing" constant="16" id="5MM-xa-rHS"/>
+                    <constraint firstItem="imx-dn-GOp" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-24" id="IJt-MX-9We"/>
+                    <constraint firstItem="96c-sP-fd4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Pvd-FS-6Pd"/>
                     <constraint firstItem="imx-dn-GOp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cxn-S9-Uyx"/>
                 </constraints>
             </tableViewCellContentView>

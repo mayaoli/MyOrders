@@ -24,6 +24,7 @@
 		243787E621B0B8FC00247BAF /* EatInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243787E521B0B8FC00247BAF /* EatInInteractor.swift */; };
 		243787E921B5C67C00247BAF /* PaymentMethodTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 243787E721B5C67C00247BAF /* PaymentMethodTableCell.xib */; };
 		243787EA21B5C67C00247BAF /* PaymentMethodTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243787E821B5C67C00247BAF /* PaymentMethodTableCell.swift */; };
+		243787EC21B8554400247BAF /* MYLDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243787EB21B8554400247BAF /* MYLDouble.swift */; };
 		24419C0A210F60E300517B5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24419C09210F60E300517B5D /* AppDelegate.swift */; };
 		24419C52210F633700517B5D /* MenuServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24419C1E210F633600517B5D /* MenuServices.swift */; };
 		24419C53210F633700517B5D /* BaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24419C1F210F633600517B5D /* BaseServices.swift */; };
@@ -94,6 +95,7 @@
 		243787E521B0B8FC00247BAF /* EatInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EatInInteractor.swift; sourceTree = "<group>"; };
 		243787E721B5C67C00247BAF /* PaymentMethodTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentMethodTableCell.xib; sourceTree = "<group>"; };
 		243787E821B5C67C00247BAF /* PaymentMethodTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodTableCell.swift; sourceTree = "<group>"; };
+		243787EB21B8554400247BAF /* MYLDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYLDouble.swift; sourceTree = "<group>"; };
 		24419C06210F60E300517B5D /* MyOrders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyOrders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24419C09210F60E300517B5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24419C15210F60E400517B5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				24419C47210F633700517B5D /* MYLTextFieldView.swift */,
 				24419C48210F633700517B5D /* MYLColor.swift */,
 				24419C49210F633700517B5D /* MYLTextFieldView.xib */,
+				243787EB21B8554400247BAF /* MYLDouble.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				244AC242213063390060F84B /* Payment.swift in Sources */,
 				24720C3C218287D700B82B0F /* CustomerInfoViewControl.swift in Sources */,
 				24297F7A2184A30B00C311B1 /* CustomerTableCell.swift in Sources */,
+				243787EC21B8554400247BAF /* MYLDouble.swift in Sources */,
 				2417107321227BF6001895E8 /* OrderTableCell.swift in Sources */,
 				243787EA21B5C67C00247BAF /* PaymentMethodTableCell.swift in Sources */,
 				243787E021AF1EDA00247BAF /* PINServices.swift in Sources */,

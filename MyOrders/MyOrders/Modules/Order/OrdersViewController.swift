@@ -62,7 +62,7 @@ class OrdersViewController: BaseViewController, OrdersViewInterface {
     gestureRecognizer.delegate = self
     view.addGestureRecognizer(gestureRecognizer)
     
-    submitButton.isEnabled = pending.count > 0
+    submitButton.isHidden = pending.count == 0
     billButton.isHidden = thisOrder.count + fulfilled.count == 0
   }
   
@@ -169,7 +169,7 @@ extension OrdersViewController: UIGestureRecognizerDelegate {
 
 // MARK: - Table view data source
 extension OrdersViewController: UITableViewDelegate {
-
+  // required for section header
 }
 
 // MARK: - Table view data source

@@ -15,6 +15,7 @@ protocol CustomerInfoViewInterface: BaseViewInterface {
 
 class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInterface {
 
+  @IBOutlet weak var staffPINCloseButton: UIButton!
   @IBOutlet weak var staffInputView: UIView!
   @IBOutlet weak var staffPIN: MYLTextFieldView!{
     didSet {
@@ -31,8 +32,9 @@ class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInte
   @IBOutlet weak var ageSegment: UISegmentedControl!
   
   @IBOutlet weak var payMethodSegment: UISegmentedControl!
+  private var tapPayGestureRecognizer:UITapGestureRecognizer!
   
-  private var gestureRecognizer:UITapGestureRecognizer!
+  private var tapAnywhereGestureRecognizer:UITapGestureRecognizer!
   private var agePicker: UIPickerView!
   private var theCustomers: [Customer]!
   
@@ -47,22 +49,27 @@ class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInte
     
     self.title = "Customer Information"
     
-    if let customers = StorageManager.getObject(path: Constants.STORAGE_CUSTOMER_PATH) as? [Customer] {
-      Bill.sharedInstance.customers = customers
+    if let smCustomers = StorageManager.getObject(path: Constants.STORAGE_CUSTOMER_PATH) as? [Customer] {
+      if Bill.sharedInstance.customers?.count == smCustomers.count {
+        Bill.sharedInstance.customers = smCustomers
+      } else if let theseCustomers = Bill.sharedInstance.customers {
+        var idx: Int = 0
+        while theseCustomers.count > idx, smCustomers.count > idx {
+          Bill.sharedInstance.customers![idx] = smCustomers[idx]
+          idx += 1
+        }
+      } else {
+        _ = StorageManager.deleteObject(path: Constants.STORAGE_CUSTOMER_PATH)
+      }
     }
     
     staffPIN.fieldText.returnKeyType = .next
     staffPIN.delegate = self
-    staffPIN.fieldText.becomeFirstResponder()
-    
     staffInputView.shadow(radius: 10)
-    staffInputView.isHidden = false
-    tableView.isHidden = true
-    buttonPanel.isHidden = true
     
-    gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedAnywhere(_:)))
-    gestureRecognizer.cancelsTouchesInView = false
-    gestureRecognizer.delegate = self
+    tapAnywhereGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedAnywhere(_:)))
+    tapAnywhereGestureRecognizer.cancelsTouchesInView = false
+    tapAnywhereGestureRecognizer.delegate = self
     
     tableView.register(ReuseIdentifier.baseHeaderCell.nib, forHeaderFooterViewReuseIdentifier: ReuseIdentifier.baseHeaderCell.rawValue)
     tableView.register(ReuseIdentifier.customerTableCell.nib, forCellReuseIdentifier: ReuseIdentifier.customerTableCell.rawValue)
@@ -76,16 +83,19 @@ class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInte
     ageSegment.setWidth(132.0, forSegmentAt: 2)
     
     // payment method
-//    self.payMethodSegment.removeAllSegments()
-//    PaymentMethod.allCases.forEach { p in
-//      if p != .other {
-//        self.payMethodSegment.insertSegment(withTitle: p.rawValue, at: p.index, animated: false)
-//      }
-//    }
-//    payMethodSegment.setTitleTextAttributes(font, for: .normal)
-//    payMethodSegment.setWidth(102.0, forSegmentAt: 0)
-//    payMethodSegment.setWidth(168.0, forSegmentAt: 1)
-//    payMethodSegment.setWidth(178.0, forSegmentAt: 2)
+    self.payMethodSegment.removeAllSegments()
+    PaymentMethod.allCases.forEach { p in
+      if p != .other {
+        self.payMethodSegment.insertSegment(withTitle: p.rawValue, at: p.index, animated: false)
+      }
+    }
+    payMethodSegment.setTitleTextAttributes(font, for: .normal)
+    payMethodSegment.setWidth(102.0, forSegmentAt: 0)
+    payMethodSegment.setWidth(168.0, forSegmentAt: 1)
+    payMethodSegment.setWidth(178.0, forSegmentAt: 2)
+    tapPayGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(paymentMethodTapped(_:)))
+    tapPayGestureRecognizer.cancelsTouchesInView = false
+    tapPayGestureRecognizer.delegate = self
     
     if let pay =  Bill.sharedInstance.payment {
       if pay.paymentMethod.index >= 0 {
@@ -96,12 +106,33 @@ class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInte
     }
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    staffPINCloseButton.isHidden = false
+    staffInputView.isHidden = false
+    staffPIN.fieldText.becomeFirstResponder()
+    tableView.isHidden = true
+    buttonPanel.isHidden = true
+    payMethodSegment.addGestureRecognizer(self.tapPayGestureRecognizer)
+  }
+  
   override func createPresenter() -> BasePresenter {
     return CustomerInfoPresenter()
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    staffPIN.fieldText.text = ""
+    
+    payMethodSegment.removeGestureRecognizer(tapPayGestureRecognizer)
+    
     StorageManager.setObject(objToSave: theCustomers as NSArray, path: Constants.STORAGE_CUSTOMER_PATH)
+  }
+  
+  
+  @IBAction func closeTapped(_ sender: Any) {
+    _ = self.navigationController?.popViewController(animated: true)
   }
   
   @IBAction func nextTapped(_ sender: Any) {
@@ -109,6 +140,25 @@ class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInte
     if self.staffPIN.isValid {
       self.eventHandler?.validatePIN(Bill.sharedInstance.billPIN)
     }
+  }
+  
+  @IBAction func AgeSegmentValueChanged(_ sender: Any) {
+    switch ageSegment.selectedSegmentIndex {
+    case 0:
+      self.valueChanged(PriceRange.adult.age)
+      self.ageInputView.isHidden = true
+      self.tableView.reloadData()
+    case 1:
+      self.valueChanged(PriceRange.senior.age)
+      self.ageInputView.isHidden = true
+      self.tableView.reloadData()
+    default:
+      showPicker(ageSegment.tag)
+    }
+  }
+  
+  @IBAction func PaymentMethodChanged(_ sender: Any) {
+    Bill.sharedInstance.payment?.paymentMethod = PaymentMethod.allCases[self.payMethodSegment.selectedSegmentIndex]
   }
   
   private func showPopup(_ priceRange: PriceRange) {
@@ -122,7 +172,12 @@ class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInte
     ageInputView.shadow(radius: 10)
     ageSegment.selectedSegmentIndex = priceRange.index
     ageSegment.tag = Int(priceRange.age)
-      
+    
+    if self.agePicker != nil, priceRange.index != PriceRange.kid(age: priceRange.age).index {
+      self.agePicker.isHidden = true
+      self.ageSegmentYConstraint.constant = 0
+    }
+    
     UIView.animate(withDuration: Constants.ANIMATION_DURATION,
                    delay: 0.0,
                    usingSpringWithDamping: 0.6,
@@ -135,13 +190,14 @@ class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInte
         self.showPicker(Int(priceRange.age))
       }
       //
-      self.view.addGestureRecognizer(self.gestureRecognizer)
+      self.view.addGestureRecognizer(self.tapAnywhereGestureRecognizer)
     }
     
   }
   
   func renderCustomerInfo() {
     self.staffInputView.endEditing(true)
+    staffPINCloseButton.isHidden = true
     self.staffInputView.isHidden = true
     self.tableView.isHidden = false
     self.buttonPanel.isHidden = false
@@ -160,35 +216,6 @@ class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInte
     self.nextTapped(self)
     
     return true
-  }
-  
-  @IBAction func AgeSegmentValueChanged(_ sender: Any) {
-    switch ageSegment.selectedSegmentIndex {
-    case 0:
-      self.valueChanged(PriceRange.adult.age)
-      ageInputView.isHidden = true
-      self.tableView.reloadData()
-    case 1:
-      self.valueChanged(PriceRange.senior.age)
-      ageInputView.isHidden = true
-      self.tableView.reloadData()
-    default:
-      showPicker(ageSegment.tag)
-    }
-  }
-  
-  @IBAction func PaymentMethodChanged(_ sender: Any) {
-    Bill.sharedInstance.payment?.paymentMethod = PaymentMethod.allCases[self.payMethodSegment.selectedSegmentIndex]
-  }
-  
-  @objc func PaymentMethodTapped(_ sender: Any) {
-    let err = Bill.sharedInstance.validateCustomers()
-    guard err == nil else {
-      self.renderError(.customError(message: err!))
-      return
-    }
-    
-    performSegue(withIdentifier: ReuseIdentifier.toBill.rawValue, sender: nil)
   }
 }
 
@@ -247,9 +274,9 @@ extension CustomerInfoViewControl: UITableViewDelegate {
       return
     }
     
-    if theCustomers[indexPath.row].priceRange == .none {
-      self.valueChanged(PriceRange.adult.age)
-    }
+//    if theCustomers[indexPath.row].priceRange == .none {
+//      self.valueChanged(PriceRange.adult.age)
+//    }
     
     self.bind(priceRange: theCustomers[indexPath.row].priceRange) {
       self.theCustomers[indexPath.row].priceRange = (self.eventHandler?.getPriceRange($0))!
@@ -333,19 +360,30 @@ extension CustomerInfoViewControl: UIGestureRecognizerDelegate {
   
   func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                          shouldReceive touch: UITouch) -> Bool {
-    return (touch.view === self.ageInputView || touch.view === self.tableView || touch.view === self.view)
+    // touch.view === self.ageInputView || ?
+    return (touch.view === self.tableView || touch.view === self.view || touch.view === self.payMethodSegment)
   }
   
   @objc private func tappedAnywhere(_ tap: UITapGestureRecognizer) {
     if tap.state == .ended {
       view.endEditing(true)
-      if agePicker != nil {
-        agePicker.isHidden = true
-        ageSegmentYConstraint.constant = 0
-      }
       ageInputView.isHidden = true
-      view.removeGestureRecognizer(gestureRecognizer)
+      view.removeGestureRecognizer(tapAnywhereGestureRecognizer)
       self.tableView.reloadData()
+    }
+  }
+  
+  @objc private func paymentMethodTapped(_ tap: UITapGestureRecognizer) {
+    if tap.state == .ended {
+      DispatchQueue.main.asyncAfter(deadline: Constants.DISPATCH_DELAY, execute: {
+        let err = Bill.sharedInstance.validateCustomers()
+        guard err == nil else {
+          self.renderError(.customError(message: err!))
+          return
+        }
+        
+        self.performSegue(withIdentifier: ReuseIdentifier.toBill.rawValue, sender: nil)
+      })
     }
   }
 }

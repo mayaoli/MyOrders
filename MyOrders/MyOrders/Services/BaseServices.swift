@@ -246,16 +246,12 @@ class BaseServices {
         case .parameterEncodingFailed(reason: _):
           networkingError = .encodingFailed
         case .multipartEncodingFailed(reason: _):
-          
           networkingError = .encodingFailed
         case .responseValidationFailed(reason: _):
-          
-          networkingError = .responseValidationFailed
+          networkingError = .responseValidationFailed(reason: afError.errorDescription)
         case .responseSerializationFailed(reason: _):
-          
-          networkingError = .responseValidationFailed
+          networkingError = .responseValidationFailed(reason: afError.errorDescription)
         case .invalidURL(url: _):
-          
           networkingError = .requestValidationFailed
         }
       } else if let error = response.error as? URLError {

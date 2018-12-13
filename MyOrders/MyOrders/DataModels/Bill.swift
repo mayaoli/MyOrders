@@ -147,7 +147,7 @@ class Bill: NSObject, NSCoding, JSONModel {
     
     if order!.isByOrder {
       orderItems.forEach { (item) in
-        self.payment?.rawAmount += Double(item.value.price!)
+        self.payment?.rawAmount += item.value.price! * Double(item.value.quantity)
       }
     } else {
       return false
@@ -161,7 +161,6 @@ class Bill: NSObject, NSCoding, JSONModel {
       return false
     }
     
-    //TODO: need to consider paid beverage items, set to the initial amount
     self.payment?.rawAmount = 0
     
     if order!.isBuffet {
@@ -170,7 +169,7 @@ class Bill: NSObject, NSCoding, JSONModel {
       })
       
       order?.items.filter{ $0.1.orderAvailability == .eatInByOrder }.forEach({ (item) in
-        self.payment?.rawAmount += item.value.price!
+        self.payment?.rawAmount += item.value.price! * Double(item.value.quantity)
       })
     } else {
       return false
@@ -179,4 +178,17 @@ class Bill: NSObject, NSCoding, JSONModel {
     return true
   }
   
+  func reset() {
+    tableNumber = "0"
+    staffPIN = "****"
+    billPIN = "****"
+    customers = []
+    phoneNumber = "-"
+    address = "-"
+    order = nil
+    payment = nil
+    
+    _ = StorageManager.deleteObject(path: Constants.STORAGE_ORDER_PATH)
+    _ = StorageManager.deleteObject(path: Constants.STORAGE_CUSTOMER_PATH)
+  }
 }

@@ -30,6 +30,6 @@ class StorageManager {
   class func deleteObject(path: String) -> Bool {
     // TODO: file should be removed
     let file = documentsDirectory().appendingPathComponent(path)
-    return NSKeyedArchiver.archiveRootObject(NSNull.self, toFile: file)
+    return NSKeyedArchiver.archiveRootObject("", toFile: file)
   }
 }

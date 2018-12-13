@@ -124,7 +124,9 @@ class MenuViewController: BaseViewController, MenuViewInterface {
   
   func addToOrder(item: MenuItem) {
     if thisBill.order!.items[item.key] == nil {
+      // first ordered item
       thisBill.order!.items[item.key] = MenuOrder(item: item)
+      self.showIntro()
     } else {
       thisBill.order!.items[item.key]?.quantity += 1
     }
@@ -156,7 +158,10 @@ class MenuViewController: BaseViewController, MenuViewInterface {
       self.renderWarning("Order tray is empty. Let's add something delicious by tap + in the menu.")
       return
     }
-    
+    guard thisBill.order!.items.filter({ $1.status != .pending }).count > 0 else {
+      self.renderWarning("You picked some items that haven't been submitted./nTap on orders button on the right top corner to submit.")
+      return
+    }
     guard thisBill.order!.items.filter({ $1.status == .pending }).count == 0 else {
       DispatchQueue.main.asyncAfter(deadline: Constants.DISPATCH_DELAY, execute: {
         self.renderMessage(title: "Confirm", message: "It seems that there are still some items in pending.\n\n Are you sure, you don't want them?", completion: { action in
@@ -171,6 +176,10 @@ class MenuViewController: BaseViewController, MenuViewInterface {
     }
     
     self.performSegue(withIdentifier: ReuseIdentifier.toCustomerInfo.rawValue, sender: nil)
+  }
+  
+  private func showIntro() {
+    
   }
 }
 

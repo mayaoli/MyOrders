@@ -33,13 +33,13 @@ struct Payment {
         return 0
       }
       
-      return round(100 * rawAmount * 0.13)/100
+      return rawAmount * Constants.TAX_RATE
     }
     set { }
   }
   
   // cash amount
-  var cashAmount: Double? {
+  var cashAmount: Double {
     get {
       guard rawAmount > 0 else {
         return 0
@@ -52,13 +52,55 @@ struct Payment {
         return (rawAmount + tax)
       }
       
-      return round(100 * rawAmount + (tax * Constants.DISCOUNT_RATE / 0.13))/100
+      return rawAmount * (1 + Constants.TAX_RATE - Constants.DISCOUNT_RATE)
     }
     set { }
   }
   
   // total amount with tax
-  var totalAmount: Double?
+  var totalAmount: Double {
+    get {
+      guard rawAmount > 0 else {
+        return 0
+      }
+      
+      return rawAmount + tax
+    }
+    set { }
+  }
+  
+  var tip10percent: Double {
+    get {
+      guard rawAmount > 0 else {
+        return 0
+      }
+      
+      return rawAmount * 0.1
+    }
+    set { }
+  }
+  
+  var tip15percent: Double {
+    get {
+      guard rawAmount > 0 else {
+        return 0
+      }
+      
+      return rawAmount * 0.15
+    }
+    set { }
+  }
+  
+  var tip20percent: Double {
+    get {
+      guard rawAmount > 0 else {
+        return 0
+      }
+      
+      return rawAmount * 0.2
+    }
+    set { }
+  }
   
   init() {
     
@@ -70,8 +112,8 @@ struct Payment {
     rawAmount = Double(json["rawAmount"].stringValue) ?? 0
     discount = Double(json["discount"].stringValue) ?? 0
     tax = Double(json["tax"].stringValue) ?? 0
-    cashAmount = Double(json["cashAmount"].stringValue)
-    totalAmount = Double(json["totalAmount"].stringValue)
+    cashAmount = Double(json["cashAmount"].stringValue) ?? 0
+    totalAmount = Double(json["totalAmount"].stringValue) ?? 0
   }
   
   func encode(with aCoder: NSCoder) {

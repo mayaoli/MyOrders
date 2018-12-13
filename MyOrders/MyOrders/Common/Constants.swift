@@ -13,12 +13,13 @@ import SWXMLHash
 struct Constants {
   static let BASE_URL = "https://www.rbc.com"
   static let STORAGE_MENU_PATH: String = "MENU"
-  static let STORAGE_ORDER_PATH: String = "ORDER"
   static let STORAGE_PRICE_PATH: String = "PRICE"
+  static let STORAGE_ORDER_PATH: String = "ORDER"
   static let STORAGE_CUSTOMER_PATH: String = "CUSTOMER"
   static let ANIMATION_DURATION: TimeInterval = 0.6
   // DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
   static let DISPATCH_DELAY = DispatchTime.now() + 0.1
+  static let TAX_RATE = 0.13
   static let DISCOUNT_RATE = 0.05
 }
 
@@ -83,7 +84,7 @@ enum NetworkingError: Error {
   /// Request validation failed when making a network call.
   case requestValidationFailed
   /// Response validation failed after making a network call.
-  case responseValidationFailed
+  case responseValidationFailed(reason: String?)
   /// Request or Response encoding failed
   case encodingFailed
   /// custom error message
@@ -98,9 +99,9 @@ enum NetworkingError: Error {
     case .requestValidationFailed:
       print("Request validation failed. Reason: Invalid URL, incorrect request parameters, headers, http method, etc.")
       return "Technical issue"
-    case .responseValidationFailed:
+    case .responseValidationFailed(let reason):
       print("Response validatation failed. Reason: Data file nil, missing or unacceptable ContentType, serialization failed or unacceptable status code.")
-      return "Technical issue"
+      return "Technical issue: \(reason ?? "")"
     case .encodingFailed:
       print("Parameter or Multi-part encoding failed. Reason: Missing URL, json/plist encoding failed, stream read/write failed, etc.")
       return "Technical issue"
@@ -141,7 +142,7 @@ enum OrderType: String {
   case pickupOrTakeout = "Pick Up / Take out"
   case lunchBuffet = "Lunch Buffet"
   case dinnerBuffet = "Dinner Buffet"
-  case eatInByOrder = "Eat-In By Order"
+  case eatInByOrder = "Eat-In / By Order"
 }
 
 enum PaymentMethod: String {
@@ -212,6 +213,19 @@ enum PriceRange: Equatable {
       return 65
     case .kid(let a):
       return a
+    }
+  }
+  
+  init?(index: Int, age: UInt) {
+    switch index {
+    case 0:
+      self = .adult
+    case 1:
+      self = .senior
+    case 2:
+      self = .kid(age: age)
+    default:
+      self = .none
     }
   }
   

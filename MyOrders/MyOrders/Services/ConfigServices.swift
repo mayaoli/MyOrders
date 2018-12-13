@@ -28,7 +28,7 @@ class ConfigServices: BaseServices {
       }
       
       guard data?.type == .json, let json = data?.json else {
-        completion(price, .responseValidationFailed)
+        completion(price, .responseValidationFailed(reason: response.debugDescription))
         return
       }
       

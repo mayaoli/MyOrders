@@ -29,7 +29,7 @@ class MenuServices: BaseServices {
       }
       
       guard data?.type == .json, let json = data?.json else {
-        completion(menu, .responseValidationFailed)
+        completion(menu, .responseValidationFailed(reason: response.debugDescription))
         return
       }
       
@@ -71,7 +71,7 @@ class MenuServices: BaseServices {
     }
       
       guard data?.type == .json, let _ = data?.json else {
-        completion(.responseValidationFailed)
+        completion(.responseValidationFailed(reason: response.debugDescription))
         return
       }
         

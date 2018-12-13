@@ -27,7 +27,7 @@ class PINServices: BaseServices {
       }
       
       guard data?.type == .json, let json = data?.json else {
-        completion(false, .responseValidationFailed)
+        completion(false, .responseValidationFailed(reason: response.debugDescription))
         return
       }
       

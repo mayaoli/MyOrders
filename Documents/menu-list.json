@@ -10,9 +10,10 @@
             "name":"Seaweed",
             "description":"Sea weed - salad",
             "category":"1",
-            "price":"$1.99",
+            "price":"1.99",
             "isHot":"false",
-            "orderType":"All"
+            "orderType":"All",
+			"isNewItem":"true"
          },
          {  
             "id":"2",
@@ -20,9 +21,9 @@
             "name":"Edemame",
             "description":"Edemame with salt",
             "category":"1",
-            "price":"$1.99",
+            "price":"1.99",
             "isHot":"false",
-            "orderType":"All"
+            "orderType":"Eat-In / By Order"
          },
          {  
             "id":"3",
@@ -30,7 +31,7 @@
             "name":"Sonomono",
             "description":"noodle salad",
             "category":"1",
-            "price":"$1.99",
+            "price":"1.99",
             "isHot":"false",
             "orderType":"All"
          },
@@ -40,9 +41,9 @@
             "name":"Fried sushi",
             "description":"Deep fried /w thousand island source",
             "category":"1",
-            "price":"$6.99",
+            "price":"6.99",
             "isHot":"true",
-            "orderType":"All"
+            "orderType":"Eat-In / By Order"
          },
          {  
             "id":"5",
@@ -50,7 +51,7 @@
             "name":"test",
             "description":"test",
             "category":"1",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"false",
             "orderType":"All"
          }
@@ -67,7 +68,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -77,7 +78,7 @@
             "name":"Miso2",
             "description":"Miso soup 2",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -87,7 +88,7 @@
             "name":"Miso3",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -97,7 +98,7 @@
             "name":"Miso4",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -107,7 +108,7 @@
             "name":"Miso5",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -117,7 +118,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -127,7 +128,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -137,7 +138,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -147,7 +148,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -157,7 +158,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -167,7 +168,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -177,7 +178,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -187,7 +188,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -197,7 +198,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -207,7 +208,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -217,7 +218,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -227,7 +228,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -237,7 +238,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -247,7 +248,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -257,7 +258,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -267,7 +268,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -277,7 +278,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -287,7 +288,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -297,7 +298,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -307,7 +308,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -317,7 +318,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -327,7 +328,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -337,7 +338,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          },
@@ -347,7 +348,7 @@
             "name":"Miso",
             "description":"Miso soup",
             "category":"2",
-            "price":"$2.99",
+            "price":"2.99",
             "isHot":"true",
             "orderType":"All"
          }

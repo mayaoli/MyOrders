@@ -39,24 +39,12 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ohd-bM-InP" userLabel="- Button">
-                        <rect key="frame" x="634" y="12" width="36" height="36"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="Ohd-bM-InP" secondAttribute="height" multiplier="1:1" id="N7L-kj-26d"/>
-                            <constraint firstAttribute="width" constant="36" id="a69-vO-5Lz"/>
-                        </constraints>
-                        <connections>
-                            <action selector="removeTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pBH-9y-DPi"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="BkG-Af-jDC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="06k-xT-Lg9"/>
                     <constraint firstItem="Uwh-DO-mtn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0x5-VI-dCm"/>
-                    <constraint firstItem="Ohd-bM-InP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="NaH-9c-FAf"/>
                     <constraint firstItem="eZW-M6-dkV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="jEt-wj-fLk"/>
                     <constraint firstItem="Uwh-DO-mtn" firstAttribute="leading" secondItem="eZW-M6-dkV" secondAttribute="trailing" constant="20" id="kvw-Oa-NTu"/>
-                    <constraint firstAttribute="trailing" secondItem="Ohd-bM-InP" secondAttribute="trailing" constant="30" id="nSc-i2-b9h"/>
                     <constraint firstItem="eZW-M6-dkV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="o4Y-uN-Tfz"/>
                     <constraint firstItem="BkG-Af-jDC" firstAttribute="leading" secondItem="Uwh-DO-mtn" secondAttribute="trailing" constant="20" id="xMD-QK-1t2"/>
                 </constraints>

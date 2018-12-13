@@ -17,7 +17,8 @@ class Customer: NSObject, NSCoding, JSONModel {
   
   func encode(with aCoder: NSCoder) {
     aCoder.encode(self.customerName, forKey: "customerName")
-    aCoder.encode(self.priceRange, forKey: "priceRange")
+    aCoder.encode(self.priceRange.index, forKey: "priceRange.index")
+    aCoder.encode(self.priceRange.age, forKey: "priceRange.age")
   }
   
   override init() {
@@ -31,11 +32,10 @@ class Customer: NSObject, NSCoding, JSONModel {
     } else {
       customerName = ""
     }
-    if let dpriceRange = aDecoder.decodeObject(forKey: "priceRange") as? PriceRange {
-      priceRange = dpriceRange
-    } else {
-      priceRange = .none
-    }
+    
+    let dpriceRangeIndex = aDecoder.decodeInteger(forKey: "priceRange.index")
+    let dpriceRangeAge = aDecoder.decodeObject(forKey: "priceRange.age") as? UInt ?? 0
+    priceRange = PriceRange.init(index: dpriceRangeIndex, age: dpriceRangeAge) ?? .none
   }
   
   required init(json: JSON) throws {

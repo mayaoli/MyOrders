@@ -13,6 +13,7 @@ protocol BillEventsInterface: BaseEventsInterface {
   func getRowNumber(_ section: Int) -> Int
   func getRowContent(_ indexPath: IndexPath) -> String
   func getRowContentDetail(_ indexPath: IndexPath) -> String
+  func getSectionTitle(_ section: Int) -> String?
 }
 
 protocol BillOutputInterface: BaseOutputInterface {
@@ -68,7 +69,8 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
       // + 2.tax
       // + 3.total due
       // + 4.discount price (cash discount ...)
-      return 4
+      // + 5.tip suggestions
+      return 5
     case 3: // - service info
       // + 1.Server name
       // + 2.table #
@@ -81,7 +83,10 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
   }
   
   func getRowContent(_ indexPath: IndexPath) -> String {
-
+    guard Price.sharedInstance.restaurant != nil, let order = Bill.sharedInstance.order, let customers = Bill.sharedInstance.customers else {
+      return ""
+    }
+    
     var text: String = ""
     
     switch indexPath.section {
@@ -105,20 +110,27 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
       }
     case 1:
       // Order info
-      if let des = Bill.sharedInstance.customers?[indexPath.row].priceRange.description {
-        text = des
+      if indexPath.row < customers.count {
+        text = customers[indexPath.row].priceRange.description
+      } else if let byOrder = (Bill.sharedInstance.order?.items.filter{ $0.1.orderAvailability == .eatInByOrder })?.map({ (key, value) in (value) })  {
+        let curIdx = indexPath.row - customers.count
+        if curIdx < byOrder.count {
+          text = "\(byOrder[curIdx].name) [Qty:\(byOrder[curIdx].quantity)]"
+        }
       }
     case 2:
       // Bill info
       switch indexPath.row {
       case 0:
-        text = "Subtitle"
+        text = "    Subtotal"
       case 1:
-        text = "Tax"
+        text = "    Tax [HST \(Constants.TAX_RATE*100)%]"
       case 2:
-        text = "Total due"
+        text = "Total Due"
       case 3:
-        text = "Discount price"
+        text = "Cash Payment"
+      case 4:
+        text = "Tip Rate"
       default:
         break
       }
@@ -130,10 +142,7 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
   }
   
   func getRowContentDetail(_ indexPath: IndexPath) -> String {
-    guard Price.sharedInstance.restaurant != nil, let order = Bill.sharedInstance.order else {
-      return ""
-    }
-    guard let cust = Bill.sharedInstance.customers, indexPath.row < cust.count else {
+    guard Price.sharedInstance.restaurant != nil, let order = Bill.sharedInstance.order, let customers = Bill.sharedInstance.customers else {
       return ""
     }
     
@@ -143,24 +152,38 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
       // Order info
       switch order.orderType {
       case .lunchBuffet, .dinnerBuffet:
-        detail = "$\(Price.getAmount(order.orderType, Bill.sharedInstance.customers![indexPath.row].priceRange.age))"
+        if indexPath.row < customers.count {
+          detail = Price.getAmount(order.orderType, customers[indexPath.row].priceRange.age).toCurrency()
+        } else if let byOrder = (Bill.sharedInstance.order?.items.filter{ $0.1.orderAvailability == .eatInByOrder })?.map({ (key, value) in (value) })  {
+          let curIdx = indexPath.row - customers.count
+          if curIdx < byOrder.count {
+            detail = ((byOrder[curIdx].price ?? 0) * Double(byOrder[curIdx].quantity)).toCurrency()
+          }
+        }
       default:
         break
       }
     case 2:
       // Bill info
-      switch indexPath.row {
-      case 0:
-        detail = "$\(Bill.sharedInstance.payment?.rawAmount ?? 0)"
-      case 1:
-        detail = "$\(Bill.sharedInstance.payment?.tax ?? 0)"
-      case 2:
-        detail = "$\(Bill.sharedInstance.payment?.totalAmount ?? 0)"
-      case 3:
-        detail = "$\(Bill.sharedInstance.payment?.cashAmount ?? 0)"
-      default:
-        break
+      if let pay = Bill.sharedInstance.payment {
+        switch indexPath.row {
+        case 0:
+          detail = pay.rawAmount.toCurrency()
+        case 1:
+          detail = pay.tax.toCurrency()
+        case 2:
+          detail = pay.totalAmount.toCurrency()
+        case 3:
+          detail = pay.cashAmount.toCurrency()
+        case 4:
+          detail = String(format: "10%% = $%.2f | 15%% = $%.2f | 20%% = $%.2f", pay.tip10percent, pay.tip15percent, pay.tip20percent)
+        default:
+          break
+        }
+      } else {
+        detail = "$---"
       }
+      
       
     default:
       break
@@ -183,4 +206,7 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
     }
   }
   
+  func getSectionTitle(_ section: Int) -> String? {
+    return "Your Receipt"
+  }
 }

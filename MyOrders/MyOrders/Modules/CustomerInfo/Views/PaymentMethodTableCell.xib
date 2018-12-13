@@ -25,7 +25,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pGe-P6-fht">
-                        <rect key="frame" x="181.5" y="8" width="121" height="29"/>
+                        <rect key="frame" x="343" y="8" width="121" height="29"/>
                         <segments>
                             <segment title="First"/>
                             <segment title="Second"/>
@@ -37,10 +37,11 @@
                         </connections>
                     </segmentedControl>
                 </subviews>
+                <color key="backgroundColor" red="0.69411764710000001" green="0.1647058824" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="pGe-P6-fht" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="a3N-DZ-Me4"/>
                     <constraint firstItem="pGe-P6-fht" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jDM-zF-vuq"/>
                     <constraint firstItem="NYV-fD-7aM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="lqO-rT-Itf"/>
+                    <constraint firstItem="pGe-P6-fht" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailing" constant="-20" id="pN3-JB-pdO"/>
                     <constraint firstItem="NYV-fD-7aM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="svF-yn-hEv"/>
                 </constraints>
             </tableViewCellContentView>

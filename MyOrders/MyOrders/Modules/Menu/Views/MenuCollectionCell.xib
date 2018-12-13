@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,14 +21,21 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBW-4o-ErJ">
                         <rect key="frame" x="0.0" y="0.0" width="236" height="210"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-image" translatesAutoresizingMaskIntoConstraints="NO" id="cfA-rA-5E5" userLabel="Image View">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-image" translatesAutoresizingMaskIntoConstraints="NO" id="cfA-rA-5E5" userLabel="menu item image">
                                 <rect key="frame" x="2" y="2" width="232" height="158"/>
                             </imageView>
-                            <view alpha="0.78000000000000003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byH-zT-bu6" userLabel="Item Name Panel">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new-item" translatesAutoresizingMaskIntoConstraints="NO" id="U0d-x6-Fnc" userLabel="new image">
+                                <rect key="frame" x="7" y="7" width="68" height="48.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="68" id="KGB-CN-qIF"/>
+                                    <constraint firstAttribute="width" secondItem="U0d-x6-Fnc" secondAttribute="height" multiplier="7:5" id="LiQ-iD-LNc"/>
+                                </constraints>
+                            </imageView>
+                            <view alpha="0.78000000000000003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byH-zT-bu6" userLabel="Item name Panel">
                                 <rect key="frame" x="0.0" y="112" width="236" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Label Label Label Label 123456 7890" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ii-3U-Ttq" userLabel="Name Label">
-                                        <rect key="frame" x="12" y="3.5" width="212" height="44"/>
+                                        <rect key="frame" x="12" y="3" width="212" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="4qu-8X-fqN"/>
                                         </constraints>
@@ -96,10 +102,12 @@
                             <constraint firstAttribute="trailing" secondItem="cfA-rA-5E5" secondAttribute="trailing" constant="2" id="eQa-rH-Uhh"/>
                             <constraint firstItem="EuK-oP-1ai" firstAttribute="width" secondItem="cfA-rA-5E5" secondAttribute="width" id="fVE-uE-Uyc"/>
                             <constraint firstItem="b5N-G2-I1Y" firstAttribute="centerX" secondItem="pBW-4o-ErJ" secondAttribute="centerX" id="hc7-A2-omP"/>
+                            <constraint firstItem="U0d-x6-Fnc" firstAttribute="top" secondItem="cfA-rA-5E5" secondAttribute="top" constant="5" id="mJr-Dc-ioS"/>
                             <constraint firstAttribute="trailing" secondItem="hwO-O3-5IZ" secondAttribute="trailing" constant="20" id="pcC-uU-kIB"/>
                             <constraint firstItem="EuK-oP-1ai" firstAttribute="leading" secondItem="cfA-rA-5E5" secondAttribute="leading" id="rmR-Dm-pNM"/>
                             <constraint firstItem="hwO-O3-5IZ" firstAttribute="top" secondItem="EDf-fo-vbS" secondAttribute="top" id="sKY-Ur-yjk"/>
                             <constraint firstItem="byH-zT-bu6" firstAttribute="bottom" secondItem="cfA-rA-5E5" secondAttribute="bottom" constant="2" id="yCX-6q-XcE"/>
+                            <constraint firstItem="U0d-x6-Fnc" firstAttribute="leading" secondItem="cfA-rA-5E5" secondAttribute="leading" constant="5" id="zbZ-te-x2Y"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -115,14 +123,16 @@
                 <outlet property="addButton" destination="hwO-O3-5IZ" id="JgQ-Qg-qTc"/>
                 <outlet property="itemImage" destination="cfA-rA-5E5" id="nTF-we-2BM"/>
                 <outlet property="itemName" destination="8Ii-3U-Ttq" id="IJd-Mb-oNN"/>
+                <outlet property="newItemImage" destination="U0d-x6-Fnc" id="wGp-Oh-3X8"/>
                 <outlet property="quantityLabel" destination="b5N-G2-I1Y" id="cZG-5S-QQy"/>
                 <outlet property="removeButton" destination="EDf-fo-vbS" id="g6I-yy-LmQ"/>
             </connections>
-            <point key="canvasLocation" x="165" y="56"/>
+            <point key="canvasLocation" x="164.80000000000001" y="55.772113943028494"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="add" width="169" height="169"/>
+        <image name="new-item" width="192" height="137"/>
         <image name="no-image" width="850" height="500"/>
         <image name="remove" width="64" height="64"/>
     </resources>

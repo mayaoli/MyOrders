@@ -30,14 +30,14 @@ class Menu: NSObject, NSCoding, JSONModel {
     isHot = json["isHot"].boolValue
     menuItems = try UtilityManager.getArray(json["items"], type: MenuItem.self)
   }
-
+  
   func encode(with aCoder: NSCoder) {
     aCoder.encode(self.categoryId, forKey: "categoryId")
     aCoder.encode(self.categoryName, forKey: "name")
     aCoder.encode(self.isHot, forKey: "isHot")
     aCoder.encode(self.menuItems, forKey: "items")
   }
-
+  
   required init?(coder aDecoder: NSCoder) {
     if let dcategoryId = aDecoder.decodeObject(forKey: "categoryId") as? String {
       categoryId = dcategoryId
@@ -63,13 +63,13 @@ class Menu: NSObject, NSCoding, JSONModel {
 }
 
 class MenuItem: NSObject, NSCoding, JSONModel {
-    
+  
   // menu item id
   let mid: String
   
   // category - Appetizers|Soup|Salad|...
   let category: String
-    
+  
   // image url
   let imageURL: String?
   
@@ -88,6 +88,9 @@ class MenuItem: NSObject, NSCoding, JSONModel {
   // orderType - delivery|pick-up/take-out|eat-in
   let orderAvailability: OrderType
   
+  // mark as new item
+  let isNewItem: Bool
+  
   var payload: [String : String] {
     return [
       "id": self.mid,
@@ -97,7 +100,8 @@ class MenuItem: NSObject, NSCoding, JSONModel {
       "category": self.category,
       "price": self.price?.description ?? "",
       "isHot": self.isHot.description,
-      "orderType": self.orderAvailability.rawValue
+      "orderType": self.orderAvailability.rawValue,
+      "isNewItem": self.isNewItem.description
     ]
   }
   
@@ -106,82 +110,89 @@ class MenuItem: NSObject, NSCoding, JSONModel {
   }
   
   func encode(with aCoder: NSCoder) {
-      aCoder.encode(self.mid, forKey: "id")
-      aCoder.encode(self.imageURL, forKey: "img")
-      aCoder.encode(self.name, forKey: "name")
-      aCoder.encode(self.shortDescription, forKey: "description")
-      aCoder.encode(self.category, forKey: "category")
-      aCoder.encode(self.price, forKey: "price")
-      aCoder.encode(self.isHot, forKey: "ishot")
-      aCoder.encode(self.orderAvailability.rawValue, forKey: "orderType")
+    aCoder.encode(self.mid, forKey: "id")
+    aCoder.encode(self.imageURL, forKey: "img")
+    aCoder.encode(self.name, forKey: "name")
+    aCoder.encode(self.shortDescription, forKey: "description")
+    aCoder.encode(self.category, forKey: "category")
+    aCoder.encode(self.price, forKey: "price")
+    aCoder.encode(self.isHot, forKey: "ishot")
+    aCoder.encode(self.orderAvailability.rawValue, forKey: "ordertype")
+    aCoder.encode(self.isNewItem, forKey: "isnewitem")
   }
   
   override init() {
-      mid = ""
-      imageURL = ""
-      name = ""
-      shortDescription = ""
-      category = ""
-      price = nil
-      isHot = true
-      orderAvailability = OrderType.all
+    mid = ""
+    imageURL = ""
+    name = ""
+    shortDescription = ""
+    category = ""
+    price = nil
+    isHot = true
+    orderAvailability = OrderType.all
+    isNewItem = false
   }
   
   
   required init?(coder aDecoder: NSCoder) {
-    
-      if let dmid = aDecoder.decodeObject(forKey: "id") as? String{
-          mid = dmid
-      } else {
-          mid = ""
-      }
-      if let dimageURL = aDecoder.decodeObject(forKey: "img") as? String{
-          imageURL = dimageURL
-      } else {
-          imageURL = ""
-      }
-      if let dname = aDecoder.decodeObject(forKey: "name") as? String{
-          name = dname
-      } else {
-          name = ""
-      }
-      if let dshortDescription = aDecoder.decodeObject(forKey: "description") as? String{
-          shortDescription = dshortDescription
-      } else {
-          shortDescription = ""
-      }
-      if let dcategory = aDecoder.decodeObject(forKey: "category") as? String{
-          category = dcategory
-      } else {
-          category = ""
-      }
-      if let dprice = aDecoder.decodeObject(forKey: "price") as? Double{
-          price = dprice
-      } else {
-          price = nil
-      }
-      if let dhot = aDecoder.decodeObject(forKey: "isHot") as? Bool{
-          isHot = dhot
-      } else {
-          isHot = true
-      }
-      if let dType = aDecoder.decodeObject(forKey: "orderType") as? String {
-        orderAvailability = OrderType(rawValue: dType)!
-      } else {
-          orderAvailability = .all
-      }
+    if let dmid = aDecoder.decodeObject(forKey: "id") as? String{
+      mid = dmid
+    } else {
+      mid = ""
+    }
+    if let dimageURL = aDecoder.decodeObject(forKey: "img") as? String{
+      imageURL = dimageURL
+    } else {
+      imageURL = ""
+    }
+    if let dname = aDecoder.decodeObject(forKey: "name") as? String{
+      name = dname
+    } else {
+      name = ""
+    }
+    if let dshortDescription = aDecoder.decodeObject(forKey: "description") as? String{
+      shortDescription = dshortDescription
+    } else {
+      shortDescription = ""
+    }
+    if let dcategory = aDecoder.decodeObject(forKey: "category") as? String{
+      category = dcategory
+    } else {
+      category = ""
+    }
+    if let dprice = aDecoder.decodeObject(forKey: "price") as? Double {
+      price = dprice
+    } else {
+      price = 0
+    }
+    if let disHot = aDecoder.decodeObject(forKey: "ishot") as? Bool {
+      isHot = disHot
+    } else {
+      isHot = aDecoder.decodeBool(forKey: "ishot")
+    }
+    if let dType = aDecoder.decodeObject(forKey: "ordertype") as? String {
+      orderAvailability = OrderType(rawValue: dType)!
+    } else {
+      orderAvailability = .all
+    }
+    if let disNewItem = aDecoder.decodeObject(forKey: "isnewitem") as? Bool {
+      isNewItem = disNewItem
+    } else {
+      isNewItem = aDecoder.decodeBool(forKey: "isnewitem")
+    }
   }
   
   required init(json: JSON) throws {
-      mid = json["id"].stringValue
-      imageURL = json["img"].stringValue
-      name = json["name"].stringValue
-      shortDescription = json["description"].stringValue
-      category = json["category"].stringValue
-      price = Double(json["price"].stringValue)
-      isHot = json["isHot"].boolValue
-      orderAvailability = OrderType.init(rawValue: json["orderType"].stringValue) ?? OrderType.all
+    mid = json["id"].stringValue
+    imageURL = json["img"].stringValue
+    name = json["name"].stringValue
+    shortDescription = json["description"].stringValue
+    category = json["category"].stringValue
+    price = Double(json["price"].stringValue)
+    isHot = json["isHot"].boolValue
+    orderAvailability = OrderType.init(rawValue: json["orderType"].stringValue) ?? OrderType.all
+    isNewItem = json["isNewItem"].boolValue
   }
-    
+  
 }
 

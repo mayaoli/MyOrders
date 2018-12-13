@@ -95,6 +95,8 @@ class BaseViewController: UIViewController, BaseViewInterface {
       return
     }
     
+    self.view.endEditing(true)
+    
     DispatchQueue.main.async {
       let noNetworkSnackbar = TTGSnackbar(message: error.debugDescription, duration: .middle)
       //noNetworkSnackbar.contentInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)

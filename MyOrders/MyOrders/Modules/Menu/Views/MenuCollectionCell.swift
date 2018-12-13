@@ -12,6 +12,7 @@ import AudioToolbox.AudioServices
 class MenuCollectionCell: UICollectionViewCell {
   
   @IBOutlet weak var itemImage: UIImageView!
+  @IBOutlet weak var newItemImage: UIImageView!
   @IBOutlet weak var itemName: UILabel!
   @IBOutlet weak var quantityLabel: UILabel!
   
@@ -23,7 +24,20 @@ class MenuCollectionCell: UICollectionViewCell {
       if thisItem.imageURL != nil {
         itemImage.imageFromUrl(thisItem.imageURL!)
       }
-      itemName.text = "[\(thisItem.mid.uppercased())] \(thisItem.name)"
+      newItemImage.isHidden = !thisItem.isNewItem
+      
+      // TODO: pass in order type
+      if Bill.sharedInstance.order?.orderType == .lunchBuffet || Bill.sharedInstance.order?.orderType == .dinnerBuffet {
+        if thisItem.orderAvailability == .eatInByOrder {
+          itemName.text = "[\(thisItem.mid.uppercased())] \(thisItem.name) - Pay \(thisItem.price?.toCurrency() ?? "")"
+          itemName.backgroundColor = UIColor.red
+        } else {
+          itemName.text = "[\(thisItem.mid.uppercased())] \(thisItem.name)"
+        }
+      } else {
+        itemName.text = "[\(thisItem.mid.uppercased())] \(thisItem.name) - \(thisItem.price?.toCurrency() ?? "")"
+      }
+      
       // TODO: need add status as part of the key
       if let item = Bill.sharedInstance.order?.items[thisItem.key], item.quantity > 0 {
         quantityLabel.text = "\(item.quantity)"
