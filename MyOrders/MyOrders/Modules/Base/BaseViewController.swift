@@ -98,7 +98,7 @@ class BaseViewController: UIViewController, BaseViewInterface {
     self.view.endEditing(true)
     
     DispatchQueue.main.async {
-      let noNetworkSnackbar = TTGSnackbar(message: error.debugDescription, duration: .middle)
+      let noNetworkSnackbar = TTGSnackbar(message: error.debugDescription, duration: .long)
       //noNetworkSnackbar.contentInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
       noNetworkSnackbar.cornerRadius = 0
       noNetworkSnackbar.backgroundColor = isWarning ? UIColor.yellow : UIColor.red

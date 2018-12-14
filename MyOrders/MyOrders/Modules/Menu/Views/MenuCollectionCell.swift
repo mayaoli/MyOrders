@@ -13,6 +13,7 @@ class MenuCollectionCell: UICollectionViewCell {
   
   @IBOutlet weak var itemImage: UIImageView!
   @IBOutlet weak var newItemImage: UIImageView!
+  @IBOutlet weak var itemPanel: UIView!
   @IBOutlet weak var itemName: UILabel!
   @IBOutlet weak var quantityLabel: UILabel!
   
@@ -30,9 +31,10 @@ class MenuCollectionCell: UICollectionViewCell {
       if Bill.sharedInstance.order?.orderType == .lunchBuffet || Bill.sharedInstance.order?.orderType == .dinnerBuffet {
         if thisItem.orderAvailability == .eatInByOrder {
           itemName.text = "[\(thisItem.mid.uppercased())] \(thisItem.name) - Pay \(thisItem.price?.toCurrency() ?? "")"
-          itemName.backgroundColor = UIColor.red
+          itemPanel.backgroundColor = UIColor.red
         } else {
           itemName.text = "[\(thisItem.mid.uppercased())] \(thisItem.name)"
+          itemPanel.backgroundColor = UIColor.darkGray
         }
       } else {
         itemName.text = "[\(thisItem.mid.uppercased())] \(thisItem.name) - \(thisItem.price?.toCurrency() ?? "")"

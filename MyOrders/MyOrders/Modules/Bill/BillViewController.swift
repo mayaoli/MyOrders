@@ -109,9 +109,12 @@ extension BillViewController: UITableViewDataSource {
     cell.textLabel?.text = self.eventHandler?.getRowContent(indexPath)
     cell.detailTextLabel?.text = self.eventHandler?.getRowContentDetail(indexPath)
     
-    if indexPath.section == 0 || (indexPath.section == 2 && (indexPath.row >= 2 && indexPath.row <= 3)) {
-      cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
-      cell.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
+    if indexPath.section == 0 || (indexPath.section == 2 && (indexPath.row >= 2 && indexPath.row <= (Bill.sharedInstance.payment?.paymentMethod == .cash ? 3 : 2))) {
+      cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 23.0)
+      cell.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 23.0)
+    } else {
+      cell.textLabel?.font = UIFont.systemFont(ofSize: 17.0)
+      cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 17.0)
     }
     
     return cell

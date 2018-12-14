@@ -27,6 +27,7 @@ class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInte
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var buttonPanel: UIView!
   
+  @IBOutlet weak var ageContainerView: UIView!
   @IBOutlet weak var ageInputView: UIView!
   @IBOutlet weak var ageSegmentYConstraint: NSLayoutConstraint!
   @IBOutlet weak var ageSegment: UISegmentedControl!
@@ -146,11 +147,15 @@ class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInte
     switch ageSegment.selectedSegmentIndex {
     case 0:
       self.valueChanged(PriceRange.adult.age)
-      self.ageInputView.isHidden = true
+      self.ageContainerView.isHidden = true
+      self.view.removeGestureRecognizer(tapAnywhereGestureRecognizer)
+      self.tableView.allowsSelection = true
       self.tableView.reloadData()
     case 1:
       self.valueChanged(PriceRange.senior.age)
-      self.ageInputView.isHidden = true
+      self.ageContainerView.isHidden = true
+      self.view.removeGestureRecognizer(tapAnywhereGestureRecognizer)
+      self.tableView.allowsSelection = true
       self.tableView.reloadData()
     default:
       showPicker(ageSegment.tag)
@@ -161,13 +166,14 @@ class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInte
     Bill.sharedInstance.payment?.paymentMethod = PaymentMethod.allCases[self.payMethodSegment.selectedSegmentIndex]
   }
   
-  private func showPopup(_ priceRange: PriceRange) {
+  private func showAgeInputView(_ priceRange: PriceRange) {
     let eps: CGFloat = 1e-5
     
-    ageInputView.isHidden = false
-    ageInputView.layer.anchorPoint = CGPoint(x: 0, y: 0.5)
-    ageInputView.transform = CGAffineTransform(scaleX: eps, y: eps)
-    ageInputView.updateConstraints()
+    self.tableView.allowsSelection = false
+    ageContainerView.isHidden = false
+    ageContainerView.layer.anchorPoint = CGPoint(x: 0, y: 0.5)
+    ageContainerView.transform = CGAffineTransform(scaleX: eps, y: eps)
+    ageContainerView.updateConstraints()
     
     ageInputView.shadow(radius: 10)
     ageSegment.selectedSegmentIndex = priceRange.index
@@ -184,7 +190,7 @@ class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInte
                    initialSpringVelocity: 0.5,
                    options: UIViewAnimationOptions(),
                    animations: {
-                    self.ageInputView.transform = CGAffineTransform(translationX: -self.ageInputView.bounds.width/2, y: 0)
+                    self.ageContainerView.transform = CGAffineTransform(translationX: -self.ageContainerView.bounds.width/2, y: 0)
     }) { _ in
       if priceRange == PriceRange.kid(age: priceRange.age) {
         self.showPicker(Int(priceRange.age))
@@ -204,6 +210,14 @@ class CustomerInfoViewControl: BaseTextFieldViewController, CustomerInfoViewInte
   }
   
   func refreshView() {
+    self.tableView.reloadData()
+  }
+  
+  @IBAction func okayButtonTapped(_ sender: Any) {
+    view.endEditing(true)
+    ageContainerView.isHidden = true
+    view.removeGestureRecognizer(tapAnywhereGestureRecognizer)
+    self.tableView.allowsSelection = true
     self.tableView.reloadData()
   }
   
@@ -351,7 +365,7 @@ extension CustomerInfoViewControl: UIPickerViewDelegate {
   
   func bind(priceRange : PriceRange, callback :@escaping (UInt) -> ()) {
     self.valueChanged = callback
-    self.showPopup(priceRange)
+    self.showAgeInputView(priceRange)
   }
 }
 
@@ -367,8 +381,9 @@ extension CustomerInfoViewControl: UIGestureRecognizerDelegate {
   @objc private func tappedAnywhere(_ tap: UITapGestureRecognizer) {
     if tap.state == .ended {
       view.endEditing(true)
-      ageInputView.isHidden = true
+      ageContainerView.isHidden = true
       view.removeGestureRecognizer(tapAnywhereGestureRecognizer)
+      self.tableView.allowsSelection = true
       self.tableView.reloadData()
     }
   }

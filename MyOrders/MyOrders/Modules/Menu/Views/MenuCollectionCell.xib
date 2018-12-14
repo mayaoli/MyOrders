@@ -123,6 +123,7 @@
                 <outlet property="addButton" destination="hwO-O3-5IZ" id="JgQ-Qg-qTc"/>
                 <outlet property="itemImage" destination="cfA-rA-5E5" id="nTF-we-2BM"/>
                 <outlet property="itemName" destination="8Ii-3U-Ttq" id="IJd-Mb-oNN"/>
+                <outlet property="itemPanel" destination="byH-zT-bu6" id="MXr-Wc-SZo"/>
                 <outlet property="newItemImage" destination="U0d-x6-Fnc" id="wGp-Oh-3X8"/>
                 <outlet property="quantityLabel" destination="b5N-G2-I1Y" id="cZG-5S-QQy"/>
                 <outlet property="removeButton" destination="EDf-fo-vbS" id="g6I-yy-LmQ"/>

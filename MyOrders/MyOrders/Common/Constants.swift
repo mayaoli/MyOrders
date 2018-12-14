@@ -186,7 +186,7 @@ enum PriceRange: Equatable {
     case .senior:
       return "Senior"
     case .kid(let age):
-      return "Kid (\(age))"
+      return "Kid (\(age) years old)"
     }
   }
   

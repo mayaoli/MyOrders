@@ -47,7 +47,7 @@ class OrderTableCell: UITableViewCell {
       
       if Bill.sharedInstance.order?.orderType == .lunchBuffet || Bill.sharedInstance.order?.orderType == .dinnerBuffet {
         if thisItem.orderAvailability == .eatInByOrder {
-          price.text = thisItem.price!.toCurrency()
+          price.text = "\(thisItem.price!.toCurrency()) ea"
           price.textColor = UIColor.red
         } else {
           price.isHidden = true
@@ -56,7 +56,7 @@ class OrderTableCell: UITableViewCell {
         if thisItem.price == nil {
           price.isHidden = true
         } else {
-          price.text = thisItem.price!.toCurrency()
+          price.text = "\(thisItem.price!.toCurrency())ea"
         }
       }
     }
@@ -75,7 +75,7 @@ class OrderTableCell: UITableViewCell {
   
   @IBAction func addTapped(_ sender: Any) {
     thisItem.quantity += 1
-    quantity.text = String(thisItem.quantity)
+    quantity.text = "Qty: \(thisItem.quantity)"
     
     (self.delegate as! OrdersViewInterface).refreshView(false)
   }

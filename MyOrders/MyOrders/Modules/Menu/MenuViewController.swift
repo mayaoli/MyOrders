@@ -159,7 +159,7 @@ class MenuViewController: BaseViewController, MenuViewInterface {
       return
     }
     guard thisBill.order!.items.filter({ $1.status != .pending }).count > 0 else {
-      self.renderWarning("You picked some items that haven't been submitted./nTap on orders button on the right top corner to submit.")
+      self.renderWarning("You picked some items that haven't been submitted.\nTap on orders button on the right top corner to submit.")
       return
     }
     guard thisBill.order!.items.filter({ $1.status == .pending }).count == 0 else {

@@ -68,9 +68,9 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
       // + 1.subtotal
       // + 2.tax
       // + 3.total due
-      // + 4.discount price (cash discount ...)
+      // + 4.discount price (cash discount ...) -----> if cash pay
       // + 5.tip suggestions
-      return 5
+      return Bill.sharedInstance.payment?.paymentMethod == .cash ? 5 : 4
     case 3: // - service info
       // + 1.Server name
       // + 2.table #
@@ -112,10 +112,11 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
       // Order info
       if indexPath.row < customers.count {
         text = customers[indexPath.row].priceRange.description
-      } else if let byOrder = (Bill.sharedInstance.order?.items.filter{ $0.1.orderAvailability == .eatInByOrder })?.map({ (key, value) in (value) })  {
+      } else {
+        let byOrder = (order.items.filter{ $0.1.orderAvailability == .eatInByOrder }).map({ (key, value) in (value) })
         let curIdx = indexPath.row - customers.count
         if curIdx < byOrder.count {
-          text = "\(byOrder[curIdx].name) [Qty:\(byOrder[curIdx].quantity)]"
+          text = "\(byOrder[curIdx].name) [ Price: \(byOrder[curIdx].price?.toCurrency() ?? "-") ea    Qty: x\(byOrder[curIdx].quantity) ]"
         }
       }
     case 2:
@@ -124,15 +125,15 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
       case 0:
         text = "    Subtotal"
       case 1:
-        text = "    Tax [HST \(Constants.TAX_RATE*100)%]"
+        text = "    Tax [ HST \(Constants.TAX_RATE*100)% ]"
       case 2:
         text = "Total Due"
-      case 3:
-        text = "Cash Payment"
-      case 4:
-        text = "Tip Rate"
       default:
-        break
+        if Bill.sharedInstance.payment?.paymentMethod == .cash, indexPath.row == 3 {
+          text = "Cash Payment"
+        } else {
+          text = "    Tip Rate"
+        }
       }
     default:
       break
@@ -173,12 +174,12 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
           detail = pay.tax.toCurrency()
         case 2:
           detail = pay.totalAmount.toCurrency()
-        case 3:
-          detail = pay.cashAmount.toCurrency()
-        case 4:
-          detail = String(format: "10%% = $%.2f | 15%% = $%.2f | 20%% = $%.2f", pay.tip10percent, pay.tip15percent, pay.tip20percent)
         default:
-          break
+          if Bill.sharedInstance.payment?.paymentMethod == .cash, indexPath.row == 3 {
+            detail = pay.cashAmount.toCurrency()
+          } else {
+            detail = String(format: "10%% = $%.2f | 15%% = $%.2f | 20%% = $%.2f", pay.tip10percent, pay.tip15percent, pay.tip20percent)
+          }
         }
       } else {
         detail = "$---"
