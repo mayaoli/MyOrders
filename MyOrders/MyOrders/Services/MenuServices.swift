@@ -12,7 +12,7 @@ class MenuServices: BaseServices {
   
   func getMenuList(completion: @escaping (_ menu: [Menu]?, _ error: NetworkingError?) -> Void) -> URLSessionTask? {
     
-    let urlString = "\(Constants.BASE_URL)/menu"
+    let urlString = "\(Constants.BASE_URL)/menu-list.json"
     
     guard let url = URL(string: urlString) else {
       completion([], .unknown)

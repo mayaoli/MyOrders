@@ -30,10 +30,12 @@ class EatInPresenter: BasePresenter, EatInEventsInterface, EatInOutputInterface 
   }
   
   func validatePIN(_ pin: String) {
+    self.view?.disableEnableField()
     self.interactor?.validatePIN(pin)
   }
   
   func validationCompleted(_ valid: Bool, _ error: NetworkingError?) {
+    self.view?.disableEnableField()
     guard error == nil else {
       self.view?.renderError(error!)
       return

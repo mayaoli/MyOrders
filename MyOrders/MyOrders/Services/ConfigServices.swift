@@ -11,7 +11,7 @@ import Foundation
 class ConfigServices: BaseServices {
 
   func getPriceMatrix(completion: @escaping (_ price: Price?, _ error: NetworkingError?) -> Void) -> URLSessionTask? {
-    let urlString = "\(Constants.BASE_URL)/price"
+    let urlString = "\(Constants.BASE_URL)/price-list.json"
     
     guard let url = URL(string: urlString) else {
       completion(nil, .unknown)

@@ -62,7 +62,7 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
     case 1: // - order info
       if order.isBuffet {
         // number of people + number of by order items
-        return Bill.sharedInstance.customers!.count + (Bill.sharedInstance.order?.items.filter{ $0.1.orderAvailability == .eatInByOrder }.count ?? 0)
+        return Bill.sharedInstance.customers!.count + (Bill.sharedInstance.order?.items.filter{ $0.1.status != .pending && $0.1.orderAvailability == .eatInByOrder }.count ?? 0)
       }
     case 2: // - bill info
       // + 1.subtotal
@@ -113,7 +113,7 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
       if indexPath.row < customers.count {
         text = customers[indexPath.row].priceRange.description
       } else {
-        let byOrder = (order.items.filter{ $0.1.orderAvailability == .eatInByOrder }).map({ (key, value) in (value) })
+        let byOrder = (order.items.filter{ $0.1.status != .pending && $0.1.orderAvailability == .eatInByOrder }).map({ (key, value) in (value) })
         let curIdx = indexPath.row - customers.count
         if curIdx < byOrder.count {
           text = "\(byOrder[curIdx].name) [ Price: \(byOrder[curIdx].price?.toCurrency() ?? "-") ea    Qty: x\(byOrder[curIdx].quantity) ]"
@@ -155,7 +155,7 @@ class BillPresenter: BasePresenter, BillEventsInterface, BillOutputInterface {
       case .lunchBuffet, .dinnerBuffet:
         if indexPath.row < customers.count {
           detail = Price.getAmount(order.orderType, customers[indexPath.row].priceRange.age).toCurrency()
-        } else if let byOrder = (Bill.sharedInstance.order?.items.filter{ $0.1.orderAvailability == .eatInByOrder })?.map({ (key, value) in (value) })  {
+        } else if let byOrder = (Bill.sharedInstance.order?.items.filter{  $0.1.status != .pending && $0.1.orderAvailability == .eatInByOrder })?.map({ (key, value) in (value) })  {
           let curIdx = indexPath.row - customers.count
           if curIdx < byOrder.count {
             detail = ((byOrder[curIdx].price ?? 0) * Double(byOrder[curIdx].quantity)).toCurrency()

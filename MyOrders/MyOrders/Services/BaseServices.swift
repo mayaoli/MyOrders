@@ -256,17 +256,16 @@ class BaseServices {
         }
       } else if let error = response.error as? URLError {
         
-        if (error.errorCode == -1009) {
+        if (error.errorCode == -1009 || error.errorCode == -1005) {
           networkingError = .noInternet
           NetworkManager.sharedInstance.reachabilityStatus = .notReachable
         } else {
           networkingError = .requestValidationFailed
-          
         }
-        networkingError = (error.errorCode == -1009) ? NetworkingError.noInternet : NetworkingError.requestValidationFailed
         
+        print(" 📡 RESPONSE: 📡 \n\(error.localizedDescription)")
+
       } else {
-        
         networkingError = .requestValidationFailed
       }
       

@@ -37,6 +37,12 @@ class BillViewController: BaseViewController, BillViewInterface {
     return BillPresenter()
   }
   
+  override func renderError(_ error: NetworkingError) {
+    super.renderError(error)
+    self.closeTapped(error) 
+    //self.navigationController?.popToViewController(, animated: false)
+  }
+  
   /*
    // MARK: - Navigation
    

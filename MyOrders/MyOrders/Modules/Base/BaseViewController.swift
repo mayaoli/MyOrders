@@ -100,7 +100,8 @@ class BaseViewController: UIViewController, BaseViewInterface {
     DispatchQueue.main.async {
       let noNetworkSnackbar = TTGSnackbar(message: error.debugDescription, duration: .long)
       //noNetworkSnackbar.contentInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
-      noNetworkSnackbar.cornerRadius = 0
+      noNetworkSnackbar.cornerRadius = 10
+      noNetworkSnackbar.messageTextFont = UIFont.systemFont(ofSize: 23)
       noNetworkSnackbar.backgroundColor = isWarning ? UIColor.yellow : UIColor.red
       noNetworkSnackbar.messageTextColor = isWarning ? UIColor.mainOrangeColor : UIColor.white
       noNetworkSnackbar.messageTextAlign = .center

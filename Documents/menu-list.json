@@ -1,26 +1,23 @@
 [  
    {  
       "categoryId":"1",
-      "name":"Appetizer",
+      "name":"Sashimi (1pc)",
       "isHot":"false",
       "items":[  
          {  
             "id":"1",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Seaweed",
-            "description":"Sea weed - salad",
-            "category":"1",
+            "name":"White Tuna",
+            "description":"White tuna",
             "price":"1.99",
-            "isHot":"false",
             "orderType":"All",
-			"isNewItem":"true"
+   		 	"isNewItem":"true"
          },
          {  
             "id":"2",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no222",
-            "name":"Edemame",
-            "description":"Edemame with salt",
-            "category":"1",
+            "name":"Salmon",
+            "description":"Salmon fish",
             "price":"1.99",
             "isHot":"false",
             "orderType":"Eat-In / By Order"
@@ -28,30 +25,54 @@
          {  
             "id":"3",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no222",
-            "name":"Sonomono",
-            "description":"noodle salad",
-            "category":"1",
-            "price":"1.99",
+            "name":"Butterfish Mackerel",
+            "description":"Butterfish Mackerel",
+            "price":"2.99",
             "isHot":"false",
             "orderType":"All"
          },
          {  
             "id":"4",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no222",
-            "name":"Fried sushi",
-            "description":"Deep fried /w thousand island source",
-            "category":"1",
-            "price":"6.99",
+            "name":"Red Snapper",
+            "description":"Red Snapper",
+            "price":"2.99",
             "isHot":"true",
-            "orderType":"Eat-In / By Order"
+            "orderType":"All"
          },
          {  
             "id":"5",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"test",
-            "description":"test",
-            "category":"1",
+            "name":"Surf Clam",
+            "description":"Surf Clam",
             "price":"2.99",
+            "isHot":"false",
+            "orderType":"All"
+         },
+         {  
+            "id":"6",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Octopus",
+            "description":"Octopus",
+            "price":"2.99",
+            "isHot":"false",
+            "orderType":"All"
+         },
+         {  
+            "id":"7",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Crab Meat",
+            "description":"Crab Meat",
+            "price":"1.99",
+            "isHot":"false",
+            "orderType":"All"
+         },
+         {  
+            "id":"8",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Egg",
+            "description":"Egg",
+            "price":"1.99",
             "isHot":"false",
             "orderType":"All"
          }
@@ -59,15 +80,14 @@
    },
    {  
       "categoryId":"2",
-      "name":"Soup",
-      "isHot":"true",
+      "name":"Maki (Roll) (6pc)",
+      "isHot":"false",
       "items":[  
          {  
             "id":"1",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Salmon Roll",
+            "description":"Salmon Roll",
             "price":"2.99",
             "isHot":"true",
             "orderType":"All"
@@ -75,39 +95,32 @@
          {  
             "id":"2",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso2",
-            "description":"Miso soup 2",
-            "category":"2",
+            "name":"Tuna Roll",
+            "description":"Tuna Roll",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"3",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso3",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Spicy Salmon Roll",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"4",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso4",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Spicy Tuna Roll",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"5",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso5",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Hot Roll (deep fried)",
+            "description":"",
             "price":"2.99",
             "isHot":"true",
             "orderType":"All"
@@ -115,243 +128,574 @@
          {  
             "id":"6",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Spicy Avocado Roll",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"7",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Alaska Roll",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"8",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Spicy Butterfish Roll",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"9",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Eel Avocado Roll",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"10",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Spicy California Roll",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"11",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Dynamite Roll (8pcs)",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"12",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Crunch Roll",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"13",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"California Roll",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"14",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Avocado Roll",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"15",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Cucumber Roll",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"16",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Asparagus Roll",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"17",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Avocado Cucumber Roll",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"18",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Yam Tempura Roll",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"19",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Sushi Pizza",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"20",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Salmon Pizza",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"21",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Green Dragon Roll (8pcs)",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"22",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Eel Dragon Roll (8pcs)",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"23",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Mango Flash Roll (8pcs)",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"24",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Excellent Dragon Roll (8pcs)",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          },
          {  
             "id":"25",
             "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
+            "name":"Fire House Roll (8pcs)",
+            "description":"",
             "price":"2.99",
-            "isHot":"true",
-            "orderType":"All"
-         },
-         {  
-            "id":"26",
-            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
-            "price":"2.99",
-            "isHot":"true",
-            "orderType":"All"
-         },
-         {  
-            "id":"27",
-            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
-            "price":"2.99",
-            "isHot":"true",
-            "orderType":"All"
-         },
-         {  
-            "id":"28",
-            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
-            "price":"2.99",
-            "isHot":"true",
-            "orderType":"All"
-         },
-         {  
-            "id":"29",
-            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
-            "name":"Miso",
-            "description":"Miso soup",
-            "category":"2",
-            "price":"2.99",
-            "isHot":"true",
             "orderType":"All"
          }
-	 ]
+  ]
+   },
+   {  
+      "categoryId":"3",
+      "name":"Sushi (1pcs)",
+      "isHot":"false",
+      "items":[  
+         {  
+            "id":"1",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"White Tuna Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"2",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Salmon Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"3",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Spicy Tuna Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"4",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Spicy Salmon Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"5",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Eel Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"6",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Butterfish Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"7",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Crab Meat Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"8",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Red Snapper Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"9",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Mackerel Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"10",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Squid Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"11",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Shitake Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"12",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Tofu Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"13",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Egg Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"14",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Surf Clam Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"15",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Asparagus Sushi",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         }
+      ]
+   },
+   {  
+      "categoryId":"4",
+      "name":"Hand Roll (1pcs)",
+      "isHot":"false",
+      "items":[  
+         {  
+            "id":"1",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Dynamite Hand Roll",
+            "description":"Tempura shrimp, avocado, spicy mayonnaise and tobiko",
+            "price":"7.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"2",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Crunch Hand Roll",
+            "description":"Mayonnaise, avocado, spicy mayonnaise and tobiko",
+            "price":"4.50",
+            "orderType":"All"
+         },
+         {  
+            "id":"3",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Cucumber Hand Roll",
+            "description":"",
+            "price":"3.50",
+            "orderType":"All"
+         },
+         {  
+            "id":"4",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Avocado Hand Roll",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"5",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Avocado Cucumber Hand Roll",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"6",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Crab Meat Hand Roll",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"7",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Salmon Hand Roll",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"8",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Tuna Hand Roll",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"9",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Butterfish Hand Roll",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"10",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"California Hand Roll",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"11",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Spicy Salmon Hand Roll",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"12",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Spicy California Hand Roll",
+            "description":"           Eel Avocado Hand Roll",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"13",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Eel Avocado Hand Roll",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         }
+      ]
+   },
+   {  
+      "categoryId":"5",
+      "name":"Appetizer",
+      "isHot":"true",
+      "items":[  
+         {  
+            "id":"1",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Edamame",
+            "description":"Boiled green bean",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"2",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Gyoza (3pcs)",
+            "description":"Deep fried dumplings",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"3",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Spring Roll (2pcs)",
+            "description":"Deep fried vegetable spring rolls",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"4",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Age Dashi Tofu (4pcs)",
+            "description":"Deep frid tofu with tempura sauce",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"5",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Vegetable Tempura (4pcs)",
+            "description":"Deep fried vegetables with tempura sauce",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"6",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Yam Tempura (4pcs)",
+            "description":"Deep fried yam with tempura sauce",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"7",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Assorted Tempura (1 shrimp, 2 veg.)",
+            "description":"1 pc shrimp tempura, 2 pcs vegetable tempura with tempura sauce",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"8",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Yakitori (1pcs)",
+            "description":"Grilled chicken on skewers",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"9",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Calamari (6pcs)",
+            "description":"Frid squid with bread coating",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"10",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Chicken Kara-age",
+            "description":"Deep fried chicken with house sauce",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"11",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Yakitori (1pcs)",
+            "description":"Grilled chicken on skewers",
+            "price":"2.99",
+            "orderType":"All"
+         }
+      ]
+   },
+   {  
+      "categoryId":"6",
+      "name":"Salad",
+      "isHot":"false",
+      "items":[  
+         {  
+            "id":"1",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Green Salad",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"2",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Avocado Salad",
+            "description":"Mango Salad Sunomono Salad",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"3",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Mango Salad",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"4",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Sunomono Salad",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         }
+  ]
+   },
+   {  
+      "categoryId":"7",
+      "name":"Soup",
+      "isHot":"true",
+      "items":[  
+         {  
+            "id":"1",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Miso Soup",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"2",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Vegetable Soup",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"3",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Mushroom Soup",
+            "description":"",
+            "price":"2.99",
+            "orderType":"All"
+         },
+         {  
+            "id":"4",
+            "img":"https://lh5.googleusercontent.com/p/AF1QipPViaMD8ysOVYgbZtwhA6iTy_oMZc6qpUeNwfyI=w229-h160-k-no",
+            "name":"Seafood Soup",
+            "description":"Shrimp, crab meat, red snapper and fish cake",
+            "price":"2.99",
+            "orderType":"All"
+         }
+	   ]
    }
 ]

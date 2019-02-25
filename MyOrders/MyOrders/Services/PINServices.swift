@@ -11,16 +11,17 @@ import Foundation
 class PINServices: BaseServices {
   
   func ValidatePIN (_ pinText: String, completion: @escaping (_ valid: Bool, _ error: NetworkingError?) -> Void) -> URLSessionTask? {
-    let urlString = "\(Constants.BASE_URL)/pin"
+    let urlString = "\(Constants.BASE_URL)/pin.json"
     
     guard let url = URL(string: urlString) else {
       completion(false, .unknown)
       return nil
     }
     
-    let parameters : [String : Any] = ["validate" : pinText]
+    //let parameters : [String : Any] = ["validate" : pinText]
     
-    return post(url: url, bodyParameters: parameters) { (response, data, error) in
+    //return post(url: url, bodyParameters: parameters) { (response, data, error) in
+    return get(url: url) { (response, data, error) in
       guard error == nil else {
         completion(false, error)
         return

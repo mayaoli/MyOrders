@@ -108,8 +108,8 @@ class OrdersViewController: BaseViewController, OrdersViewInterface {
     }
     StorageManager.setObject(objToSave: sortedItems as NSArray, path: Constants.STORAGE_ORDER_PATH)
     
-    self.refreshView(false)
-    self.dismiss(animated: true)
+    self.refreshView(true)
+    //self.dismiss(animated: true)
   }
   
   @IBAction func billTapped(_ sender: Any) {
@@ -146,7 +146,7 @@ class OrdersViewController: BaseViewController, OrdersViewInterface {
     guard let menuVC = navCtrl.topViewController as? MenuViewController else {
       return
     }
-    menuVC.collectionView.reloadData()
+    menuVC.menuView.reloadData()
   }
   
 }

@@ -14,7 +14,7 @@ class Menu: NSObject, NSCoding, JSONModel {
   
   let categoryId: String
   let categoryName: String
-  let isHot: Bool // is not used
+  let isHot: Bool
   let menuItems: [MenuItem]
   
   override init() {
@@ -29,6 +29,10 @@ class Menu: NSObject, NSCoding, JSONModel {
     categoryName = json["name"].stringValue
     isHot = json["isHot"].boolValue
     menuItems = try UtilityManager.getArray(json["items"], type: MenuItem.self)
+    menuItems.forEach{ (item) in
+      item.category = json["categoryId"].stringValue
+      item.isHot = json["isHot"].boolValue
+    }
   }
   
   func encode(with aCoder: NSCoder) {
@@ -68,7 +72,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
   let mid: String
   
   // category - Appetizers|Soup|Salad|...
-  let category: String
+  var category: String
   
   // image url
   let imageURL: String?
@@ -83,7 +87,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
   let price: Double?
   
   // is hot or cold
-  let isHot: Bool
+  var isHot: Bool
   
   // orderType - delivery|pick-up/take-out|eat-in
   let orderAvailability: OrderType
@@ -106,6 +110,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
   }
   
   var key: String {
+    // status as part of the key
     return "C\(category)-I\(mid)-S\(OrderStatus.pending.hashValue)"
   }
   
@@ -128,7 +133,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
     shortDescription = ""
     category = ""
     price = nil
-    isHot = true
+    isHot = false
     orderAvailability = OrderType.all
     isNewItem = false
   }
@@ -187,7 +192,7 @@ class MenuItem: NSObject, NSCoding, JSONModel {
     imageURL = json["img"].stringValue
     name = json["name"].stringValue
     shortDescription = json["description"].stringValue
-    category = json["category"].stringValue
+    category = ""
     price = Double(json["price"].stringValue)
     isHot = json["isHot"].boolValue
     orderAvailability = OrderType.init(rawValue: json["orderType"].stringValue) ?? OrderType.all

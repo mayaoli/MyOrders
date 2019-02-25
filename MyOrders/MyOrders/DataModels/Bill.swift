@@ -168,7 +168,7 @@ class Bill: NSObject, NSCoding, JSONModel {
         self.payment?.rawAmount += Price.getAmount((order?.orderType)!, customer.priceRange.age)
       })
       
-      order?.items.filter{ $0.1.orderAvailability == .eatInByOrder }.forEach({ (item) in
+      order?.items.filter{  $0.1.status != .pending && $0.1.orderAvailability == .eatInByOrder }.forEach({ (item) in
         self.payment?.rawAmount += item.value.price! * Double(item.value.quantity)
       })
     } else {

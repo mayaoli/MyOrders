@@ -20,7 +20,6 @@ class OrderTableCell: UITableViewCell {
   @IBOutlet weak var price: UILabel!
   
   var thisItem: MenuOrder! {
-    //TODO: need more images
     didSet {
       addButton.isHidden = true
       removeButton.isHidden = true
@@ -30,14 +29,19 @@ class OrderTableCell: UITableViewCell {
         statusImage.image = #imageLiteral(resourceName: "pending")
         addButton.isHidden = false
         removeButton.isHidden = false
+        self.backgroundColor = UIColor.yellow
       case .new:
         statusImage.image = #imageLiteral(resourceName: "new")
+        self.backgroundColor = UIColor.clear
       case .processing:
         statusImage.image = #imageLiteral(resourceName: "processing")
+        self.backgroundColor = UIColor.clear
       case .ready:
         statusImage.image = #imageLiteral(resourceName: "ready")
+        self.backgroundColor = UIColor.clear
       case .fulfilled:
         statusImage.image = #imageLiteral(resourceName: "fulfilled")
+        self.backgroundColor = UIColor.lightGray
 //      default:
 //        statusImage.image = #imageLiteral(resourceName: "order")
       }
@@ -86,7 +90,6 @@ class OrderTableCell: UITableViewCell {
       quantity.text = String(thisItem.quantity)
       (self.delegate as! OrdersViewInterface).refreshView(false)
     } else {
-      // TODO: need add status as part of the key
       Bill.sharedInstance.order!.items.removeValue(forKey: thisItem.key)
       (self.delegate as! OrdersViewInterface).refreshView(true)
     }

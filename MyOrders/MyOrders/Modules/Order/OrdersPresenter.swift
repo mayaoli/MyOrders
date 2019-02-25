@@ -63,7 +63,7 @@ class OrdersPresenter: BasePresenter, OrdersEventsInterface, OrdersOutputInterfa
       sectionData.append(("Pending sent", (self.view?.pending)!))
     }
     if (self.view?.thisOrder.count ?? 0) > 0 {
-      sectionData.append(("My order", (self.view?.thisOrder)!))
+      sectionData.append(("My order in waiting", (self.view?.thisOrder)!))
     }
     if (self.view?.fulfilled.count ?? 0) > 0 {
       sectionData.append(("I liked ...", (self.view?.fulfilled)!))

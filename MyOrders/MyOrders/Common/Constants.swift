@@ -11,7 +11,7 @@ import SwiftyJSON
 import SWXMLHash
 
 struct Constants {
-  static let BASE_URL = "https://www.rbc.com"
+  static let BASE_URL = "http://beta.acurehab.ca/Content"
   static let STORAGE_MENU_PATH: String = "MENU"
   static let STORAGE_PRICE_PATH: String = "PRICE"
   static let STORAGE_ORDER_PATH: String = "ORDER"
@@ -20,19 +20,21 @@ struct Constants {
   // DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
   static let DISPATCH_DELAY = DispatchTime.now() + 0.1
   static let TAX_RATE = 0.13
-  static let DISCOUNT_RATE = 0.05
+  static let DISCOUNT_RATE = 0.10
 }
 
 enum ViewTags: Int {
   case TextFieldView = 1
   case StickyOrderButton = 2
   case StickyBillButton = 3
+  case StickyCategoryButton = 4
 }
 
 enum ReuseIdentifier: String {
   case baseHeaderCell
   case menuCollectionCell
   case sectionHeader
+  case categoryCollectionCell
   case largeImageView
   case orderTableCell
   case customerTableCell
@@ -53,6 +55,8 @@ enum ReuseIdentifier: String {
       return UINib(nibName: "MenuCollectionCell", bundle: nil)
     case .sectionHeader:
       return UINib(nibName: "SectionHeader", bundle: nil)
+    case .categoryCollectionCell:
+      return UINib(nibName: "CategoryCollectionCell", bundle: nil)
     case .orderTableCell:
       return UINib(nibName: "OrderTableCell", bundle: nil)
     case .customerTableCell:
@@ -98,13 +102,13 @@ enum NetworkingError: Error {
       return "No Internet connectivity. Reason: Check your network or Service not reachable."
     case .requestValidationFailed:
       print("Request validation failed. Reason: Invalid URL, incorrect request parameters, headers, http method, etc.")
-      return "Technical issue"
+      return "Technical issue. Reason: Invalid URL, incorrect request parameters, headers, http method, etc."
     case .responseValidationFailed(let reason):
       print("Response validatation failed. Reason: Data file nil, missing or unacceptable ContentType, serialization failed or unacceptable status code.")
       return "Technical issue: \(reason ?? "")"
     case .encodingFailed:
       print("Parameter or Multi-part encoding failed. Reason: Missing URL, json/plist encoding failed, stream read/write failed, etc.")
-      return "Technical issue"
+      return "Technical issue. Reason: Missing URL, json/plist encoding failed, stream read/write failed, etc."
     case .customError(let message):
       print(message)
       return message

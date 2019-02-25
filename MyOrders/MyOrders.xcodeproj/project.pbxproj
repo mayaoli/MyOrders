@@ -75,7 +75,11 @@
 		24AE5F0921386978000E3182 /* ConfigServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE5F0821386978000E3182 /* ConfigServices.swift */; };
 		24AE5F0B21388557000E3182 /* BillPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE5F0A21388557000E3182 /* BillPresenter.swift */; };
 		24AE5F0D2138856D000E3182 /* BillInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AE5F0C2138856D000E3182 /* BillInteractor.swift */; };
+		24B5DD9421FA922F0066E8F8 /* MenuCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B5DD9221FA922F0066E8F8 /* MenuCategoryView.swift */; };
+		24B5DD9521FA922F0066E8F8 /* MenuCategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B5DD9321FA922F0066E8F8 /* MenuCategoryView.xib */; };
 		24D92F862127477700F4B973 /* BillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D92F852127477700F4B973 /* BillViewController.swift */; };
+		24E0B12E2203892B0000ED95 /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0B12C2203892B0000ED95 /* CategoryCollectionCell.swift */; };
+		24E0B12F2203892B0000ED95 /* CategoryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24E0B12D2203892B0000ED95 /* CategoryCollectionCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,7 +152,11 @@
 		24AE5F0821386978000E3182 /* ConfigServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigServices.swift; sourceTree = "<group>"; };
 		24AE5F0A21388557000E3182 /* BillPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillPresenter.swift; sourceTree = "<group>"; };
 		24AE5F0C2138856D000E3182 /* BillInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillInteractor.swift; sourceTree = "<group>"; };
+		24B5DD9221FA922F0066E8F8 /* MenuCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCategoryView.swift; sourceTree = "<group>"; };
+		24B5DD9321FA922F0066E8F8 /* MenuCategoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCategoryView.xib; sourceTree = "<group>"; };
 		24D92F852127477700F4B973 /* BillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillViewController.swift; sourceTree = "<group>"; };
+		24E0B12C2203892B0000ED95 /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
+		24E0B12D2203892B0000ED95 /* CategoryCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionCell.xib; sourceTree = "<group>"; };
 		BD725C4175D35B51940C0AE0 /* Pods-MyOrders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.debug.xcconfig"; sourceTree = "<group>"; };
 		E970EAD61DDE8F7CEF5CC522 /* Pods-MyOrders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyOrders.release.xcconfig"; path = "../Pods/Target Support Files/Pods-MyOrders/Pods-MyOrders.release.xcconfig"; sourceTree = "<group>"; };
 		F6F1B91989FD00BAA50CD38B /* Pods_MyOrders.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyOrders.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -389,6 +397,10 @@
 				24419C2F210F633600517B5D /* MenuCollectionCell.xib */,
 				24419C762110E89100517B5D /* SectionHeader.swift */,
 				24419C772110E89100517B5D /* SectionHeader.xib */,
+				24B5DD9221FA922F0066E8F8 /* MenuCategoryView.swift */,
+				24B5DD9321FA922F0066E8F8 /* MenuCategoryView.xib */,
+				24E0B12C2203892B0000ED95 /* CategoryCollectionCell.swift */,
+				24E0B12D2203892B0000ED95 /* CategoryCollectionCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -486,9 +498,11 @@
 				24419C5B210F633700517B5D /* MenuCollectionCell.xib in Resources */,
 				24419C74210F633700517B5D /* Main.storyboard in Resources */,
 				24419C792110E89100517B5D /* SectionHeader.xib in Resources */,
+				24E0B12F2203892B0000ED95 /* CategoryCollectionCell.xib in Resources */,
 				24419C73210F633700517B5D /* LaunchScreen.storyboard in Resources */,
 				24419C72210F633700517B5D /* Assets.xcassets in Resources */,
 				2417107421227BF6001895E8 /* OrderTableCell.xib in Resources */,
+				24B5DD9521FA922F0066E8F8 /* MenuCategoryView.xib in Resources */,
 				241710782123158E001895E8 /* BaseHeaderCell.xib in Resources */,
 				24419C71210F633700517B5D /* MYLTextFieldView.xib in Resources */,
 				24297F7C2184A47700C311B1 /* CustomerTableCell.xib in Resources */,
@@ -597,6 +611,8 @@
 				24419C6B210F633700517B5D /* NetworkManager.swift in Sources */,
 				24AE5F0D2138856D000E3182 /* BillInteractor.swift in Sources */,
 				24419C69210F633700517B5D /* StorageManager.swift in Sources */,
+				24E0B12E2203892B0000ED95 /* CategoryCollectionCell.swift in Sources */,
+				24B5DD9421FA922F0066E8F8 /* MenuCategoryView.swift in Sources */,
 				24419C55210F633700517B5D /* DashboardViewController.swift in Sources */,
 				24419C53210F633700517B5D /* BaseServices.swift in Sources */,
 				24419C67210F633700517B5D /* Menu.swift in Sources */,

@@ -9,6 +9,7 @@
 import UIKit
 
 protocol EatInViewInterface: BaseViewInterface {
+  func disableEnableField()
   func gotoNext()
 }
 
@@ -96,7 +97,6 @@ class EatInViewController: BaseTextFieldViewController, EatInViewInterface {
       staffPIN.validate()
       customerNumber.validate()
       
-      //TODO: validate the PIN
       if staffPIN.isValid && customerNumber.isValid {
         self.eventHandler?.validatePIN(self.thisBill.staffPIN)
         view.endEditing(true)
@@ -111,6 +111,10 @@ class EatInViewController: BaseTextFieldViewController, EatInViewInterface {
   
   func gotoNext() {
     self.performSegue(withIdentifier: ReuseIdentifier.toMenu.rawValue, sender: nil)
+  }
+  
+  func disableEnableField() {
+    self.customerNumber.fieldText.isEnabled = !self.customerNumber.fieldText.isEnabled
   }
 }
 

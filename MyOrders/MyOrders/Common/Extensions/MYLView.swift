@@ -11,10 +11,10 @@ import SDWebImage
 extension UIView {
   
   func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
-    let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+    let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
     let mask = CAShapeLayer()
     mask.path = path.cgPath
-    self.layer.mask = mask
+    layer.mask = mask
   }
   
   func shadow(radius: CGFloat, strength: CGFloat = 6.0) {
@@ -23,7 +23,7 @@ extension UIView {
     self.layer.shadowRadius = radius
     self.layer.cornerRadius = radius
     self.layer.shadowOpacity = 1
-    self.layer.masksToBounds = false
+    self.layer.masksToBounds = false //this has to be false
   }
   
   func addDashedBorder(offsetX: CGFloat = 0, offsetY: CGFloat = 0) {

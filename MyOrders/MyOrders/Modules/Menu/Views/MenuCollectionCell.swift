@@ -27,7 +27,7 @@ class MenuCollectionCell: UICollectionViewCell {
       }
       newItemImage.isHidden = !thisItem.isNewItem
       
-      // TODO: pass in order type
+      // check order type
       if Bill.sharedInstance.order?.orderType == .lunchBuffet || Bill.sharedInstance.order?.orderType == .dinnerBuffet {
         if thisItem.orderAvailability == .eatInByOrder {
           itemName.text = "[\(thisItem.mid.uppercased())] \(thisItem.name) - Pay \(thisItem.price?.toCurrency() ?? "")"
@@ -40,7 +40,6 @@ class MenuCollectionCell: UICollectionViewCell {
         itemName.text = "[\(thisItem.mid.uppercased())] \(thisItem.name) - \(thisItem.price?.toCurrency() ?? "")"
       }
       
-      // TODO: need add status as part of the key
       if let item = Bill.sharedInstance.order?.items[thisItem.key], item.quantity > 0 {
         quantityLabel.text = "\(item.quantity)"
       } else {
