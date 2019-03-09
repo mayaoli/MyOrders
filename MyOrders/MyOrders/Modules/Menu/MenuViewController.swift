@@ -24,10 +24,10 @@ class MenuViewController: BaseViewController, MenuViewInterface {
 
   var menuCategories: [Menu]!
   
-  @IBOutlet weak var menuView: UICollectionView!
+  @IBOutlet weak var menuCollectionView: UICollectionView!
   @IBOutlet weak var menuViewBottomConstraint: NSLayoutConstraint!
   @IBOutlet weak var categoryContainer: UIView!
-  @IBOutlet weak var categoryView: UICollectionView!
+  @IBOutlet weak var categoryCollectionView: UICollectionView!
   @IBOutlet weak var categoryTopConstraint: NSLayoutConstraint!
   
   private weak var eventHandler: MenuEventsInterface? {
@@ -52,13 +52,13 @@ class MenuViewController: BaseViewController, MenuViewInterface {
     self.eventHandler?.getMenuList()
     
     self.title = "Our Menu"
-    menuView.register(ReuseIdentifier.menuCollectionCell.nib, forCellWithReuseIdentifier: ReuseIdentifier.menuCollectionCell.rawValue)
-    menuView.register(ReuseIdentifier.sectionHeader.nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ReuseIdentifier.sectionHeader.rawValue)
-    if let layout = menuView.collectionViewLayout as? UICollectionViewFlowLayout {
+    menuCollectionView.register(ReuseIdentifier.menuCollectionCell.nib, forCellWithReuseIdentifier: ReuseIdentifier.menuCollectionCell.rawValue)
+    menuCollectionView.register(ReuseIdentifier.sectionHeader.nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ReuseIdentifier.sectionHeader.rawValue)
+    if let layout = menuCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
       layout.sectionHeadersPinToVisibleBounds = true
     }
     
-    categoryView.register(ReuseIdentifier.categoryCollectionCell.nib, forCellWithReuseIdentifier: ReuseIdentifier.categoryCollectionCell.rawValue)
+    categoryCollectionView.register(ReuseIdentifier.categoryCollectionCell.nib, forCellWithReuseIdentifier: ReuseIdentifier.categoryCollectionCell.rawValue)
     self.categoryTopConstraint.constant = -130
     
     self.view.setNeedsUpdateConstraints()
@@ -148,12 +148,12 @@ class MenuViewController: BaseViewController, MenuViewInterface {
   // MARK: - MenuViewInterface
   func renderMenuList(_ menuList: [Menu]) {
     menuCategories = menuList
-    menuView.delegate = self
-    menuView.dataSource = self
-    self.menuView.reloadData()
-    categoryView.delegate = self
-    categoryView.dataSource = self
-    self.categoryView.reloadData()
+    menuCollectionView.delegate = self
+    menuCollectionView.dataSource = self
+    self.menuCollectionView.reloadData()
+    categoryCollectionView.delegate = self
+    categoryCollectionView.dataSource = self
+    self.categoryCollectionView.reloadData()
   }
   
   func addToOrder(item: MenuItem) {
@@ -260,7 +260,7 @@ extension MenuViewController: UICollectionViewDataSource {
 extension MenuViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     if collectionView.tag == MenuCollectionViews.Menu.rawValue {
-      return CGSize(width: (collectionView.bounds.size.width - 30)/4, height: 210)
+      return CGSize(width: 236.0, height: 210.0)
     } else {
       return CGSize(width: (collectionView.bounds.size.width - 30)/4, height: (collectionView.bounds.size.height - 10)/2)
     }
@@ -288,7 +288,7 @@ extension MenuViewController: UICollectionViewDelegate {
       //      collectionView.deselectItem(at: indexPath, animated: true)
       //    }
     } else {
-      self.menuView.scrollToItem(at: IndexPath(row: 0, section: indexPath.row), at: .top, animated: true)
+      self.menuCollectionView.scrollToItem(at: IndexPath(row: 0, section: indexPath.row), at: .top, animated: true)
     }
  
   }

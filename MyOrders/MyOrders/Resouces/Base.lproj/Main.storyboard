@@ -333,10 +333,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="categoryCollectionView" destination="FD5-Yb-hmI" id="KOl-Qd-VFh"/>
                         <outlet property="categoryContainer" destination="CF5-nm-iW9" id="Bbb-Vk-2lS"/>
                         <outlet property="categoryTopConstraint" destination="5cA-oL-TqS" id="dOr-L8-hjQ"/>
-                        <outlet property="categoryView" destination="FD5-Yb-hmI" id="KOl-Qd-VFh"/>
-                        <outlet property="menuView" destination="5yq-cP-Hcu" id="fqY-aN-fbx"/>
+                        <outlet property="menuCollectionView" destination="5yq-cP-Hcu" id="fqY-aN-fbx"/>
                         <outlet property="menuViewBottomConstraint" destination="dhq-o0-ISU" id="LZy-a0-rHC"/>
                         <segue destination="SSm-0Q-2hD" kind="presentation" identifier="toLargeView" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="obo-bI-cfY"/>
                         <segue destination="Jey-sS-BRS" kind="presentation" identifier="toOrders" id="Isp-NQ-7uq"/>

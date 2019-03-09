@@ -146,7 +146,7 @@ class OrdersViewController: BaseViewController, OrdersViewInterface {
     guard let menuVC = navCtrl.topViewController as? MenuViewController else {
       return
     }
-    menuVC.menuView.reloadData()
+    menuVC.menuCollectionView.reloadData()
   }
   
 }
